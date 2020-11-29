@@ -1,7 +1,9 @@
-export default function Home() {
+import React from "react";
+
+export default function Home({ productData }) {
   return (
     <div>
-      <h1>Hello World</h1>
+      <h2>Raritäten aus Japan</h2>
     </div>
   );
 }
