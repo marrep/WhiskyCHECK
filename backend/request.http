@@ -1,0 +1,4 @@
+@baseUrl = http://whiskycheck.local
+
+###
+GET {{baseUrl}}
