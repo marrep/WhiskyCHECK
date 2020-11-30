@@ -12,7 +12,7 @@ import BookmarkIcon from "../bookmark_icon/BookmarkIcon";
 
 export default function ProductDetailPage({
   productData,
-  saveThisItem,
+  toggleBookmark,
   bookmarks,
 }) {
   let { id } = useParams();
@@ -24,7 +24,7 @@ export default function ProductDetailPage({
           {productData[id].title} {productData[id].size} ml
         </ItemTitleSize>
         <BookmarkIcon
-          saveThisItem={saveThisItem}
+          toggleBookmark={toggleBookmark}
           id={id}
           bookmarks={bookmarks}
         />

@@ -9,12 +9,6 @@ export default function useHooks() {
     getProductData().then((product) => setProducts(product.data));
   }, []);
 
-  function saveBookmark(id) {
-    !bookmarks.some((product) => product.id === id)
-      ? setBookmarks([...bookmarks, { image: products[id].image, id: id }])
-      : console.log("already on your list!");
-  }
-
   function deleteBookmark(id) {
     console.log(id);
     const index = bookmarks.findIndex((product) => product.id === id);
@@ -25,9 +19,15 @@ export default function useHooks() {
     ]);
   }
 
+  function toggleBookmark(id) {
+    !bookmarks.some((product) => product.id === id)
+      ? setBookmarks([...bookmarks, { image: products[id].image, id: id }])
+      : deleteBookmark(id);
+  }
+
   return {
     deleteBookmark,
-    saveBookmark,
+    toggleBookmark,
     products,
     bookmarks,
   };

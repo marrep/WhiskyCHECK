@@ -11,7 +11,7 @@ import ProductDetailPage from "../product/product_detail_page/ProductDetailPage"
 import useHooks from "../../hooks/useHooks";
 
 export default function App() {
-  const { deleteBookmark, saveBookmark, products, bookmarks } = useHooks();
+  const { deleteBookmark, toggleBookmark, products, bookmarks } = useHooks();
 
   return (
     <GlobalWrapper>
@@ -33,7 +33,7 @@ export default function App() {
           <Route path="/products/:id">
             <ProductDetailPage
               productData={Object.values(products)}
-              saveThisItem={saveBookmark}
+              toggleBookmark={toggleBookmark}
               bookmarks={bookmarks}
             />
           </Route>

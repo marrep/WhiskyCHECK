@@ -1,7 +1,7 @@
 import BookmarkOff from "../../../assets/bookmarkOff.svg";
 import BookmarkOn from "../../../assets/bookmarkOn.svg";
 
-export default function BookmarkIcon({ saveThisItem, id, bookmarks }) {
+export default function BookmarkIcon({ toggleBookmark, id, bookmarks }) {
   return (
     <div>
       <img
@@ -11,7 +11,7 @@ export default function BookmarkIcon({ saveThisItem, id, bookmarks }) {
             : BookmarkOff
         }
         alt=""
-        onClick={() => saveThisItem(id)}
+        onClick={() => toggleBookmark(id)}
       />
       <p>Merken</p>
     </div>
