@@ -4,11 +4,21 @@ export default function getPriceRange(offersData) {
     offers.push(offer.price);
   });
   if (offersData.length === 1) {
-    return `${offers}€`;
+    return new Intl.NumberFormat("de-DE", {
+      style: "currency",
+      currency: "EUR",
+    }).format(offers);
   } else {
-    return `${Math.min.apply(Math, offers)}€ - ${Math.max.apply(
-      Math,
-      offers
-    )}€`;
+    return (
+      new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR",
+      }).format(Math.min.apply(Math, offers)) +
+      " - " +
+      new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR",
+      }).format(Math.max.apply(Math, offers))
+    );
   }
 }

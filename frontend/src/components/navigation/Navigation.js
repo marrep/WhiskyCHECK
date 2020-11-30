@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FooterWrapper } from "./NavigationStyled";
-import Bookmark from "../../assets/bookmark.svg";
+import Bookmark from "../../assets/bookmarkOff.svg";
 import Cart from "../../assets/cart.svg";
 import Home from "../../assets/home.svg";
 import Menu from "../../assets/menu.svg";

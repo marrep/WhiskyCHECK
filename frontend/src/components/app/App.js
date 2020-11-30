@@ -7,16 +7,11 @@ import Search from "../routes/search/Search";
 import Navigation from "../navigation/Navigation";
 import Home from "../routes/home/Home";
 import { GlobalWrapper } from "./AppStyled";
-import { useState, useEffect } from "react";
-import getProductData from "../../services/getProductData";
 import ProductDetailPage from "../product/product_detail_page/ProductDetailPage";
+import useHooks from "../../hooks/useHooks";
 
 export default function App() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    getProductData().then((product) => setProducts(product.data));
-  }, []);
+  const { deleteBookmark, saveBookmark, products, bookmarks } = useHooks();
 
   return (
     <GlobalWrapper>
@@ -30,13 +25,17 @@ export default function App() {
             <Card />
           </Route>
           <Route exact path="/bookmark">
-            <Bookmark />
+            <Bookmark bookmarks={bookmarks} deleteBookmark={deleteBookmark} />
           </Route>
           <Route exact path="/search">
             <Search productData={products} />
           </Route>
           <Route path="/products/:id">
-            <ProductDetailPage productData={Object.values(products)} />
+            <ProductDetailPage
+              productData={Object.values(products)}
+              saveThisItem={saveBookmark}
+              bookmarks={bookmarks}
+            />
           </Route>
         </Switch>
       </main>

@@ -4,21 +4,34 @@ import {
   ItemTitleSize,
   ItemPriceRange,
   ItemImage,
-  ItemWrapper,
+  ItemWrapperMain,
+  ItemWrapperTop,
   ItemDescription,
 } from "./ProductDetailPageStyled";
+import BookmarkIcon from "../bookmark_icon/BookmarkIcon";
 
-export default function ProductDetailPage({ productData }) {
+export default function ProductDetailPage({
+  productData,
+  saveThisItem,
+  bookmarks,
+}) {
   let { id } = useParams();
 
   return (
-    <ItemWrapper>
-      <ItemTitleSize>
-        {productData[id].title} {productData[id].size} ml
-      </ItemTitleSize>
+    <ItemWrapperMain>
+      <ItemWrapperTop>
+        <ItemTitleSize>
+          {productData[id].title} {productData[id].size} ml
+        </ItemTitleSize>
+        <BookmarkIcon
+          saveThisItem={saveThisItem}
+          id={id}
+          bookmarks={bookmarks}
+        />
+      </ItemWrapperTop>
       <ItemPriceRange>74,90 - 77,90€</ItemPriceRange>
       <ItemImage src={productData[id].image} alt="" />
       <ItemDescription>{productData[id].description}</ItemDescription>
-    </ItemWrapper>
+    </ItemWrapperMain>
   );
 }

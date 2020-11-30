@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
-export const ItemWrapper = styled.div`
+export const ItemWrapperMain = styled.div`
   display: block;
+  padding: 1em;
+  overflow: hidden;
+  text-decoration: none;
+`;
+
+export const ItemWrapperTop = styled.div`
+  display: flex;
   padding: 1em;
   overflow: hidden;
   text-decoration: none;
