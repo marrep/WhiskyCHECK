@@ -3,24 +3,48 @@ import {
   ItemTitle,
   ItemPriceRange,
   ItemOffers,
+  ItemOnStock,
   ItemImage,
   ItemWrapper,
-} from "./ProductItemStyled";
-import { Link } from "react-router-dom";
+  ItemWrapperLeft,
+  ItemWrapperCenter,
+  ItemWrapperRight,
+} from "./ProductItemSearchStyled";
 import countOffers from "../../../services/countOffers";
 import getPriceRange from "../../../services/getPriceRange";
 import getDeliveryDay from "../../../services/getDeliveryDay";
+import checkOnStock from "../../../services/checkOnStock";
+import BookmarkIcon from "../bookmark_icon/BookmarkIcon";
+import Details from "../details_icon/DetailsIcon";
 
-export default function ProductItem({ title, image, offers, index }) {
+export default function ProductItemSearch({
+  title,
+  image,
+  offers,
+  index,
+  toggleBookmark,
+  bookmarks,
+}) {
   return (
     <ItemWrapper>
-      <Link to={`/products/${index}`} style={{ textDecoration: "none" }}>
+      <ItemWrapperLeft>
         <ItemImage src={image} alt="" />
+      </ItemWrapperLeft>
+      <ItemWrapperCenter>
         <ItemTitle>{title}</ItemTitle>
         <ItemOffers>{countOffers(offers)}</ItemOffers>
+        <ItemOnStock>{checkOnStock(offers)}</ItemOnStock>
         <ItemPriceRange>{getPriceRange(offers)}</ItemPriceRange>
         <p>{getDeliveryDay(offers)}</p>
-      </Link>
+      </ItemWrapperCenter>
+      <ItemWrapperRight>
+        <BookmarkIcon
+          toggleBookmark={toggleBookmark}
+          id={index}
+          bookmarks={bookmarks}
+        />
+        <Details index={index} />
+      </ItemWrapperRight>
     </ItemWrapper>
   );
 }
