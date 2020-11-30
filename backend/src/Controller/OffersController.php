@@ -17,7 +17,7 @@ class OffersController extends AbstractController
      */
     public function index(OfferRepository $repository, SerializerInterface $serializer): JsonResponse
     {    
-        $products = $repository->findAll();
+        $offers = $repository->findAll();
 
         return $this->json([
             'data' => $offers

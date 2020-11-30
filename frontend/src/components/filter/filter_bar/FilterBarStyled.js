@@ -20,4 +20,14 @@ export const FilterWrapperItem = styled.div`
   height: 5vh;
   background-color: #f1f1f1;
   border: 1px solid #707070;
+
+  select {
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -ms-appearance: none;
+    background: transparent;
+  }
 `;
