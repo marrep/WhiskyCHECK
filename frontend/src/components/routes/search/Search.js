@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductItemSearch from "../../product/product_item_search/ProductItemSearch";
 import { SearchWrapper } from "./SearchStyled";
 import countOffers from "../../../services/countOffers";
@@ -13,13 +13,47 @@ export default function Search({ productData, toggleBookmark, bookmarks }) {
 
   function toggleFilterStatus() {
     setFilterStatus(!filterStatus);
-    console.log(filterStatus);
+  }
+
+  function sortProducts(sortSelector) {
+    console.log(sortSelector);
+    if (sortSelector === "NameUp") {
+      setProductView(
+        Object.assign(
+          [],
+          productView.sort((a, b) => {
+            if (a.title < b.title) return -1;
+            if (a.title > b.title) return 1;
+            return 0;
+          })
+        )
+      );
+    }
+    if (sortSelector === "NameDown") {
+      setProductView(
+        Object.assign(
+          [],
+          productView.sort((a, b) => {
+            if (a.title > b.title) return -1;
+            if (a.title < b.title) return 1;
+            return 0;
+          })
+        )
+      );
+    }
+  }
+
+  function sortHandler(event) {
+    sortProducts(event.target.value);
   }
 
   return (
     <SearchWrapper>
       <h1>Whisky | {results}</h1>
-      <FilterBar toggleFilterStatus={toggleFilterStatus} />
+      <FilterBar
+        toggleFilterStatus={toggleFilterStatus}
+        sortHandler={sortHandler}
+      />
       {productView.map(({ title, image, offers }, index) => (
         <ProductItemSearch
           title={title}
