@@ -12,7 +12,7 @@ import {
 } from "./ProductItemSearchStyled";
 import countOffers from "../../../services/countOffers";
 import getPriceRange from "../../../services/getPriceRange";
-import getDeliveryDay from "../../../services/getDeliveryDay";
+import getFastestDeliveryDay from "../../../services/getFastestDeliveryDay";
 import checkOnStock from "../../../services/checkOnStock";
 import BookmarkIcon from "../bookmark_icon/BookmarkIcon";
 import Details from "../details_icon/DetailsIcon";
@@ -35,7 +35,7 @@ export default function ProductItemSearch({
         <ItemOffers>{countOffers(offers)}</ItemOffers>
         <ItemOnStock>{checkOnStock(offers)}</ItemOnStock>
         <ItemPriceRange>{getPriceRange(offers)}</ItemPriceRange>
-        <p>{getDeliveryDay(offers)}</p>
+        <p>{getFastestDeliveryDay(offers)}</p>
       </ItemWrapperCenter>
       <ItemWrapperRight>
         <BookmarkIcon

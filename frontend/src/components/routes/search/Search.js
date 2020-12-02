@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ProductItemSearch from "../../product/product_item_search/ProductItemSearch";
 import { SearchWrapper } from "./SearchStyled";
 import countOffers from "../../../services/countOffers";

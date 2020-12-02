@@ -12,4 +12,18 @@ export const FilterTagsStyled = styled.div`
     border-radius: 1em;
     background-color: #ffffff;
   }
+
+  label {
+    display: inline-block;
+    margin: -2px;
+    padding: 4px 12px;
+    background-color: #e7e7e7;
+    border: 1px solid black;
+  }
+
+  label:checked {
+    background-image: none;
+    background-color: #d0d0d0;
+    border: 1px solid red;
+  }
 `;

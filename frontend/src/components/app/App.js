@@ -43,7 +43,7 @@ export default function App() {
           </Route>
         </Switch>
       </main>
-      <Navigation />
+      <Navigation bookmarks={bookmarks} />
     </GlobalWrapper>
   );
 }

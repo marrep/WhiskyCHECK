@@ -9,6 +9,8 @@ import {
   ItemDescription,
 } from "./ProductDetailPageStyled";
 import BookmarkIcon from "../bookmark_icon/BookmarkIcon";
+import getPriceRange from "../../../services/getPriceRange";
+import OfferDetails from "../product_offer_details/OfferDetails";
 
 export default function ProductDetailPage({
   productData,
@@ -29,9 +31,12 @@ export default function ProductDetailPage({
           bookmarks={bookmarks}
         />
       </ItemWrapperTop>
-      <ItemPriceRange>74,90 - 77,90€</ItemPriceRange>
+      <ItemPriceRange>{getPriceRange(productData[id].offers)}</ItemPriceRange>
       <ItemImage src={productData[id].image} alt="" />
-      <ItemDescription>{productData[id].description}</ItemDescription>
+      <OfferDetails offerDetails={productData[id].offers} />
+      <ItemDescription>
+        <strong>Beschreibung:</strong> {productData[id].description}
+      </ItemDescription>
     </ItemWrapperMain>
   );
 }

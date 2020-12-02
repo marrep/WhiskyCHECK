@@ -10,4 +10,18 @@ export const FooterWrapper = styled.nav`
   bottom: 0;
   position: fixed;
   background-color: #f1f1f1;
+
+  span {
+    position: relative;
+    padding: 0.25em 0.5em;
+    border-radius: 3em;
+    right: -3em;
+    bottom: 1.5em;
+    color: #ffffff;
+    background-color: #f70000;
+  }
+
+  span:link {
+    text-decoration: none;
+  }
 `;

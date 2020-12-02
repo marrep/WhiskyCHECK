@@ -7,7 +7,7 @@ import Home from "../../assets/home.svg";
 import Menu from "../../assets/menu.svg";
 import Search from "../../assets/search.svg";
 
-export default function Navigation() {
+export default function Navigation({ bookmarks }) {
   return (
     <FooterWrapper>
       <Link exact to="/">
@@ -20,6 +20,9 @@ export default function Navigation() {
         <img src={Cart} alt="" />
       </Link>
       <Link exact to="/bookmark">
+        <span style={{ display: bookmarks.length === 0 ? "none" : "inline" }}>
+          {bookmarks.length}
+        </span>
         <img src={Bookmark} alt="" />
       </Link>
       <Link exact to="/menu">
