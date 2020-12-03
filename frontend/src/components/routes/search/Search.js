@@ -2,57 +2,23 @@ import React from "react";
 import { useState } from "react";
 import ProductItemSearch from "../../product/product_item_search/ProductItemSearch";
 import { SearchWrapper } from "./SearchStyled";
-import countOffers from "../../../services/countOffers";
 import FilterBar from "../../filter/filter_bar/FilterBar";
 import FilterOverlay from "../../filter/filter_overlay/FilterOverlay";
+import filterHandler from "../../../services/filterHandler";
+import sortProducts from "../../../services/sortProducts";
 
 export default function Search({ productData, toggleBookmark, bookmarks }) {
   const [productView, setProductView] = useState(productData);
-  const [results, setResults] = useState(countOffers(productView));
   const [filterStatus, setFilterStatus] = useState(false);
-
-  function toggleFilterStatus() {
-    setFilterStatus(!filterStatus);
-  }
-
-  function sortProducts(sortSelector) {
-    console.log(sortSelector);
-    if (sortSelector === "NameUp") {
-      setProductView(
-        Object.assign(
-          [],
-          productView.sort((a, b) => {
-            if (a.title < b.title) return -1;
-            if (a.title > b.title) return 1;
-            return 0;
-          })
-        )
-      );
-    }
-    if (sortSelector === "NameDown") {
-      setProductView(
-        Object.assign(
-          [],
-          productView.sort((a, b) => {
-            if (a.title > b.title) return -1;
-            if (a.title < b.title) return 1;
-            return 0;
-          })
-        )
-      );
-    }
-  }
-
-  function sortHandler(event) {
-    sortProducts(event.target.value);
-  }
 
   return (
     <SearchWrapper>
-      <h1>Whisky | {results}</h1>
+      <h1>Whisky | {productView.length}</h1>
       <FilterBar
-        toggleFilterStatus={toggleFilterStatus}
-        sortHandler={sortHandler}
+        toggleFilterStatus={() => setFilterStatus(!filterStatus)}
+        sortHandler={(event) =>
+          sortProducts(event.target.value, setProductView, productView)
+        }
       />
       {productView.map(({ title, image, offers }, index) => (
         <ProductItemSearch
@@ -65,9 +31,10 @@ export default function Search({ productData, toggleBookmark, bookmarks }) {
         />
       ))}
       <FilterOverlay
-        toggleFilterStatus={toggleFilterStatus}
+        toggleFilterStatus={() => setFilterStatus(!filterStatus)}
         filterStatus={filterStatus}
         productData={productData}
+        filterHandler={filterHandler}
       />
     </SearchWrapper>
   );

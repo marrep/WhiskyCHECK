@@ -1,8 +1,14 @@
 import React from "react";
-import createOriginTags from "../../../services/createOriginTags";
 import { FilterTagsStyled } from "./FilterTagsStyled";
 
-export default function FilterTags({ productData, filterProducts }) {
+export default function FilterTags({ productData, filterHandler }) {
+  const arrayData = [];
+  productData.forEach((element) => {
+    if (!arrayData.includes(element.origin)) {
+      arrayData.push(element.origin);
+    }
+  });
+
   return (
     <FilterTagsStyled>
       <form>
@@ -18,9 +24,21 @@ export default function FilterTags({ productData, filterProducts }) {
           />
         </div>
         <h2>Herkunft</h2>
-        {createOriginTags(productData)}
+        {arrayData.map((element, index) => (
+          <label
+            htmlFor={element[index]}
+            onClick={(event) => filterHandler(event)}
+          >
+            {element}
+            <input
+              type="checkbox"
+              name="origin"
+              value={element}
+              id={element[index]}
+            />
+          </label>
+        ))}
       </form>
-      <button type="submit" onClick={filterProducts}></button>
     </FilterTagsStyled>
   );
 }

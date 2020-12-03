@@ -4,19 +4,14 @@ import {
   FilterOverlayBar,
   FilterOverlayElements,
 } from "./FilterOverlayStyle";
-// import FilterPriceRange from "../filter_price_range/FilterPriceRange";
 import FilterTags from "../filter_tags/FilterTags";
 
 export default function FilterOverlay({
   toggleFilterStatus,
   filterStatus,
   productData,
+  filterHandler,
 }) {
-  function filterProducts(event) {
-    event.preventDefault();
-    console.log(event);
-  }
-
   return (
     <FilterOverlayWrapper
       style={{ display: filterStatus === false ? "none" : "block" }}
@@ -27,7 +22,7 @@ export default function FilterOverlay({
         <p>Zurücksetzen</p>
       </FilterOverlayBar>
       <FilterOverlayElements>
-        <FilterTags productData={productData} filterProducts={filterProducts} />
+        <FilterTags productData={productData} filterHandler={filterHandler} />
       </FilterOverlayElements>
     </FilterOverlayWrapper>
   );

@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const FilterOverlayWrapper = styled.div`
   height: 100%;
   width: 100%;
-  position: fixed; /* Stay in place */
-  z-index: 5; /* Sit on top */
+  position: fixed;
+  z-index: 5;
   left: 0;
   top: 0;
-  background-color: #f1f1f1; /* Black fallback color */
-  overflow-x: hidden; /* Disable horizontal scroll */
+  background-color: #f1f1f1;
+  overflow-x: hidden;
   transition: 0.5s;
 `;
 
@@ -18,7 +18,6 @@ export const FilterOverlayBar = styled.div`
   justify-content: space-around;
   height: 10vh;
   width: 100%;
-  /* position: fixed; */
   top: 0;
   background-color: white;
 `;
