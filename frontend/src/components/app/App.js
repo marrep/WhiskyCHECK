@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "../header/Header";
-import Card from "../routes/card/Card";
+import Cart from "../routes/cart/Cart";
 import Bookmark from "../routes/bookmark/Bookmark";
 import Search from "../routes/search/Search";
 import Navigation from "../navigation/Navigation";
@@ -17,7 +17,7 @@ export default function App() {
     items: [],
     totalPrice: 0,
     totalShipping: 0,
-    date: +new Date(),
+    date: new Intl.DateTimeFormat("en-US").format(new Date()),
     customerid: 2,
   });
 
@@ -29,8 +29,14 @@ export default function App() {
           <Route exact path="/">
             <Home productData={products} />
           </Route>
-          <Route exact path="/card">
-            <Card />
+          <Route exact path="/cart">
+            <Cart
+              cart={cart}
+              productData={Object.values(products)}
+              bookmarks={bookmarks}
+              toggleBookmark={toggleBookmark}
+              setCart={setCart}
+            />
           </Route>
           <Route exact path="/bookmark">
             <Bookmark bookmarks={bookmarks} deleteBookmark={deleteBookmark} />
@@ -53,7 +59,7 @@ export default function App() {
           </Route>
         </Switch>
       </main>
-      <Navigation bookmarks={bookmarks} />
+      <Navigation bookmarks={bookmarks} cart={cart} />
     </GlobalWrapper>
   );
 }

@@ -6,15 +6,24 @@ export default function AddToCartButton({
   product,
   cart,
   setCart,
-  AddItem,
   selectedOffer,
+  setToggleAvailability,
 }) {
-  console.log(product.id);
-  console.log(product.price);
+  function checkAvailability(selectedOffer) {
+    if (selectedOffer.onStock) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   return (
     <AddToCartButtonStyled
-      onClick={(event) => AddItem(event, product, cart, setCart, selectedOffer)}
+      onClick={() =>
+        checkAvailability(selectedOffer)
+          ? addToCart(product, cart, setCart, selectedOffer)
+          : setToggleAvailability("Sorry, dieser Artikel ist nicht Verfügbar!")
+      }
     >
       In den Warenkorb
     </AddToCartButtonStyled>

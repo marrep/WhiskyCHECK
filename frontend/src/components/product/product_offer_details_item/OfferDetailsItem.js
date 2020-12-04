@@ -8,6 +8,7 @@ export default function OfferDetailsItem({ singleOffer }) {
     <div>
       <div>{singleOffer.price}</div>
       <div>{singleOffer.seller}</div>
+      <div>{singleOffer.onStock ? "Auf Lager." : "Nicht verfügbar"}</div>
       <div>{getDeliverDay(singleOffer.deliveryTime)}</div>
     </div>
   );

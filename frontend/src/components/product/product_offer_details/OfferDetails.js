@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import OfferDetailsItem from "../product_offer_details_item/OfferDetailsItem";
-import setCurrentOffer from "../../../services/setCurrentOffer";
+import selectOffer from "../../../services/selectOffer";
 import AddToCartButton from "../../buttons/AddToCartButton";
 
 export default function OfferDetails({
@@ -27,12 +27,7 @@ export default function OfferDetails({
               <OfferDetailsItem singleOffer={offer} index={index} />
               <button
                 onClick={() =>
-                  setCurrentOffer(
-                    offer.id,
-                    selectedOffer,
-                    offerDetails,
-                    setSelectedOffer
-                  )
+                  selectOffer(offer.id, offerDetails, setSelectedOffer)
                 }
               >
                 auswählen
