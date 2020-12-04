@@ -2,8 +2,15 @@ import React from "react";
 import { useState } from "react";
 import OfferDetailsItem from "../product_offer_details_item/OfferDetailsItem";
 import setCurrentOffer from "../../../services/setCurrentOffer";
+import AddToCartButton from "../../buttons/AddToCartButton";
 
-export default function OfferDetails({ offerDetails }) {
+export default function OfferDetails({
+  offerDetails,
+  product,
+  cart,
+  setCart,
+  AddItem,
+}) {
   const [selectedOffer, setSelectedOffer] = useState(offerDetails[0]);
   const [toggleOffers, setToggleOffer] = useState(false);
 
@@ -34,6 +41,13 @@ export default function OfferDetails({ offerDetails }) {
           ))}
         </div>
       </div>
+      <AddToCartButton
+        AddItem={AddItem}
+        product={product}
+        cart={cart}
+        setCart={setCart}
+        selectedOffer={selectedOffer}
+      />
     </div>
   );
 }

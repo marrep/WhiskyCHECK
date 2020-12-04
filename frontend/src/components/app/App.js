@@ -9,9 +9,17 @@ import Home from "../routes/home/Home";
 import { GlobalWrapper } from "./AppStyled";
 import ProductDetailPage from "../product/product_detail_page/ProductDetailPage";
 import useHooks from "../../hooks/useHooks";
+import { useState } from "react";
 
 export default function App() {
   const { deleteBookmark, toggleBookmark, products, bookmarks } = useHooks();
+  const [cart, setCart] = useState({
+    items: [],
+    totalPrice: 0,
+    totalShipping: 0,
+    date: +new Date(),
+    customerid: 2,
+  });
 
   return (
     <GlobalWrapper>
@@ -39,6 +47,8 @@ export default function App() {
               productData={Object.values(products)}
               toggleBookmark={toggleBookmark}
               bookmarks={bookmarks}
+              cart={cart}
+              setCart={setCart}
             />
           </Route>
         </Switch>
