@@ -1,7 +1,12 @@
 import React from "react";
 import { FilterTagsStyled } from "./FilterTagsStyled";
 
-export default function FilterTags({ productData, filterHandler }) {
+export default function FilterTags({
+  productData,
+  filterHandler,
+  originFilter,
+  setOriginFilter,
+}) {
   const arrayData = [];
   productData.forEach((element) => {
     if (!arrayData.includes(element.origin)) {
@@ -12,22 +17,13 @@ export default function FilterTags({ productData, filterHandler }) {
   return (
     <FilterTagsStyled>
       <form>
-        <h2>Preis (max.)</h2>
-        <div class="slidecontainer">
-          <input
-            type="range"
-            min="1"
-            max="100"
-            value="50"
-            class="slider"
-            id="myRange"
-          />
-        </div>
         <h2>Herkunft</h2>
         {arrayData.map((element, index) => (
           <label
             htmlFor={element[index]}
-            onClick={(event) => filterHandler(event)}
+            onClick={(event) =>
+              filterHandler(event.target.value, originFilter, setOriginFilter)
+            }
           >
             {element}
             <input
