@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
-export const AddToCartButtonStyled = styled.button`
+export const BookmarkBuyButtonStyled = styled.button`
   display: block;
   margin-left: 0;
   margin-right: 0;
-  margin-bottom: 40px;
-  width: 100%;
-  padding: 1em 5em;
+  width: 80%;
+  padding: 0.5em 2.5em;
   text-transform: uppercase;
-  background-color: #003f8a;
+  background-color: #f6ba41;
   border-radius: 30px;
   border: none;
   color: #ffffff;

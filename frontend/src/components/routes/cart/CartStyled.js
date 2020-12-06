@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BookmarkWrapper = styled.div`
+export const CartWrapper = styled.div`
   text-align: center;
 
   p {
@@ -9,7 +9,7 @@ export const BookmarkWrapper = styled.div`
   }
 `;
 
-export const BookmarkWrapperTop = styled.div`
+export const CartWrapperTop = styled.div`
   display: block;
   width: 100%;
   padding: 10px;

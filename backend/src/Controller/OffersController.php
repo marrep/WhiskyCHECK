@@ -15,13 +15,13 @@ class OffersController extends AbstractController
     /**
      * @Route("/api/offers", methods={"GET"})
      */
-    public function index(OfferRepository $repository, SerializerInterface $serializer): JsonResponse
+    protected function index(OfferRepository $repository, SerializerInterface $serializer): JsonResponse
     {    
         $offers = $repository->findAll();
 
         return $this->json([
             'data' => $offers
-        ], 200, [], [ObjectNormalizer::CIRCULAR_REFERENCE_HANDLER => function($object) {
+        ], 200, [], [ObjectNormalizer::CIRCULAR_REFERENCE_HANDLER => function(object $object) {
                 return $object->getProducts();
             }]
         );

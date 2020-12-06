@@ -35,15 +35,15 @@ export default function ProductDetailPage({
       </ItemWrapperTop>
       <ItemPriceRange>{getPriceRange(productData[id].offers)}</ItemPriceRange>
       <ItemImage src={productData[id].image} alt="" />
+      <ItemDescription>
+        <strong>Beschreibung:</strong> {productData[id].description}
+      </ItemDescription>
       <OfferDetails
         offerDetails={productData[id].offers}
         product={productData[id]}
         cart={cart}
         setCart={setCart}
       />
-      <ItemDescription>
-        <strong>Beschreibung:</strong> {productData[id].description}
-      </ItemDescription>
     </ItemWrapperMain>
   );
 }

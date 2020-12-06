@@ -1,27 +1,47 @@
 import styled from "styled-components";
 
 export const FooterWrapper = styled.nav`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
   width: 100%;
-  height: 10vh;
-  bottom: 0;
   position: fixed;
+  justify-content: space-around;
+  height: 10vh;
+  font-size: 10px;
+  font-family: Lato;
+  flex-direction: row;
+  display: flex;
+  bottom: 0;
   background-color: #f1f1f1;
+  align-items: center;
+`;
 
-  span {
-    position: relative;
-    padding: 0.25em 0.5em;
-    border-radius: 3em;
-    right: -3em;
-    bottom: 1.5em;
-    color: #ffffff;
-    background-color: #f70000;
+export const FooterCardCounter = styled.span`
+  width: 15px;
+  text-align: center;
+  right: 42%;
+  position: fixed;
+  height: 15px;
+  color: #ffffff;
+  bottom: 6%;
+  border-radius: 50%;
+  background-color: #f70000;
+
+  :link {
+    text-decoration: none;
   }
+`;
 
-  span:link {
+export const FooterBookmarkCounter = styled.span`
+  width: 15px;
+  text-align: center;
+  right: 23%;
+  position: fixed;
+  height: 15px;
+  color: #ffffff;
+  bottom: 6%;
+  border-radius: 50%;
+  background-color: #f70000;
+
+  :link {
     text-decoration: none;
   }
 `;

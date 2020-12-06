@@ -1,4 +1,5 @@
 import React from "react";
+import { FilterTagItem, FilterTagItemWrapper } from "./FilterTagWrapperStyled";
 
 export default function FilterTagWrapper({
   originFilter,
@@ -8,16 +9,16 @@ export default function FilterTagWrapper({
   console.log(originFilter);
 
   return (
-    <div>
+    <FilterTagItemWrapper>
       {originFilter.map((filterTag) => (
-        <span
+        <FilterTagItem
           onClick={(event) =>
             filterHandler(event.target.innerHTML, originFilter, setOriginFilter)
           }
         >
           {filterTag}
-        </span>
+        </FilterTagItem>
       ))}
-    </div>
+    </FilterTagItemWrapper>
   );
 }

@@ -3,6 +3,11 @@ import { useState } from "react";
 import OfferDetailsItem from "../product_offer_details_item/OfferDetailsItem";
 import selectOffer from "../../../services/selectOffer";
 import AddToCartButton from "../../buttons/AddToCartButton";
+import {
+  OfferDetailsWrapper,
+  OfferDetailsShowButton,
+  OfferDetailsSelectButton,
+} from "./OfferDetailsStyled";
 
 export default function OfferDetails({
   offerDetails,
@@ -15,23 +20,23 @@ export default function OfferDetails({
   const [toggleOffers, setToggleOffer] = useState(false);
 
   return (
-    <div>
+    <OfferDetailsWrapper>
       <OfferDetailsItem singleOffer={selectedOffer} />
       <div style={{ display: offerDetails.length === 1 ? "none" : "block" }}>
-        <button onClick={() => setToggleOffer(!toggleOffers)}>
+        <OfferDetailsShowButton onClick={() => setToggleOffer(!toggleOffers)}>
           Alle {offerDetails.length} Angebote Anzeigen
-        </button>
+        </OfferDetailsShowButton>
         <div style={{ display: toggleOffers ? "block" : "none" }}>
           {offerDetails.map((offer, index) => (
             <div>
               <OfferDetailsItem singleOffer={offer} index={index} />
-              <button
+              <OfferDetailsSelectButton
                 onClick={() =>
                   selectOffer(offer.id, offerDetails, setSelectedOffer)
                 }
               >
-                auswählen
-              </button>
+                Dieses Angebot auswählen
+              </OfferDetailsSelectButton>
             </div>
           ))}
         </div>
@@ -43,6 +48,6 @@ export default function OfferDetails({
         setCart={setCart}
         selectedOffer={selectedOffer}
       />
-    </div>
+    </OfferDetailsWrapper>
   );
 }

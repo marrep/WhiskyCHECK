@@ -6,6 +6,7 @@ import Cart from "../../assets/cart.svg";
 import Home from "../../assets/home.svg";
 import Menu from "../../assets/menu.svg";
 import Search from "../../assets/search.svg";
+import { FooterCardCounter, FooterBookmarkCounter } from "./NavigationStyled";
 
 export default function Navigation({ bookmarks, cart }) {
   return (
@@ -17,15 +18,19 @@ export default function Navigation({ bookmarks, cart }) {
         <img src={Search} alt="" />
       </Link>
       <Link exact to="/cart">
-        <span style={{ display: cart.items.length === 0 ? "none" : "inline" }}>
+        <FooterCardCounter
+          style={{ display: cart.items.length === 0 ? "none" : "inline" }}
+        >
           {cart.items.length}
-        </span>
+        </FooterCardCounter>
         <img src={Cart} alt="" />
       </Link>
       <Link exact to="/bookmark">
-        <span style={{ display: bookmarks.length === 0 ? "none" : "inline" }}>
+        <FooterBookmarkCounter
+          style={{ display: bookmarks.length === 0 ? "none" : "inline" }}
+        >
           {bookmarks.length}
-        </span>
+        </FooterBookmarkCounter>
         <img src={Bookmark} alt="" />
       </Link>
       <Link exact to="/menu">

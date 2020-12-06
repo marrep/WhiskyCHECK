@@ -9,6 +9,7 @@ import {
   ItemWrapperLeft,
   ItemWrapperCenter,
   ItemWrapperRight,
+  ItemDelivery,
 } from "./ProductItemSearchStyled";
 import countOffers from "../../../services/countOffers";
 import getPriceRange from "../../../services/getPriceRange";
@@ -35,7 +36,7 @@ export default function ProductItemSearch({
         <ItemOffers>{countOffers(offers)}</ItemOffers>
         <ItemOnStock>{checkOnStock(offers)}</ItemOnStock>
         <ItemPriceRange>{getPriceRange(offers)}</ItemPriceRange>
-        <p>{getFastestDeliveryDay(offers)}</p>
+        <ItemDelivery>{getFastestDeliveryDay(offers)}</ItemDelivery>
       </ItemWrapperCenter>
       <ItemWrapperRight>
         <BookmarkIcon

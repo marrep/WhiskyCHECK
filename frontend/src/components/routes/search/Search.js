@@ -28,7 +28,12 @@ export default function Search({ productData, toggleBookmark, bookmarks }) {
 
   return (
     <SearchWrapper>
-      <h1>Whisky | {productView.length}</h1>
+      <h1>
+        Whisky |{" "}
+        {`${productView.length} ${
+          productView.length === 1 ? "Ergebnis" : "Ergebnisse"
+        }`}{" "}
+      </h1>
       <FilterBar
         toggleFilterStatus={() => setFilterOverlay(!filterOverlay)}
         sortHandler={(event) =>

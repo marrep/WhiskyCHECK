@@ -1,10 +1,15 @@
 import BookmarkOff from "../../../assets/bookmarkOff.svg";
 import BookmarkOn from "../../../assets/bookmarkOn.svg";
+import {
+  BookmarkIconWrapper,
+  BookmarkIconImage,
+  BookmarkIconText,
+} from "./BookmarkIconStyled";
 
 export default function BookmarkIcon({ toggleBookmark, id, bookmarks }) {
   return (
-    <div>
-      <img
+    <BookmarkIconWrapper>
+      <BookmarkIconImage
         src={
           bookmarks.some((product) => product.id === id)
             ? BookmarkOn
@@ -13,7 +18,7 @@ export default function BookmarkIcon({ toggleBookmark, id, bookmarks }) {
         alt=""
         onClick={() => toggleBookmark(id)}
       />
-      <p>Merken</p>
-    </div>
+      <BookmarkIconText>Merken</BookmarkIconText>
+    </BookmarkIconWrapper>
   );
 }

@@ -1,25 +1,29 @@
 import styled from "styled-components";
 
 export const FilterWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+  justify-content: center;
   height: 5vh;
-  background-color: #f1f1f1;
+  flex-direction: row;
+  display: flex;
   border: 1px solid #707070;
+  align-items: center;
 `;
 
 export const FilterWrapperItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   width: 50%;
-  height: 5vh;
-  background-color: #f1f1f1;
+  justify-content: center;
+  height: 100%;
+  font-size: 12px;
+  flex-direction: row;
+  display: flex;
   border: 1px solid #707070;
+  background-color: #f1f1f1;
+  align-items: center;
+
+  img {
+    margin-right: 5px;
+  }
 
   select {
     border: none;

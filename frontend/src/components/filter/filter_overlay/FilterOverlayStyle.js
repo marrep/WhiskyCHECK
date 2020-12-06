@@ -24,9 +24,7 @@ export const FilterOverlayBar = styled.div`
 
 export const FilterOverlayElements = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: top;
   width: 100%;
   top: 0;
 `;

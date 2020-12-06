@@ -1,17 +1,44 @@
 import React from "react";
 import getCartImage from "../../../services/getCardImage";
+import {
+  CartItemWrapper,
+  CartItemWrapperLeft,
+  CartItemWrapperCenter,
+  CartItemWrapperRight,
+  CartItemSeller,
+  CartItemTitle,
+  CartItemPrice,
+} from "./CartItemInformationStyled";
+import BookmarkIcon from "../../product/bookmark_icon/BookmarkIcon";
 
-export default function CartItemController({ cartItem, productData }) {
+export default function CartItemInformation({
+  cartItem,
+  productData,
+  toggleBookmark,
+  bookmarks,
+}) {
   return (
-    <>
-      <div>
+    <CartItemWrapper>
+      <CartItemWrapperLeft>
         <img src={getCartImage(productData, cartItem.id)} alt="" />
-      </div>
-      <div>
-        <h1>{cartItem.title}</h1>
-        <p>{cartItem.price}</p>
-        <p>{cartItem.seller}</p>
-      </div>
-    </>
+      </CartItemWrapperLeft>
+      <CartItemWrapperCenter>
+        <CartItemPrice>
+          {new Intl.NumberFormat("de-DE", {
+            style: "currency",
+            currency: "EUR",
+          }).format(cartItem.price)}
+        </CartItemPrice>
+        <CartItemTitle>{cartItem.title}</CartItemTitle>
+        <CartItemSeller>Versand durch {cartItem.seller}</CartItemSeller>
+      </CartItemWrapperCenter>
+      <CartItemWrapperRight>
+        <BookmarkIcon
+          toggleBookmark={toggleBookmark}
+          id={productData.findIndex((elem) => elem.id === cartItem.id)}
+          bookmarks={bookmarks}
+        />
+      </CartItemWrapperRight>
+    </CartItemWrapper>
   );
 }

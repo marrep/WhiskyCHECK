@@ -1,83 +1,91 @@
 import styled from "styled-components";
 
 export const ItemWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 1em;
   width: 100%;
-  overflow: hidden;
   text-decoration: none;
+  padding: 1em;
+  overflow: hidden;
+  flex-direction: row;
+  display: flex;
   border-bottom: 1px solid #dadbdc;
 `;
 
 export const ItemWrapperLeft = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: top;
-  align-items: top;
   width: 30%;
-  overflow: hidden;
   text-decoration: none;
+  overflow: hidden;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  align-items: top;
 `;
 
 export const ItemWrapperCenter = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  align-items: left;
-  padding: 1em;
   width: 50%;
-  overflow: hidden;
   text-decoration: none;
+  padding: 1em;
+  overflow: hidden;
+  justify-content: left;
+  flex-direction: column;
+  display: flex;
+  align-items: left;
 `;
 
 export const ItemWrapperRight = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: top;
-  align-items: top;
   width: 20%;
-  overflow: hidden;
   text-decoration: none;
+  overflow: hidden;
+  justify-content: space-around;
+  flex-direction: column;
+  display: flex;
+  align-items: stretch;
 `;
 
 export const ItemImage = styled.img`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
   width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
   overflow: hidden;
-  text-decoration: none;
-  text-align: center;
+  max-width: 100%;
+  max-height: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  height: auto;
+  display: block;
 `;
 
-export const ItemTitle = styled.h2`
+export const ItemTitle = styled.span`
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 14px;
+  font-family: Lato;
   display: block;
-  font-size: 12px;
   color: #003f8a;
-  text-decoration: none;
 `;
 
-export const ItemPriceRange = styled.p`
+export const ItemPriceRange = styled.span`
+  text-decoration: none;
+  font-size: 16px;
   display: block;
-  font-size: 15px;
   color: #e43122;
-  text-decoration: none;
 `;
 
-export const ItemOffers = styled.p`
+export const ItemOffers = styled.span`
+  text-decoration: none;
+  font-weight: 200;
+  font-size: 14px;
   display: block;
-  font-size: 12px;
   color: #575757;
-  text-decoration: none;
 `;
 
-export const ItemOnStock = styled.p`
-  display: block;
-  font-size: 12px;
-  color: #0da500;
+export const ItemOnStock = styled.span`
   text-decoration: none;
+  font-size: 12px;
+  display: block;
+  color: #0da500;
+`;
+
+export const ItemDelivery = styled.span`
+  text-decoration: none;
+  font-size: 14px;
+  display: block;
+  color: #575757;
 `;

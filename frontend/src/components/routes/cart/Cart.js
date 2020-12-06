@@ -1,35 +1,34 @@
 import React from "react";
-import BookmarkIcon from "../../product/bookmark_icon/BookmarkIcon";
 import CartItemController from "./CartItemController";
 import CardItemInformation from "./CartItemInformation";
+import { CartWrapper, CartWrapperTop } from "./CartStyled";
+import CartTotalPrice from "./CartTotalPrice";
 
-export default function Cart({
-  cart,
-  productData,
-  toggleBookmark,
-  bookmarks,
-  setCart,
-}) {
+export default function Cart({ cart, productData, toggleBookmark, bookmarks }) {
   return (
-    <div>
-      {cart.items.length === 0
-        ? "Sorry, dein Warenkorb ist leider leer"
-        : cart.items.map((cartItem) => (
-            <div>
+    <>
+      <CartWrapper>
+        <CartWrapperTop>
+          <span>Mein Warenkorb</span>
+        </CartWrapperTop>
+
+        {cart.items.length === 0 ? (
+          <p>Sorry, dein Warenkorb ist leider leer"</p>
+        ) : (
+          cart.items.map((cartItem) => (
+            <>
               <CardItemInformation
                 cartItem={cartItem}
                 productData={productData}
+                toggleBookmark={toggleBookmark}
+                bookmarks={bookmarks}
               />
-              <div>
-                <BookmarkIcon
-                  toggleBookmark={toggleBookmark}
-                  id={productData.findIndex((elem) => elem.id === cartItem.id)}
-                  bookmarks={bookmarks}
-                />
-              </div>
               <CartItemController cartItem={cartItem} />
-            </div>
-          ))}
-    </div>
+            </>
+          ))
+        )}
+      </CartWrapper>
+      {cart.items.length === 0 ? <p></p> : <CartTotalPrice cart={cart} />}
+    </>
   );
 }

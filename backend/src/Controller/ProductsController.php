@@ -15,7 +15,7 @@ class ProductsController extends AbstractController
     /**
      * @Route("/api/products", methods={"GET"})
      */
-    public function index(ProductRepository $repository, SerializerInterface $serializer): JsonResponse
+    protected function index(ProductRepository $repository, SerializerInterface $serializer): JsonResponse
     {    
         $products = $repository->findAll();
 

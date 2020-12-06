@@ -4,7 +4,6 @@ export const FilterTagsStyled = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100px;
-  margin-top: 80px;
 
   span {
     padding: 0.5em 1em;
@@ -19,11 +18,5 @@ export const FilterTagsStyled = styled.div`
     padding: 4px 12px;
     background-color: #e7e7e7;
     border: 1px solid black;
-  }
-
-  label:checked {
-    background-image: none;
-    background-color: #d0d0d0;
-    border: 1px solid red;
   }
 `;
