@@ -13,6 +13,8 @@ export default function Search({
   filterHandler,
   originFilter,
   filterOverlay,
+  toggleBookmark,
+  bookmarks,
 }) {
   return (
     <SearchWrapper>
@@ -20,12 +22,17 @@ export default function Search({
       <FilterBar
         toggleFilterOverlay={toggleFilterOverlay}
         sortProducts={sortProducts}
+        products={products}
       />
       <FilterTagWrapper
         filterHandler={filterHandler}
         originFilter={originFilter}
       />
-      <SearchResults products={products} />
+      <SearchResults
+        products={products}
+        toggleBookmark={toggleBookmark}
+        bookmarks={bookmarks}
+      />
       <FilterOverlay
         toggleFilterOverlay={toggleFilterOverlay}
         products={products}

@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import useOffers from "../../hooks/useOffers";
 
-export default function OfferDetailsSelectButton({ offers }) {
-  const { setToggleOffer, toggleOffers } = useOffers();
-
+export default function OfferDetailsSelectButton({
+  offers,
+  setToggleOffer,
+  toggleOffers,
+}) {
   return (
     <>
       <DetailsShowButton onClick={() => setToggleOffer(!toggleOffers)}>

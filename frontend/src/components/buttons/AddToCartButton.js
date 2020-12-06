@@ -1,10 +1,7 @@
 import React from "react";
-import useCart from "../../hooks/useCart";
 import styled from "styled-components";
 
-export default function AddToCartButton({ product, selectedOffer }) {
-  const { addToCart } = useCart();
-
+export default function AddToCartButton({ product, selectedOffer, addToCart }) {
   return (
     <AddToCartButtonStyled onClick={() => addToCart(product, selectedOffer)}>
       In den Warenkorb

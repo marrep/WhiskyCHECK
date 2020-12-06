@@ -9,7 +9,8 @@ export default function useCart() {
     customerid: 2,
   });
 
-  function addToCard(product, selectedOffer) {
+  function addToCart(product, selectedOffer) {
+    console.log(selectedOffer);
     let newItemsArray = cart.items;
     const foundIndex = newItemsArray.findIndex(
       (elem) => elem.id === product.id
@@ -44,6 +45,6 @@ export default function useCart() {
 
   return {
     cart,
-    addToCard,
+    addToCart,
   };
 }

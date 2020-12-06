@@ -10,6 +10,11 @@ export default function ProductDetailPage({
   selectedOffer,
   selectDefaultOffer,
   toggleOffers,
+  toggleBookmark,
+  bookmarks,
+  setToggleOffer,
+  selectNewOffer,
+  addToCart,
 }) {
   let { id } = useParams();
 
@@ -21,7 +26,11 @@ export default function ProductDetailPage({
         <ItemTitleSize>
           {products[id].title} {products[id].size} ml
         </ItemTitleSize>
-        <BookmarkIcon id={id} />
+        <BookmarkIcon
+          id={id}
+          toggleBookmark={toggleBookmark}
+          bookmarks={bookmarks}
+        />
       </ItemWrapperTop>
       <ItemPriceRange>{getPriceRange(products[id].offers)}</ItemPriceRange>
       <ItemImage src={products[id].image} alt="" />
@@ -34,6 +43,9 @@ export default function ProductDetailPage({
         selectedOffer={selectedOffer}
         selectDefaultOffer={selectDefaultOffer}
         toggleOffers={toggleOffers}
+        setToggleOffer={setToggleOffer}
+        selectNewOffer={selectNewOffer}
+        addToCart={addToCart}
       />
     </ItemWrapperMain>
   );

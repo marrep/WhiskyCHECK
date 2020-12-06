@@ -1,7 +1,7 @@
 import React from "react";
 import ProductItemSearch from "../product/ProductItemSearch";
 
-export default function SearchResults({ products }) {
+export default function SearchResults({ products, toggleBookmark, bookmarks }) {
   return (
     <>
       {products.map(({ title, image, offers, id }) => (
@@ -10,6 +10,8 @@ export default function SearchResults({ products }) {
           image={image}
           offers={offers}
           id={id}
+          toggleBookmark={toggleBookmark}
+          bookmarks={bookmarks}
         />
       ))}
     </>

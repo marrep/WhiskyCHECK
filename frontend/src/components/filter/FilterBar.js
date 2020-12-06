@@ -3,7 +3,11 @@ import FilterIcon from "../../assets/icons/filter.svg";
 import SortIcon from "../../assets/icons/sort.svg";
 import styled from "styled-components";
 
-export default function FilterBar({ toggleFilterOverlay, sortProducts }) {
+export default function FilterBar({
+  toggleFilterOverlay,
+  sortProducts,
+  products,
+}) {
   return (
     <FilterWrapper>
       <FilterWrapperItem onClick={() => toggleFilterOverlay()}>
@@ -13,7 +17,7 @@ export default function FilterBar({ toggleFilterOverlay, sortProducts }) {
         <img src={SortIcon} alt="" />
         <select
           name="sortProducts"
-          onChange={sortProducts((event) => sortProducts(event.target.value))}
+          onChange={(event) => sortProducts(event.target.value, products)}
         >
           <option value="NameUp">Name (aufsteigend)</option>
           <option value="NameDown">Name (absteigend)</option>

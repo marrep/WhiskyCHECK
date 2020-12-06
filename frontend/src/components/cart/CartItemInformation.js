@@ -3,7 +3,12 @@ import { convertToEuro, getCartImage } from "../../services/helpers";
 import styled from "styled-components";
 import BookmarkIcon from "../bookmark/BookmarkIcon";
 
-export default function CartItemInformation({ cartItem, products }) {
+export default function CartItemInformation({
+  cartItem,
+  products,
+  bookmarks,
+  toggleBookmark,
+}) {
   return (
     <CartItemWrapper>
       <CartItemWrapperLeft>
@@ -17,6 +22,8 @@ export default function CartItemInformation({ cartItem, products }) {
       <CartItemWrapperRight>
         <BookmarkIcon
           id={products.findIndex((elem) => elem.id === cartItem.id)}
+          bookmarks={bookmarks}
+          toggleBookmark={toggleBookmark}
         />
       </CartItemWrapperRight>
     </CartItemWrapper>

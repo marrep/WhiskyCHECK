@@ -14,7 +14,7 @@ export default function useProducts() {
     setProducts,
   };
 
-  function sortProducts(sortSelector) {
+  function sortProducts(sortSelector, products) {
     console.log(sortSelector);
     if (sortSelector === "NameUp") {
       setProducts(

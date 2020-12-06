@@ -4,8 +4,11 @@ export default function useOffers() {
   const [selectedOffer, setSelectedOffer] = useState([]);
   const [toggleOffers, setToggleOffer] = useState(false);
 
+  console.log(toggleOffers);
+
   function selectDefaultOffer(productOfferDetails) {
     setSelectedOffer(productOfferDetails);
+    console.log(selectedOffer);
     return selectedOffer;
   }
 

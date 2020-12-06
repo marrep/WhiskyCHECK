@@ -9,7 +9,14 @@ import {
 import BookmarkIcon from "../bookmark/BookmarkIcon";
 import { Link } from "react-router-dom";
 
-export default function ProductItemSearch({ title, image, offers, id }) {
+export default function ProductItemSearch({
+  title,
+  image,
+  offers,
+  id,
+  toggleBookmark,
+  bookmarks,
+}) {
   return (
     <ItemWrapper>
       <Link to={`/products/${id}`} style={{ textDecoration: "none" }}>
@@ -25,7 +32,11 @@ export default function ProductItemSearch({ title, image, offers, id }) {
         </ItemWrapperCenter>
       </Link>
       <ItemWrapperRight>
-        <BookmarkIcon id={id} />
+        <BookmarkIcon
+          id={id}
+          toggleBookmark={toggleBookmark}
+          bookmarks={bookmarks}
+        />
       </ItemWrapperRight>
     </ItemWrapper>
   );

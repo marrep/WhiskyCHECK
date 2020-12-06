@@ -5,7 +5,11 @@ export default function useBookmarks() {
   const [bookmarks, setBookmarks] = useState([]);
   const { products } = useProducts();
 
-  console.log(bookmarks);
+  return {
+    deleteBookmark,
+    toggleBookmark,
+    bookmarks,
+  };
 
   function deleteBookmark(id) {
     const index = bookmarks.findIndex((product) => product.id === id);
@@ -19,11 +23,6 @@ export default function useBookmarks() {
     !bookmarks.some((product) => product.id === id)
       ? setBookmarks([...bookmarks, { image: products[id].image, id: id }])
       : deleteBookmark(id);
+    console.log(id);
   }
-
-  return {
-    deleteBookmark,
-    toggleBookmark,
-    bookmarks,
-  };
 }

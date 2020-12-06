@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import useOffers from "../../hooks/useOffers";
 
-export default function OfferDetailsSelectButton({ offers, id }) {
-  const { selectNewOffer } = useOffers();
-
+export default function OfferDetailsSelectButton({
+  offers,
+  id,
+  selectNewOffer,
+}) {
   return (
     <>
       <DetailsSelectButton onClick={() => selectNewOffer(id, offers)}>

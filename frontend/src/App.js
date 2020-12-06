@@ -19,11 +19,12 @@ export default function App() {
   const { deleteBookmark, toggleBookmark, bookmarks } = useBookmarks();
   const {
     selectedOffer,
-    selectNewOffer,
     selectDefaultOffer,
+    selectNewOffer,
     toggleOffers,
+    setToggleOffer,
   } = useOffers();
-  const { cart, addToCard } = useCart();
+  const { cart, addToCart } = useCart();
   const {
     originFilter,
     toggleFilterOverlay,
@@ -43,7 +44,7 @@ export default function App() {
           </Route>
           <Route exact path="/cart">
             <Cart
-              addToCard={addToCard}
+              addToCard={addToCart}
               cart={cart}
               toggleBookmark={toggleBookmark}
               bookmarks={bookmarks}
@@ -61,6 +62,8 @@ export default function App() {
               filterHandler={filterHandler}
               originFilter={originFilter}
               filterOverlay={filterOverlay}
+              toggleBookmark={toggleBookmark}
+              bookmarks={bookmarks}
             />
           </Route>
           <Route path="/products/:id">
@@ -69,7 +72,11 @@ export default function App() {
               bookmarks={bookmarks}
               selectedOffer={selectedOffer}
               selectDefaultOffer={selectDefaultOffer}
+              selectNewOffer={selectNewOffer}
               toggleOffers={toggleOffers}
+              toggleBookmark={toggleBookmark}
+              setToggleOffer={setToggleOffer}
+              addToCart={addToCart}
             />
           </Route>
         </Switch>

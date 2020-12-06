@@ -4,7 +4,13 @@ import CardItemInformation from "../../components/cart/CartItemInformation";
 import styled from "styled-components";
 import CartTotalPrice from "../../components/cart/CartTotalPrice";
 
-export default function Cart({ cart, products, addToCard }) {
+export default function Cart({
+  cart,
+  products,
+  addToCart,
+  toggleBookmark,
+  bookmarks,
+}) {
   return (
     <>
       <CartWrapper>
@@ -17,7 +23,12 @@ export default function Cart({ cart, products, addToCard }) {
         ) : (
           cart.items.map((cartItem) => (
             <>
-              <CardItemInformation cartItem={cartItem} products={products} />
+              <CardItemInformation
+                cartItem={cartItem}
+                products={products}
+                toggleBookmark={toggleBookmark}
+                bookmarks={bookmarks}
+              />
               <CartItemController cartItem={cartItem} />
             </>
           ))
