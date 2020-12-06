@@ -12,13 +12,11 @@ class RecordFinderService {
     private $offerRepository;
     private $productRepository;
     private $em;
-    // private $offer;
 
     public function __construct(OfferRepository $offerRepository, ProductRepository $productRepository, EntityManagerInterface $em) {
         $this->offerRepository = $offerRepository;
         $this->productRepository = $productRepository;
         $this->em = $em;
-        // $this->offer = $offer;
     }
 
     public function doesOfferExist(Offer $offer): bool {
