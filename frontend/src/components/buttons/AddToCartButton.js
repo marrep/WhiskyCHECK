@@ -1,31 +1,27 @@
 import React from "react";
-import { AddToCartButtonStyled } from "./AddToCartButtonStyled";
-import addToCart from "../../services/addToCart";
+import useCart from "../../hooks/useCart";
+import styled from "styled-components";
 
-export default function AddToCartButton({
-  product,
-  cart,
-  setCart,
-  selectedOffer,
-  setToggleAvailability,
-}) {
-  function checkAvailability(selectedOffer) {
-    if (selectedOffer.onStock) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+export default function AddToCartButton({ product, selectedOffer }) {
+  const { addToCart } = useCart();
 
   return (
-    <AddToCartButtonStyled
-      onClick={() =>
-        checkAvailability(selectedOffer)
-          ? addToCart(product, cart, setCart, selectedOffer)
-          : setToggleAvailability("Sorry, dieser Artikel ist nicht Verfügbar!")
-      }
-    >
+    <AddToCartButtonStyled onClick={() => addToCart(product, selectedOffer)}>
       In den Warenkorb
     </AddToCartButtonStyled>
   );
 }
+
+export const AddToCartButtonStyled = styled.button`
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 40px;
+  width: 100%;
+  padding: 1em 5em;
+  text-transform: uppercase;
+  background-color: #003f8a;
+  border-radius: 30px;
+  border: none;
+  color: #ffffff;
+`;

@@ -21,7 +21,7 @@ class ProductsController extends AbstractController
 
         return $this->json([
             'data' => $products
-        ], 200, [], [ObjectNormalizer::CIRCULAR_REFERENCE_HANDLER => function($object) {
+        ], 200, [], [ObjectNormalizer::CIRCULAR_REFERENCE_HANDLER => function(object $object) {
                 return $object->getOffers();
             }]
         );

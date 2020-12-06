@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FooterWrapper } from "./NavigationStyled";
-import Bookmark from "../../assets/bookmarkOff.svg";
-import Cart from "../../assets/cart.svg";
-import Home from "../../assets/home.svg";
-import Menu from "../../assets/menu.svg";
-import Search from "../../assets/search.svg";
-import { FooterCardCounter, FooterBookmarkCounter } from "./NavigationStyled";
+import Bookmark from "../../assets/icons/bookmarkOff.svg";
+import Cart from "../../assets/icons/cart.svg";
+import Home from "../../assets/icons/home.svg";
+import Menu from "../../assets/icons/menu.svg";
+import Search from "../../assets/icons/search.svg";
+import styled from "styled-components";
 
 export default function Navigation({ bookmarks, cart }) {
   return (
@@ -39,3 +38,49 @@ export default function Navigation({ bookmarks, cart }) {
     </FooterWrapper>
   );
 }
+
+export const FooterWrapper = styled.nav`
+  width: 100%;
+  position: fixed;
+  justify-content: space-around;
+  height: 10vh;
+  font-size: 10px;
+  font-family: Lato;
+  flex-direction: row;
+  display: flex;
+  bottom: 0;
+  background-color: #f1f1f1;
+  align-items: center;
+`;
+
+export const FooterCardCounter = styled.span`
+  width: 15px;
+  text-align: center;
+  right: 42%;
+  position: fixed;
+  height: 15px;
+  color: #ffffff;
+  bottom: 6%;
+  border-radius: 50%;
+  background-color: #f70000;
+
+  :link {
+    text-decoration: none;
+  }
+`;
+
+export const FooterBookmarkCounter = styled.span`
+  width: 15px;
+  text-align: center;
+  right: 23%;
+  position: fixed;
+  height: 15px;
+  color: #ffffff;
+  bottom: 6%;
+  border-radius: 50%;
+  background-color: #f70000;
+
+  :link {
+    text-decoration: none;
+  }
+`;
