@@ -4,13 +4,9 @@ import CardItemInformation from "../../components/cart/CartItemInformation";
 import styled from "styled-components";
 import CartTotalPrice from "../../components/cart/CartTotalPrice";
 
-export default function Cart({
-  cart,
-  products,
-  addToCart,
-  toggleBookmark,
-  bookmarks,
-}) {
+export default function Cart({ cart, products, toggleBookmark, bookmarks }) {
+  console.log(cart.items.length);
+  console.log(cart);
   return (
     <>
       <CartWrapper>
@@ -29,7 +25,7 @@ export default function Cart({
                 toggleBookmark={toggleBookmark}
                 bookmarks={bookmarks}
               />
-              <CartItemController cartItem={cartItem} />
+              <CartItemController cartItem={cartItem} cart={cart} />
             </>
           ))
         )}

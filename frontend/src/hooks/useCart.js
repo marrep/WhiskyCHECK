@@ -9,8 +9,14 @@ export default function useCart() {
     customerid: 2,
   });
 
+  return {
+    cart,
+    addToCart,
+    increaseAmount,
+    removeFromCart,
+  };
+
   function addToCart(product, selectedOffer) {
-    console.log(selectedOffer);
     let newItemsArray = cart.items;
     const foundIndex = newItemsArray.findIndex(
       (elem) => elem.id === product.id
@@ -18,8 +24,6 @@ export default function useCart() {
     const foundOffer = newItemsArray.some(
       (elem) => elem.id === product.id && elem.seller === selectedOffer.seller
     );
-    console.log(newItemsArray);
-    console.log(selectedOffer);
     if (!foundOffer) {
       newItemsArray.push({
         id: product.id,
@@ -43,8 +47,28 @@ export default function useCart() {
     });
   }
 
-  return {
-    cart,
-    addToCart,
-  };
+  function increaseAmount(cartItem, cart) {
+    const index = cart.items.findIndex(
+      (elem) => elem.id === cartItem.id && elem.seller === cartItem.seller
+    );
+    setCart({
+      ...(cart.items[index].amount += 1),
+      ...(cart.totalPrice += cartItem.price),
+    });
+  }
+
+  function removeFromCart(cartItem, cart) {
+    const index = cart.items.findIndex(
+      (elem) => elem.id === cartItem.id && elem.seller === cartItem.seller
+    );
+    const newList = cart.items.filter((item) => item.id !== cartItem.id);
+    cart.items[index].amount = 0
+      ? setCart({
+          ...(cart.items = newList),
+        })
+      : setCart({
+          ...(cart.items[index].amount -= 1),
+          ...(cart.totalPrice -= cartItem.price),
+        });
+  }
 }

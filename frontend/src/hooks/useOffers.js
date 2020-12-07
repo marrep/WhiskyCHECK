@@ -4,6 +4,16 @@ export default function useOffers() {
   const [selectedOffer, setSelectedOffer] = useState([]);
   const [toggleOffers, setToggleOffer] = useState(false);
 
+  return {
+    selectedOffer,
+    toggleOffers,
+    selectNewOffer,
+    setToggleOffer,
+    checkAvailability,
+    setSelectedOffer,
+    selectDefaultOffer,
+  };
+
   function checkAvailability(selectedOffer) {
     if (selectedOffer.onStock) {
       return true;
@@ -22,14 +32,4 @@ export default function useOffers() {
     setSelectedOffer(offerData);
     return selectedOffer;
   }
-
-  return {
-    selectedOffer,
-    toggleOffers,
-    selectNewOffer,
-    setToggleOffer,
-    checkAvailability,
-    setSelectedOffer,
-    selectDefaultOffer,
-  };
 }

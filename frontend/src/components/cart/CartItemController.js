@@ -2,12 +2,17 @@ import React from "react";
 import plus from "../../assets/icons/plus.svg";
 import trashbin from "../../assets/icons/trashbin.svg";
 import styled from "styled-components";
+import useCart from "../../hooks/useCart";
 
-export default function CartItemController({ cartItem }) {
+export default function CartItemController({ cartItem, cart }) {
+  const { increaseAmount, removeFromCart } = useCart();
+
   return (
     <CartItemControllerWrapper>
       <CartItemControllerBox>
-        <CartItemControllerLeftBox>
+        <CartItemControllerLeftBox
+          onClick={() => removeFromCart(cartItem, cart)}
+        >
           <div>
             <img src={trashbin} alt="" />
           </div>
@@ -15,7 +20,9 @@ export default function CartItemController({ cartItem }) {
         <CartItemControllerCenterBox>
           {cartItem.amount}
         </CartItemControllerCenterBox>
-        <CartItemControllerRightBox>
+        <CartItemControllerRightBox
+          onClick={() => increaseAmount(cartItem, cart)}
+        >
           <img src={plus} alt="" />
         </CartItemControllerRightBox>
       </CartItemControllerBox>

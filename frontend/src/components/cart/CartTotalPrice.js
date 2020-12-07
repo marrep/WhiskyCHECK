@@ -3,6 +3,8 @@ import CheckoutButton from "../../components/buttons/CheckoutButton";
 import styled from "styled-components";
 
 export default function CartTotalPrice({ cart }) {
+  console.log(cart);
+
   return (
     <>
       <CartTotalPriceWrapper

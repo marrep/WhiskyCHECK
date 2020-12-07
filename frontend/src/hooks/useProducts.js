@@ -15,7 +15,6 @@ export default function useProducts() {
   };
 
   function sortProducts(sortSelector, products) {
-    console.log(sortSelector);
     if (sortSelector === "NameUp") {
       setProducts(
         Object.assign(

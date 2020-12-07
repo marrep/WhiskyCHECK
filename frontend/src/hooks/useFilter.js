@@ -8,22 +8,29 @@ export default function useFilter() {
   const { products, setProducts } = useProducts();
 
   useEffect(() => {
-    let newFilter = [].concat.apply(
-      [],
-      originFilter.map((elem) =>
-        products.filter((item) => elem === item.origin)
-      )
-    );
-
-    setOriginFilter(newFilter);
+    console.log(originFilter);
+    console.log(filterOverlay);
+    // const tags = products.map((element) => {
+    //   return element.origin;
+    // });
+    let tags = [];
+    tags.push(products.filter((elem) => elem.origin));
+    console.log(tags);
+    // const arrayData = [];
+    // products.forEach((element) => {
+    //   if (!arrayData.includes(element.origin)) {
+    //     arrayData.push(element.origin);
+    //   }
+    //   setOriginFilter(arrayData);
+    // });
   }, []);
 
-  const arrayData = [];
-  products.forEach((element) => {
-    if (!arrayData.includes(element.origin)) {
-      arrayData.push(element.origin);
-    }
-  });
+  return {
+    originFilter,
+    toggleFilterOverlay,
+    filterHandler,
+    filterOverlay,
+  };
 
   function toggleFilterOverlay() {
     setFilterOverlay(!filterOverlay);
@@ -46,11 +53,4 @@ export default function useFilter() {
       setOriginFilter([...originFilter, tagTitle]);
     }
   }
-
-  return {
-    originFilter,
-    toggleFilterOverlay,
-    filterHandler,
-    filterOverlay,
-  };
 }
