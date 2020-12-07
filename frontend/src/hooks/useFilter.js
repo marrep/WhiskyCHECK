@@ -15,8 +15,8 @@ export default function useFilter() {
       )
     );
 
-    originFilter.length === 0 ? setProducts(products) : setProducts(newFilter);
-  }, [originFilter]);
+    setOriginFilter(newFilter);
+  }, []);
 
   const arrayData = [];
   products.forEach((element) => {

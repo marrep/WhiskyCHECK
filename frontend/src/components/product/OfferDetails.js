@@ -44,7 +44,7 @@ export default function OfferDetails({
       </div>
       <AddToCartButton
         product={product}
-        selectedOffer={selectedOffer}
+        selectedOffer={selectedOffer.length === 0 ? offers[0] : selectedOffer}
         addToCart={addToCart}
       />
     </OfferDetailsWrapper>

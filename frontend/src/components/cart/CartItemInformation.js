@@ -21,7 +21,7 @@ export default function CartItemInformation({
       </CartItemWrapperCenter>
       <CartItemWrapperRight>
         <BookmarkIcon
-          id={products.findIndex((elem) => elem.id === cartItem.id)}
+          id={cartItem.id}
           bookmarks={bookmarks}
           toggleBookmark={toggleBookmark}
         />
