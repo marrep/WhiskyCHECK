@@ -6,30 +6,33 @@ export default function useFilter() {
   const [filterOverlay, setFilterOverlay] = useState(false);
   const [originFilter, setOriginFilter] = useState([]);
   const { products, setProducts } = useProducts();
+  const [searchResults, setSearchResults] = useState(products);
 
   useEffect(() => {
-    console.log(originFilter);
-    console.log(filterOverlay);
-    // const tags = products.map((element) => {
-    //   return element.origin;
-    // });
-    let tags = [];
-    tags.push(products.filter((elem) => elem.origin));
-    console.log(tags);
-    // const arrayData = [];
-    // products.forEach((element) => {
-    //   if (!arrayData.includes(element.origin)) {
-    //     arrayData.push(element.origin);
-    //   }
-    //   setOriginFilter(arrayData);
-    // });
-  }, []);
+    let tags = products.map((elem) => {
+      return elem.origin;
+    });
+    let filteredTags = [];
+    tags.forEach((elem) => {
+      if (!filteredTags.includes(elem)) {
+        filteredTags.push(elem);
+      }
+    });
+    setOriginFilter(filteredTags);
+    console.log(filteredTags);
+  }, [filterOverlay]);
+
+  useEffect(() => {
+    setSearchResults(products);
+  }, [products]);
 
   return {
     originFilter,
     toggleFilterOverlay,
     filterHandler,
     filterOverlay,
+    searchResults,
+    sortProducts,
   };
 
   function toggleFilterOverlay() {
@@ -37,20 +40,35 @@ export default function useFilter() {
   }
 
   function filterHandler(tagTitle) {
-    originFilter.includes(tagTitle)
-      ? removeFilter(tagTitle, originFilter, setOriginFilter)
-      : addFilter(tagTitle, originFilter, setOriginFilter);
+    searchResults.some((elem) => elem.origin !== tagTitle)
+      ? setSearchResults(products.filter((elem) => elem.origin === tagTitle))
+      : setSearchResults(products);
+  }
 
-    function removeFilter(tagTitle) {
-      const index = originFilter.findIndex((elem) => elem === tagTitle);
-      setOriginFilter([
-        ...originFilter.slice(0, index),
-        ...originFilter.slice(index + 1),
-      ]);
+  function sortProducts(sortSelector, searchResults) {
+    if (sortSelector === "NameUp") {
+      setSearchResults(
+        Object.assign(
+          [],
+          searchResults.sort((a, b) => {
+            if (a.title < b.title) return -1;
+            if (a.title > b.title) return 1;
+            return 0;
+          })
+        )
+      );
     }
-
-    function addFilter(tagTitle) {
-      setOriginFilter([...originFilter, tagTitle]);
+    if (sortSelector === "NameDown") {
+      setSearchResults(
+        Object.assign(
+          [],
+          searchResults.sort((a, b) => {
+            if (a.title > b.title) return -1;
+            if (a.title < b.title) return 1;
+            return 0;
+          })
+        )
+      );
     }
   }
 }

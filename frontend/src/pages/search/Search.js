@@ -3,7 +3,6 @@ import styled from "styled-components";
 import SearchHeader from "../../components/search/SearchHeader";
 import SearchResults from "../../components/search/SearchResults";
 import FilterBar from "../../components/filter/FilterBar";
-import FilterOverlay from "../../components/filter/FilterOverlay";
 import FilterTagWrapper from "../../components/filter/FilterTagWrapper";
 
 export default function Search({
@@ -15,6 +14,7 @@ export default function Search({
   filterOverlay,
   toggleBookmark,
   bookmarks,
+  searchResults,
 }) {
   return (
     <SearchWrapper>
@@ -27,18 +27,13 @@ export default function Search({
       <FilterTagWrapper
         filterHandler={filterHandler}
         originFilter={originFilter}
+        filterOverlay={filterOverlay}
       />
       <SearchResults
+        searchResults={searchResults}
         products={products}
         toggleBookmark={toggleBookmark}
         bookmarks={bookmarks}
-      />
-      <FilterOverlay
-        toggleFilterOverlay={toggleFilterOverlay}
-        products={products}
-        filterHandler={filterHandler}
-        filterOverlay={filterOverlay}
-        originFilter={originFilter}
       />
     </SearchWrapper>
   );

@@ -15,7 +15,7 @@ import useFilter from "./hooks/useFilter";
 import useOffers from "./hooks/useOffers";
 
 export default function App() {
-  const { products, sortProducts } = useProducts();
+  const { products } = useProducts();
   const { deleteBookmark, toggleBookmark, bookmarks } = useBookmarks();
   const {
     selectedOffer,
@@ -30,6 +30,8 @@ export default function App() {
     toggleFilterOverlay,
     filterHandler,
     filterOverlay,
+    searchResults,
+    sortProducts,
   } = useFilter();
 
   console.log(bookmarks);
@@ -64,6 +66,7 @@ export default function App() {
               filterOverlay={filterOverlay}
               toggleBookmark={toggleBookmark}
               bookmarks={bookmarks}
+              searchResults={searchResults}
             />
           </Route>
           <Route path="/products/:id">
