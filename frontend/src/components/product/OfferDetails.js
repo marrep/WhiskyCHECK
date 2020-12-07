@@ -6,21 +6,22 @@ import OfferDetailsSelectButton from "../buttons/OfferDetailsSelectButton";
 import OfferDetailsShowButton from "../buttons/OfferDetailsShowButton";
 
 export default function OfferDetails({
-  selectedOffer,
   product,
   offers,
-  selectDefaultOffer,
   toggleOffers,
   setToggleOffer,
   selectNewOffer,
   addToCart,
+  selectedOffer,
 }) {
-  console.log(offers[0]);
-
   return (
     <OfferDetailsWrapper>
       <OfferDetailsItem
-        offer={selectedOffer.length === 0 ? offers[0] : selectedOffer}
+        offer={
+          selectedOffer.length === 0 || offers[0].gtin !== selectedOffer.gtin
+            ? offers[0]
+            : selectedOffer
+        }
       />
       <div style={{ display: offers.length === 1 ? "none" : "block" }}>
         <OfferDetailsShowButton
@@ -29,9 +30,9 @@ export default function OfferDetails({
           toggleOffers={toggleOffers}
         />
         <div style={{ display: toggleOffers ? "block" : "none" }}>
-          {offers.map((offer, index) => (
+          {offers.map((offer) => (
             <div>
-              <OfferDetailsItem offer={offer} index={index} />
+              <OfferDetailsItem offer={offer} />
               <OfferDetailsSelectButton
                 offers={offers}
                 id={offer.id}

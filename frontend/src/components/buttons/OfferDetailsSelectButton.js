@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import useOffers from "../../hooks/useOffers";
 
 export default function OfferDetailsSelectButton({
   offers,
   id,
   selectNewOffer,
 }) {
-  const { setSelectedOffer } = useOffers();
+  console.log(offers);
+  console.log(id);
+  console.log(selectNewOffer);
 
   return (
     <>
-      <DetailsSelectButton
-        onClick={() => setSelectedOffer(selectNewOffer(id, offers))}
-      >
+      <DetailsSelectButton onClick={() => selectNewOffer(id, offers)}>
         Dieses Angebot auswählen
       </DetailsSelectButton>
     </>

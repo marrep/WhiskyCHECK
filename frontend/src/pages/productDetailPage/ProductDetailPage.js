@@ -18,8 +18,8 @@ export default function ProductDetailPage({
 }) {
   let { id } = useParams();
 
-  function findProduct(id, products) {
-    const foundProduct = products.find(({ id }) => id === 1);
+  function findProduct(productId) {
+    const foundProduct = products.find(({ id }) => id == productId);
     return foundProduct;
   }
 
@@ -27,7 +27,7 @@ export default function ProductDetailPage({
     <ItemWrapperMain>
       <ItemWrapperTop>
         <ItemTitleSize>
-          {findProduct(id, products).title} {findProduct(id, products).size} ml
+          {findProduct(id).title} {findProduct(id).size} ml
         </ItemTitleSize>
         <BookmarkIcon
           id={id}
@@ -35,16 +35,14 @@ export default function ProductDetailPage({
           bookmarks={bookmarks}
         />
       </ItemWrapperTop>
-      <ItemPriceRange>
-        {getPriceRange(findProduct(id, products).offers)}
-      </ItemPriceRange>
-      <ItemImage src={findProduct(id, products).image} alt="" />
+      <ItemPriceRange>{getPriceRange(findProduct(id).offers)}</ItemPriceRange>
+      <ItemImage src={findProduct(id).image} alt="" />
       <ItemDescription>
-        <strong>Beschreibung:</strong> {products[id].description}
+        <strong>Beschreibung:</strong> {findProduct(id).description}
       </ItemDescription>
       <OfferDetails
-        offers={findProduct(id, products).offers}
-        product={findProduct(id, products)}
+        offers={findProduct(id).offers}
+        product={findProduct(id)}
         selectedOffer={selectedOffer}
         selectDefaultOffer={selectDefaultOffer}
         toggleOffers={toggleOffers}

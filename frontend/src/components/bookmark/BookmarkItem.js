@@ -4,7 +4,6 @@ import close from "../../assets/icons/close.svg";
 import BookmarkBuyButton from "../buttons/BookmarkBuyButton";
 
 export default function BookmarkItem({ image, deleteBookmark, id }) {
-  console.log(id);
   return (
     <BookmarkItemWrapper>
       <BookmarkItemWrapperLeft>

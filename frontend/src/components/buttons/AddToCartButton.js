@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function AddToCartButton({ product, selectedOffer, addToCart }) {
+export default function AddToCartButton({ product, addToCart, selectedOffer }) {
   return (
     <AddToCartButtonStyled onClick={() => addToCart(product, selectedOffer)}>
       In den Warenkorb

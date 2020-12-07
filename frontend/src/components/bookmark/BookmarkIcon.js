@@ -3,6 +3,7 @@ import BookmarkOn from "../../assets/icons/bookmarkOn.svg";
 import styled from "styled-components";
 
 export default function BookmarkIcon({ id, toggleBookmark, bookmarks }) {
+  console.log(id);
   return (
     <BookmarkIconWrapper>
       <BookmarkIconImage
