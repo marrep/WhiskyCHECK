@@ -62,7 +62,7 @@ export default function useCart() {
       (elem) => elem.id === cartItem.id && elem.seller === cartItem.seller
     );
     const newList = cart.items.filter((item) => item.id !== cartItem.id);
-    cart.items[index].amount = 0
+    cart.items[index].amount < 1
       ? setCart({
           ...(cart.items = newList),
         })

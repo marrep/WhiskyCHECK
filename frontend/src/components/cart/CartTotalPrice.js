@@ -1,5 +1,4 @@
 import { convertToEuro } from "../../services/helpers";
-import CheckoutButton from "../../components/buttons/CheckoutButton";
 import styled from "styled-components";
 
 export default function CartTotalPrice({ cart }) {
@@ -20,7 +19,9 @@ export default function CartTotalPrice({ cart }) {
           <span>{convertToEuro(cart.totalShipping)}</span>
           <span>{convertToEuro(cart.totalPrice + cart.totalShipping)}</span>
         </CartTotalPriceWrapperRight>
-        <CheckoutButton />
+        <CheckoutButtonWrapper>
+          <CheckoutButtonStyled>Zur Kasse</CheckoutButtonStyled>
+        </CheckoutButtonWrapper>
       </CartTotalPriceWrapper>
     </>
   );
@@ -50,4 +51,20 @@ export const CartTotalPriceWrapperRight = styled.div`
   text-align: left;
   padding: 10px;
   width: 30%;
+`;
+
+export const CheckoutButtonWrapper = styled.div`
+  width: 100%;
+  display: block;
+  text-align: center;
+`;
+
+export const CheckoutButtonStyled = styled.button`
+  width: 80%;
+  padding: 0.5em 2.5em;
+  text-transform: uppercase;
+  background-color: #f6ba41;
+  border-radius: 30px;
+  border: none;
+  color: #ffffff;
 `;

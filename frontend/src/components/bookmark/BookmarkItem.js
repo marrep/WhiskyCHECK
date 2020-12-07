@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import close from "../../assets/icons/close.svg";
-import BookmarkBuyButton from "../buttons/BookmarkBuyButton";
 
 export default function BookmarkItem({ image, deleteBookmark, id }) {
   return (
@@ -10,7 +9,7 @@ export default function BookmarkItem({ image, deleteBookmark, id }) {
         <img src={image} alt="" />
       </BookmarkItemWrapperLeft>
       <BookmarkItemWrapperCenter>
-        <BookmarkBuyButton />
+        <BookmarkBuyButtonStyled>Jetzt kaufen</BookmarkBuyButtonStyled>
       </BookmarkItemWrapperCenter>
       <BookmarkItemWrapperRight>
         <img src={close} alt="" onClick={() => deleteBookmark(id)} />
@@ -19,7 +18,7 @@ export default function BookmarkItem({ image, deleteBookmark, id }) {
   );
 }
 
-export const BookmarkItemWrapper = styled.div`
+const BookmarkItemWrapper = styled.div`
   width: 100%;
   text-decoration: none;
   overflow: hidden;
@@ -28,7 +27,7 @@ export const BookmarkItemWrapper = styled.div`
   border-bottom: 1px solid #dadbdc;
 `;
 
-export const BookmarkItemWrapperLeft = styled.div`
+const BookmarkItemWrapperLeft = styled.div`
   width: 30%;
   padding: 10px;
   text-decoration: none;
@@ -50,7 +49,7 @@ export const BookmarkItemWrapperLeft = styled.div`
   }
 `;
 
-export const BookmarkItemWrapperCenter = styled.div`
+const BookmarkItemWrapperCenter = styled.div`
   width: 50%;
   text-decoration: none;
   overflow: hidden;
@@ -60,10 +59,23 @@ export const BookmarkItemWrapperCenter = styled.div`
   align-items: center;
 `;
 
-export const BookmarkItemWrapperRight = styled.div`
+const BookmarkItemWrapperRight = styled.div`
   width: 20%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   display: flex;
+`;
+
+const BookmarkBuyButtonStyled = styled.button`
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  width: 80%;
+  padding: 0.5em 2.5em;
+  text-transform: uppercase;
+  background-color: #f6ba41;
+  border-radius: 30px;
+  border: none;
+  color: #ffffff;
 `;

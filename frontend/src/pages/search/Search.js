@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import SearchHeader from "../../components/search/SearchHeader";
-import SearchResults from "../../components/search/SearchResults";
 import FilterBar from "../../components/filter/FilterBar";
 import FilterTagWrapper from "../../components/filter/FilterTagWrapper";
+import ProductItemSearch from "../../components/search/ProductItemSearch";
 
 export default function Search({
   products,
@@ -18,7 +17,12 @@ export default function Search({
 }) {
   return (
     <SearchWrapper>
-      <SearchHeader products={products} />
+      <SearchHeaderWrapper>
+        Whisky |{" "}
+        {`${products.length} ${
+          products.length === 1 ? "Ergebnis" : "Ergebnisse"
+        }`}{" "}
+      </SearchHeaderWrapper>
       <FilterBar
         toggleFilterOverlay={toggleFilterOverlay}
         sortProducts={sortProducts}
@@ -29,17 +33,21 @@ export default function Search({
         originFilter={originFilter}
         filterOverlay={filterOverlay}
       />
-      <SearchResults
-        searchResults={searchResults}
-        products={products}
-        toggleBookmark={toggleBookmark}
-        bookmarks={bookmarks}
-      />
+      {searchResults.map(({ title, image, offers, id }) => (
+        <ProductItemSearch
+          title={title}
+          image={image}
+          offers={offers}
+          id={id}
+          toggleBookmark={toggleBookmark}
+          bookmarks={bookmarks}
+        />
+      ))}
     </SearchWrapper>
   );
 }
 
-export const SearchWrapper = styled.div`
+const SearchWrapper = styled.div`
   font-family: Lato;
   flex-wrap: wrap;
   display: flex;
@@ -48,4 +56,11 @@ export const SearchWrapper = styled.div`
   a {
     text-decoration: none;
   }
+`;
+
+const SearchHeaderWrapper = styled.div`
+  font-family: Lato;
+  font-size: 20px;
+  margin-left: 5px;
+  font-weight: 400;
 `;

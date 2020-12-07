@@ -32,9 +32,6 @@ export default function Navigation({ bookmarks, cart }) {
         </FooterBookmarkCounter>
         <img src={Bookmark} alt="" />
       </Link>
-      <Link exact to="/menu">
-        <img src={Menu} alt="" />
-      </Link>
     </FooterWrapper>
   );
 }
@@ -56,7 +53,7 @@ export const FooterWrapper = styled.nav`
 export const FooterCardCounter = styled.span`
   width: 15px;
   text-align: center;
-  right: 42%;
+  right: 30%;
   position: fixed;
   height: 15px;
   color: #ffffff;
@@ -72,7 +69,7 @@ export const FooterCardCounter = styled.span`
 export const FooterBookmarkCounter = styled.span`
   width: 15px;
   text-align: center;
-  right: 23%;
+  right: 6%;
   position: fixed;
   height: 15px;
   color: #ffffff;

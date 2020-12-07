@@ -10,34 +10,5 @@ export default function useProducts() {
 
   return {
     products,
-    sortProducts,
-    setProducts,
   };
-
-  function sortProducts(sortSelector, products) {
-    if (sortSelector === "NameUp") {
-      setProducts(
-        Object.assign(
-          [],
-          products.sort((a, b) => {
-            if (a.title < b.title) return -1;
-            if (a.title > b.title) return 1;
-            return 0;
-          })
-        )
-      );
-    }
-    if (sortSelector === "NameDown") {
-      setProducts(
-        Object.assign(
-          [],
-          products.sort((a, b) => {
-            if (a.title > b.title) return -1;
-            if (a.title < b.title) return 1;
-            return 0;
-          })
-        )
-      );
-    }
-  }
 }

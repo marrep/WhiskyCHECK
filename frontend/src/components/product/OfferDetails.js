@@ -1,9 +1,6 @@
 import React from "react";
 import OfferDetailsItem from "./OfferDetailsItem";
-import AddToCartButton from "../buttons/AddToCartButton";
 import styled from "styled-components";
-import OfferDetailsSelectButton from "../buttons/OfferDetailsSelectButton";
-import OfferDetailsShowButton from "../buttons/OfferDetailsShowButton";
 
 export default function OfferDetails({
   product,
@@ -24,29 +21,32 @@ export default function OfferDetails({
         }
       />
       <div style={{ display: offers.length === 1 ? "none" : "block" }}>
-        <OfferDetailsShowButton
-          offers={offers}
-          setToggleOffer={setToggleOffer}
-          toggleOffers={toggleOffers}
-        />
+        <DetailsShowButton onClick={() => setToggleOffer(!toggleOffers)}>
+          Alle {offers.length} Angebote Anzeigen
+        </DetailsShowButton>
         <div style={{ display: toggleOffers ? "block" : "none" }}>
           {offers.map((offer) => (
             <div>
               <OfferDetailsItem offer={offer} />
-              <OfferDetailsSelectButton
-                offers={offers}
-                id={offer.id}
-                selectNewOffer={selectNewOffer}
-              />
+              <DetailsSelectButton
+                onClick={() => selectNewOffer(offer.id, offers)}
+              >
+                Dieses Angebot auswählen
+              </DetailsSelectButton>
             </div>
           ))}
         </div>
       </div>
-      <AddToCartButton
-        product={product}
-        selectedOffer={selectedOffer.length === 0 ? offers[0] : selectedOffer}
-        addToCart={addToCart}
-      />
+      <AddToCartButtonStyled
+        onClick={() =>
+          addToCart(
+            product,
+            selectedOffer.length === 0 ? offers[0] : selectedOffer
+          )
+        }
+      >
+        In den Warenkorb
+      </AddToCartButtonStyled>
     </OfferDetailsWrapper>
   );
 }
@@ -54,4 +54,42 @@ export default function OfferDetails({
 export const OfferDetailsWrapper = styled.div`
   font-family: Lato;
   width: 100%;
+`;
+
+export const DetailsShowButton = styled.div`
+  display: block;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #134085;
+  border: none;
+  text-align: center;
+  border-top: 1px solid #dadbdc;
+  border-bottom: 1px solid #dadbdc;
+`;
+
+export const DetailsSelectButton = styled.div`
+  display: block;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #575757;
+  border: none;
+  text-align: center;
+  border-top: 1px solid #dadbdc;
+  border-bottom: 1px solid #dadbdc;
+`;
+
+export const AddToCartButtonStyled = styled.button`
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 40px;
+  width: 100%;
+  padding: 1em 5em;
+  text-transform: uppercase;
+  background-color: #003f8a;
+  border-radius: 30px;
+  border: none;
+  color: #ffffff;
 `;
