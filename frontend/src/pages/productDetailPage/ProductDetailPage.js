@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import BookmarkIcon from "../../components/bookmark/BookmarkIcon";
-import { getPriceRange, findProduct } from "../../services/helpers";
+import { getPriceRange } from "../../services/helpers";
 import OfferDetails from "../../components/product/OfferDetails";
 
 export default function ProductDetailPage({
@@ -18,8 +18,10 @@ export default function ProductDetailPage({
 }) {
   let { id } = useParams();
 
-  console.log(products);
-  console.log(findProduct(1, products));
+  function findProduct(id, products) {
+    const foundProduct = products.find(({ id }) => id === 1);
+    return foundProduct;
+  }
 
   return (
     <ItemWrapperMain>
@@ -38,7 +40,7 @@ export default function ProductDetailPage({
       </ItemPriceRange>
       <ItemImage src={findProduct(id, products).image} alt="" />
       <ItemDescription>
-        <strong>Beschreibung:</strong> {findProduct(id, products).description}
+        <strong>Beschreibung:</strong> {products[id].description}
       </ItemDescription>
       <OfferDetails
         offers={findProduct(id, products).offers}

@@ -15,15 +15,13 @@ export default function OfferDetails({
   selectNewOffer,
   addToCart,
 }) {
-  console.log(selectedOffer);
   console.log(offers[0]);
-  console.log(product);
-  console.log(selectDefaultOffer);
-  console.log(toggleOffers);
 
   return (
     <OfferDetailsWrapper>
-      <OfferDetailsItem offer={selectDefaultOffer(offers[0])} />
+      <OfferDetailsItem
+        offer={selectedOffer.length === 0 ? offers[0] : selectedOffer}
+      />
       <div style={{ display: offers.length === 1 ? "none" : "block" }}>
         <OfferDetailsShowButton
           offers={offers}

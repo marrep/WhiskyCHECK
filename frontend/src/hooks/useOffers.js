@@ -4,17 +4,11 @@ export default function useOffers() {
   const [selectedOffer, setSelectedOffer] = useState([]);
   const [toggleOffers, setToggleOffer] = useState(false);
 
-  console.log(toggleOffers);
+  console.log(selectedOffer);
 
   function selectDefaultOffer(productOfferDetails) {
     setSelectedOffer(productOfferDetails);
-    console.log(selectedOffer);
     return selectedOffer;
-  }
-
-  function selectNewOffer(id, offerDetails) {
-    const findOffer = offerDetails.find((element) => element.id === id);
-    setSelectedOffer(findOffer);
   }
 
   function checkAvailability(selectedOffer) {
@@ -25,12 +19,18 @@ export default function useOffers() {
     }
   }
 
+  function selectNewOffer(id, offerDetails) {
+    const newOffer = offerDetails.find((element) => element.id === id);
+    return newOffer;
+  }
+
   return {
     selectedOffer,
     selectDefaultOffer,
-    selectNewOffer,
     toggleOffers,
+    selectNewOffer,
     setToggleOffer,
     checkAvailability,
+    setSelectedOffer,
   };
 }

@@ -94,11 +94,7 @@ export function getDeliveryDay(deliveryTime) {
 }
 
 export function findProduct(id, products) {
-  const foundProduct = products.find((elem) => elem.id === id);
+  let foundProduct = products.find((elem) => elem.id === id);
+  console.log(foundProduct);
   return foundProduct;
-}
-
-export function findIndex(id, products) {
-  const index = products.findIndex((product) => product.id === id);
-  return index;
 }
