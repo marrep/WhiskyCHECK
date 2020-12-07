@@ -24,7 +24,7 @@ export function getPriceRange(offersData) {
     offers.push(offer.price);
   });
   if (offersData.length === 1) {
-    convertToEuro(offers);
+    return convertToEuro(offers);
   } else {
     return (
       convertToEuro(Math.min.apply(Math, offers)) +
@@ -91,4 +91,14 @@ export function getDeliveryDay(deliveryTime) {
   }
 
   return `Lieferung bis ${weekDay[deliveryDay]}`;
+}
+
+export function findProduct(id, products) {
+  const foundProduct = products.find((elem) => elem.id === id);
+  return foundProduct;
+}
+
+export function findIndex(id, products) {
+  const index = products.findIndex((product) => product.id === id);
+  return index;
 }

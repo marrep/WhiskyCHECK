@@ -2,12 +2,7 @@ import BookmarkOff from "../../assets/icons/bookmarkOff.svg";
 import BookmarkOn from "../../assets/icons/bookmarkOn.svg";
 import styled from "styled-components";
 
-export default function BookmarkIcon({
-  id,
-  products,
-  toggleBookmark,
-  bookmarks,
-}) {
+export default function BookmarkIcon({ id, toggleBookmark, bookmarks }) {
   return (
     <BookmarkIconWrapper>
       <BookmarkIconImage
@@ -17,7 +12,7 @@ export default function BookmarkIcon({
             : BookmarkOff
         }
         alt=""
-        onClick={() => toggleBookmark(id, products)}
+        onClick={() => toggleBookmark(id)}
       />
       <BookmarkIconText>Merken</BookmarkIconText>
     </BookmarkIconWrapper>

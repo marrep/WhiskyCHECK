@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import BookmarkIcon from "../../components/bookmark/BookmarkIcon";
-import { getPriceRange } from "../../services/helpers";
+import { getPriceRange, findProduct } from "../../services/helpers";
 import OfferDetails from "../../components/product/OfferDetails";
 
 export default function ProductDetailPage({
@@ -19,12 +19,13 @@ export default function ProductDetailPage({
   let { id } = useParams();
 
   console.log(products);
+  console.log(findProduct(1, products));
 
   return (
     <ItemWrapperMain>
       <ItemWrapperTop>
         <ItemTitleSize>
-          {products[id].title} {products[id].size} ml
+          {findProduct(id, products).title} {findProduct(id, products).size} ml
         </ItemTitleSize>
         <BookmarkIcon
           id={id}
@@ -32,14 +33,16 @@ export default function ProductDetailPage({
           bookmarks={bookmarks}
         />
       </ItemWrapperTop>
-      <ItemPriceRange>{getPriceRange(products[id].offers)}</ItemPriceRange>
-      <ItemImage src={products[id].image} alt="" />
+      <ItemPriceRange>
+        {getPriceRange(findProduct(id, products).offers)}
+      </ItemPriceRange>
+      <ItemImage src={findProduct(id, products).image} alt="" />
       <ItemDescription>
-        <strong>Beschreibung:</strong> {products[id].description}
+        <strong>Beschreibung:</strong> {findProduct(id, products).description}
       </ItemDescription>
       <OfferDetails
-        offers={products[id].offers}
-        product={products[id]}
+        offers={findProduct(id, products).offers}
+        product={findProduct(id, products)}
         selectedOffer={selectedOffer}
         selectDefaultOffer={selectDefaultOffer}
         toggleOffers={toggleOffers}

@@ -16,6 +16,7 @@ export default function ProductItemSearch({
   id,
   toggleBookmark,
   bookmarks,
+  products,
 }) {
   return (
     <ItemWrapper>

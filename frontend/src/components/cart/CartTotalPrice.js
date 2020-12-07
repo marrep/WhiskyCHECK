@@ -18,8 +18,8 @@ export default function CartTotalPrice({ cart }) {
           <span>{convertToEuro(cart.totalShipping)}</span>
           <span>{convertToEuro(cart.totalPrice + cart.totalShipping)}</span>
         </CartTotalPriceWrapperRight>
+        <CheckoutButton />
       </CartTotalPriceWrapper>
-      <CheckoutButton />
     </>
   );
 }

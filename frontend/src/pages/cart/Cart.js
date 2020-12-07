@@ -19,7 +19,7 @@ export default function Cart({
         </CartWrapperTop>
 
         {cart.items.length === 0 ? (
-          <p>Sorry, dein Warenkorb ist leider leer"</p>
+          <p>Sorry, dein Warenkorb ist leider leer</p>
         ) : (
           cart.items.map((cartItem) => (
             <>
