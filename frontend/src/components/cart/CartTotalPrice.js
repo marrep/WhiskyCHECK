@@ -2,12 +2,10 @@ import { convertToEuro } from "../../services/helpers";
 import styled from "styled-components";
 
 export default function CartTotalPrice({ cart }) {
-  console.log(cart);
-
   return (
     <>
       <CartTotalPriceWrapper
-        style={{ display: cart.items.length === 0 ? "none" : "block" }}
+        style={{ display: cart.items.length === 0 ? "none" : "flex" }}
       >
         <CartTotalPriceWrapperLeft>
           <span>Zwischensumme:</span>
@@ -19,9 +17,6 @@ export default function CartTotalPrice({ cart }) {
           <span>{convertToEuro(cart.totalShipping)}</span>
           <span>{convertToEuro(cart.totalPrice + cart.totalShipping)}</span>
         </CartTotalPriceWrapperRight>
-        <CheckoutButtonWrapper>
-          <CheckoutButtonStyled>Zur Kasse</CheckoutButtonStyled>
-        </CheckoutButtonWrapper>
       </CartTotalPriceWrapper>
     </>
   );
@@ -30,9 +25,11 @@ export default function CartTotalPrice({ cart }) {
 export const CartTotalPriceWrapper = styled.div`
   font-family: Lato;
   color: #4a4a4a;
-  display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  padding: 20px;
 `;
 
 export const CartTotalPriceWrapperLeft = styled.div`
@@ -41,7 +38,7 @@ export const CartTotalPriceWrapperLeft = styled.div`
   justify-content: right;
   text-align: right;
   padding: 10px;
-  width: 70%;
+  width: 60%;
 `;
 
 export const CartTotalPriceWrapperRight = styled.div`
@@ -50,21 +47,5 @@ export const CartTotalPriceWrapperRight = styled.div`
   justify-content: Left;
   text-align: left;
   padding: 10px;
-  width: 30%;
-`;
-
-export const CheckoutButtonWrapper = styled.div`
-  width: 100%;
-  display: block;
-  text-align: center;
-`;
-
-export const CheckoutButtonStyled = styled.button`
-  width: 80%;
-  padding: 0.5em 2.5em;
-  text-transform: uppercase;
-  background-color: #f6ba41;
-  border-radius: 30px;
-  border: none;
-  color: #ffffff;
+  width: 40%;
 `;

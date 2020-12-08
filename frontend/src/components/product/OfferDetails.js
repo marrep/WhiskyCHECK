@@ -1,16 +1,17 @@
 import React from "react";
 import OfferDetailsItem from "./OfferDetailsItem";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function OfferDetails({
   product,
   offers,
-  toggleOffers,
-  setToggleOffer,
   selectNewOffer,
   addToCart,
   selectedOffer,
 }) {
+  const [toggleOffers, setToggleOffer] = useState(false);
+
   return (
     <OfferDetailsWrapper>
       <OfferDetailsItem

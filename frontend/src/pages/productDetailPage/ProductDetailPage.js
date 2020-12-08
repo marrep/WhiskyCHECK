@@ -9,10 +9,8 @@ export default function ProductDetailPage({
   products,
   selectedOffer,
   selectDefaultOffer,
-  toggleOffers,
   toggleBookmark,
   bookmarks,
-  setToggleOffer,
   selectNewOffer,
   addToCart,
 }) {
@@ -45,8 +43,6 @@ export default function ProductDetailPage({
         product={findProduct(id)}
         selectedOffer={selectedOffer}
         selectDefaultOffer={selectDefaultOffer}
-        toggleOffers={toggleOffers}
-        setToggleOffer={setToggleOffer}
         selectNewOffer={selectNewOffer}
         addToCart={addToCart}
       />

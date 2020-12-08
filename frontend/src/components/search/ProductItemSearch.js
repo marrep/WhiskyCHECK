@@ -16,11 +16,13 @@ export default function ProductItemSearch({
   id,
   toggleBookmark,
   bookmarks,
-  products,
 }) {
   return (
     <ItemWrapper>
-      <Link to={`/products/${id}`} style={{ textDecoration: "none" }}>
+      <StyledLink
+        to={`/products/${id}`}
+        style={{ textDecoration: "none", display: "flex" }}
+      >
         <ItemWrapperLeft>
           <ItemImage src={image} alt="" />
         </ItemWrapperLeft>
@@ -31,7 +33,7 @@ export default function ProductItemSearch({
           <ItemPriceRange>{getPriceRange(offers)}</ItemPriceRange>
           <ItemDelivery>{getFastestDeliveryDay(offers)}</ItemDelivery>
         </ItemWrapperCenter>
-      </Link>
+      </StyledLink>
       <ItemWrapperRight>
         <BookmarkIcon
           id={id}
@@ -42,6 +44,19 @@ export default function ProductItemSearch({
     </ItemWrapper>
   );
 }
+
+const StyledLink = styled(Link)`
+  width: 100%;
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
 
 export const ItemWrapper = styled.div`
   width: 100%;

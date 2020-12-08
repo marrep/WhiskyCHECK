@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Bookmark from "../../assets/icons/bookmarkOff.svg";
 import Cart from "../../assets/icons/cart.svg";
-import Home from "../../assets/icons/home.svg";
-import Menu from "../../assets/icons/menu.svg";
 import Search from "../../assets/icons/search.svg";
 import styled from "styled-components";
 
@@ -11,9 +9,6 @@ export default function Navigation({ bookmarks, cart }) {
   return (
     <FooterWrapper>
       <Link exact to="/">
-        <img src={Home} alt="" />
-      </Link>
-      <Link exact to="/search">
         <img src={Search} alt="" />
       </Link>
       <Link exact to="/cart">
@@ -53,7 +48,7 @@ export const FooterWrapper = styled.nav`
 export const FooterCardCounter = styled.span`
   width: 15px;
   text-align: center;
-  right: 30%;
+  right: 43%;
   position: fixed;
   height: 15px;
   color: #ffffff;
@@ -69,7 +64,7 @@ export const FooterCardCounter = styled.span`
 export const FooterBookmarkCounter = styled.span`
   width: 15px;
   text-align: center;
-  right: 6%;
+  right: 10%;
   position: fixed;
   height: 15px;
   color: #ffffff;

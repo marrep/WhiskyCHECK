@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import useProducts from "./useProducts";
-import getProductData from "../services/getProductData";
 
 export default function useFilter() {
-  const [filterOverlay, setFilterOverlay] = useState(false);
+  const [toggleFilter, setToggleFilter] = useState(false);
   const [originFilter, setOriginFilter] = useState([]);
   const { products, setProducts } = useProducts();
   const [searchResults, setSearchResults] = useState(products);
@@ -20,7 +19,7 @@ export default function useFilter() {
     });
     setOriginFilter(filteredTags);
     console.log(filteredTags);
-  }, [filterOverlay]);
+  }, [toggleFilter]);
 
   useEffect(() => {
     setSearchResults(products);
@@ -28,15 +27,15 @@ export default function useFilter() {
 
   return {
     originFilter,
-    toggleFilterOverlay,
+    showHideFilter,
     filterHandler,
-    filterOverlay,
+    toggleFilter,
     searchResults,
     sortProducts,
   };
 
-  function toggleFilterOverlay() {
-    setFilterOverlay(!filterOverlay);
+  function showHideFilter() {
+    setToggleFilter(!toggleFilter);
   }
 
   function filterHandler(tagTitle) {

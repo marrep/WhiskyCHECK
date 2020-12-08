@@ -2,15 +2,14 @@ import React from "react";
 import FilterIcon from "../../assets/icons/filter.svg";
 import SortIcon from "../../assets/icons/sort.svg";
 import styled from "styled-components";
+import useProducts from "../../hooks/useProducts";
 
-export default function FilterBar({
-  toggleFilterOverlay,
-  sortProducts,
-  products,
-}) {
+export default function FilterBar({ showHideFilter, sortProducts }) {
+  const { products } = useProducts();
+
   return (
     <FilterWrapper>
-      <FilterWrapperItem onClick={() => toggleFilterOverlay()}>
+      <FilterWrapperItem onClick={() => showHideFilter()}>
         <img src={FilterIcon} alt="" /> Filter
       </FilterWrapperItem>
       <FilterWrapperItem>

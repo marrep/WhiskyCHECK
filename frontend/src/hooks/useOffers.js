@@ -2,16 +2,14 @@ import { useState } from "react";
 
 export default function useOffers() {
   const [selectedOffer, setSelectedOffer] = useState([]);
-  const [toggleOffers, setToggleOffer] = useState(false);
 
   return {
     selectedOffer,
-    toggleOffers,
     selectNewOffer,
-    setToggleOffer,
     checkAvailability,
     setSelectedOffer,
     selectDefaultOffer,
+    countOffers,
   };
 
   function checkAvailability(selectedOffer) {
@@ -31,5 +29,14 @@ export default function useOffers() {
   function selectDefaultOffer(offerData) {
     setSelectedOffer(offerData);
     return selectedOffer;
+  }
+
+  function countOffers(offersData) {
+    const offers = offersData.length;
+    if (offers === 1) {
+      return `${offers} Angebot`;
+    } else {
+      return `${offers} Angebote`;
+    }
   }
 }

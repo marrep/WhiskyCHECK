@@ -4,10 +4,10 @@ import styled from "styled-components";
 export default function FilterTagWrapper({
   originFilter,
   filterHandler,
-  filterOverlay,
+  toggleFilter,
 }) {
   return (
-    <FilterTagItemWrapper style={{ display: filterOverlay ? "block" : "none" }}>
+    <FilterTagItemWrapper style={{ display: toggleFilter ? "block" : "none" }}>
       {originFilter.map((filterTag) => (
         <FilterTagItem
           onClick={(event) => filterHandler(event.target.innerHTML)}
@@ -35,8 +35,7 @@ export const FilterTagItem = styled.span`
 export const FilterTagItemWrapper = styled.div`
   padding: 10px 5px;
   display: flex;
-  width: 100%;
-  overflow-y: scroll;
-  padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
-  box-sizing: content-box; /* So the width will be 100% + 17px */
+  width: auto;
+  overflow-x: auto;
+  white-space: nowrap;
 `;

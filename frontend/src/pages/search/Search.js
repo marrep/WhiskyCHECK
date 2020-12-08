@@ -7,10 +7,10 @@ import ProductItemSearch from "../../components/search/ProductItemSearch";
 export default function Search({
   products,
   sortProducts,
-  toggleFilterOverlay,
+  showHideFilter,
   filterHandler,
   originFilter,
-  filterOverlay,
+  toggleFilter,
   toggleBookmark,
   bookmarks,
   searchResults,
@@ -23,15 +23,11 @@ export default function Search({
           products.length === 1 ? "Ergebnis" : "Ergebnisse"
         }`}{" "}
       </SearchHeaderWrapper>
-      <FilterBar
-        toggleFilterOverlay={toggleFilterOverlay}
-        sortProducts={sortProducts}
-        products={products}
-      />
+      <FilterBar showHideFilter={showHideFilter} sortProducts={sortProducts} />
       <FilterTagWrapper
         filterHandler={filterHandler}
         originFilter={originFilter}
-        filterOverlay={filterOverlay}
+        toggleFilter={toggleFilter}
       />
       {searchResults.map(({ title, image, offers, id }) => (
         <ProductItemSearch
@@ -59,6 +55,7 @@ const SearchWrapper = styled.div`
 `;
 
 const SearchHeaderWrapper = styled.div`
+  padding: 10px;
   font-family: Lato;
   font-size: 20px;
   margin-left: 5px;

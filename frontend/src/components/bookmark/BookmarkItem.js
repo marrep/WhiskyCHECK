@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import close from "../../assets/icons/close.svg";
+import { Link } from "react-router-dom";
 
 export default function BookmarkItem({ image, deleteBookmark, id }) {
   return (
@@ -9,7 +10,9 @@ export default function BookmarkItem({ image, deleteBookmark, id }) {
         <img src={image} alt="" />
       </BookmarkItemWrapperLeft>
       <BookmarkItemWrapperCenter>
-        <BookmarkBuyButtonStyled>Jetzt kaufen</BookmarkBuyButtonStyled>
+        <StyledLink to={`/products/${id}`}>
+          <BookmarkBuyButtonStyled>Jetzt kaufen</BookmarkBuyButtonStyled>
+        </StyledLink>
       </BookmarkItemWrapperCenter>
       <BookmarkItemWrapperRight>
         <img src={close} alt="" onClick={() => deleteBookmark(id)} />
@@ -17,6 +20,10 @@ export default function BookmarkItem({ image, deleteBookmark, id }) {
     </BookmarkItemWrapper>
   );
 }
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const BookmarkItemWrapper = styled.div`
   width: 100%;
