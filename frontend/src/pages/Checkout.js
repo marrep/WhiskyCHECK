@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import CartTotalPrice from "../../components/cart/CartTotalPrice";
-import { convertToEuro, getCartImage } from "../../services/helpers";
+import CartTotalPrice from "../components/cart/CartTotalPrice";
+import { convertToEuro, getCartImage } from "../services/helpers";
 import { useState } from "react";
 
 export default function Checkout({ cart, products }) {

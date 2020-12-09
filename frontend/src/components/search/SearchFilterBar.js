@@ -4,7 +4,7 @@ import SortIcon from "../../assets/icons/sort.svg";
 import styled from "styled-components";
 import useProducts from "../../hooks/useProducts";
 
-export default function FilterBar({ showHideFilter, sortProducts }) {
+export default function SearchFilterBar({ showHideFilter, sortProducts }) {
   const { products } = useProducts();
 
   return (

@@ -1,23 +1,30 @@
+import { Link } from "react-router-dom";
+import close from "../../assets/icons/close.svg";
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import close from "../../assets/icons/close.svg";
-import { Link } from "react-router-dom";
 
 export default function BookmarkItem({ image, deleteBookmark, id }) {
+  BookmarkItem.propTypes = {
+    id: PropTypes.number,
+    deleteBookmark: PropTypes.func.isRequired,
+    image: PropTypes.string.isRequired,
+  };
+
   return (
-    <BookmarkItemWrapper>
-      <BookmarkItemWrapperLeft>
+    <MainWrapper>
+      <LeftWrapper>
         <img src={image} alt="" />
-      </BookmarkItemWrapperLeft>
-      <BookmarkItemWrapperCenter>
+      </LeftWrapper>
+      <CenterWrapper>
         <StyledLink to={`/products/${id}`}>
           <BookmarkBuyButtonStyled>Jetzt kaufen</BookmarkBuyButtonStyled>
         </StyledLink>
-      </BookmarkItemWrapperCenter>
-      <BookmarkItemWrapperRight>
+      </CenterWrapper>
+      <RightWrapper>
         <img src={close} alt="" onClick={() => deleteBookmark(id)} />
-      </BookmarkItemWrapperRight>
-    </BookmarkItemWrapper>
+      </RightWrapper>
+    </MainWrapper>
   );
 }
 
@@ -25,64 +32,64 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const BookmarkItemWrapper = styled.div`
-  width: 100%;
-  text-decoration: none;
-  overflow: hidden;
-  flex-direction: row;
-  display: flex;
+const MainWrapper = styled.div`
   border-bottom: 1px solid #dadbdc;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  text-decoration: none;
+  width: 100%;
 `;
 
-const BookmarkItemWrapperLeft = styled.div`
-  width: 30%;
+const LeftWrapper = styled.div`
+  align-items: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
   padding: 10px;
   text-decoration: none;
-  overflow: hidden;
-  justify-content: center;
-  flex-direction: column;
-  display: flex;
-  align-items: top;
+  width: 30%;
 
   img {
-    width: auto;
-    overflow: hidden;
-    max-width: 100%;
-    max-height: 100px;
-    margin-right: auto;
-    margin-left: auto;
-    height: auto;
     display: block;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 100px;
+    max-width: 100%;
+    overflow: hidden;
+    width: auto;
   }
 `;
 
-const BookmarkItemWrapperCenter = styled.div`
-  width: 50%;
-  text-decoration: none;
-  overflow: hidden;
-  justify-content: center;
-  flex-direction: column;
-  display: flex;
+const CenterWrapper = styled.div`
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-decoration: none;
+  width: 50%;
 `;
 
-const BookmarkItemWrapperRight = styled.div`
-  width: 20%;
-  justify-content: center;
+const RightWrapper = styled.div`
   align-items: center;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20%;
 `;
 
 const BookmarkBuyButtonStyled = styled.button`
-  display: block;
-  margin-left: 0;
-  margin-right: 0;
-  width: 80%;
-  padding: 0.5em 2.5em;
-  text-transform: uppercase;
   background-color: #f6ba41;
   border-radius: 30px;
   border: none;
   color: #ffffff;
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0.5em 2.5em;
+  text-transform: uppercase;
+  width: 80%;
 `;

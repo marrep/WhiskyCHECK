@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import BookmarkIcon from "../../components/bookmark/BookmarkIcon";
-import { getPriceRange } from "../../services/helpers";
-import OfferDetails from "../../components/product/OfferDetails";
+import BookmarkIcon from "../components/bookmark/BookmarkIcon";
+import { getPriceRange } from "../services/helpers";
+import OfferDetails from "../components/product/OfferDetails";
 
 export default function ProductDetailPage({
   products,

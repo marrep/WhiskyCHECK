@@ -9,7 +9,7 @@ import {
 import BookmarkIcon from "../bookmark/BookmarkIcon";
 import { Link } from "react-router-dom";
 
-export default function ProductItemSearch({
+export default function SearchProductItem({
   title,
   image,
   offers,

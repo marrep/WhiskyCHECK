@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import BookmarkItem from "../../components/bookmark/BookmarkItem";
+import BookmarkItem from "../components/bookmark/BookmarkItem";
+import useBookmarks from "../hooks/useBookmarks";
 
-export default function Bookmark({ deleteBookmark, bookmarks }) {
+export default function Bookmark() {
+  const { deleteBookmark, bookmarks } = useBookmarks();
+
   return (
     <BookmarkWrapper>
       <BookmarkWrapperTop>

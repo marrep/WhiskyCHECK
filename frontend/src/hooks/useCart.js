@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import loadLocally from "../lib/loadLocally";
+import saveLocally from "../lib/saveLocally";
 
 export default function useCart() {
-  const [cart, setCart] = useState({
-    items: [],
-    totalPrice: 0,
-    totalShipping: 0,
-    date: new Intl.DateTimeFormat("en-US").format(new Date()),
-    customerid: 2,
-  });
+  const [cart, setCart] = useState(
+    loadLocally("cart") ?? {
+      items: [],
+      totalPrice: 0,
+      totalShipping: 0,
+      date: new Intl.DateTimeFormat("en-US").format(new Date()),
+      customerid: 2,
+    }
+  );
+
+  useEffect(() => {
+    saveLocally("cart", cart);
+  }, [cart]);
 
   return {
     cart,

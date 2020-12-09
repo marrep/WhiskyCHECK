@@ -1,8 +1,8 @@
 import React from "react";
-import CartItemController from "../../components/cart/CartItemController";
-import CardItem from "../../components/cart/CartItem";
+import CartItemController from "../components/cart/CartItemController";
+import CardItem from "../components/cart/CartItem";
 import styled from "styled-components";
-import CartTotalPrice from "../../components/cart/CartTotalPrice";
+import CartTotalPrice from "../components/cart/CartTotalPrice";
 import { Link } from "react-router-dom";
 
 export default function Cart({ cart, products, toggleBookmark, bookmarks }) {
@@ -24,7 +24,6 @@ export default function Cart({ cart, products, toggleBookmark, bookmarks }) {
                 toggleBookmark={toggleBookmark}
                 bookmarks={bookmarks}
               />
-              <CartItemController cartItem={cartItem} cart={cart} />
             </>
           ))
         )}

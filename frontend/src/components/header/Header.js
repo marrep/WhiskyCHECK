@@ -4,13 +4,13 @@ import styled from "styled-components";
 
 export default function Header() {
   return (
-    <HeaderBar>
+    <Wrapper>
       <img src={Logo} alt="React Logo" />
-    </HeaderBar>
+    </Wrapper>
   );
 }
 
-export const HeaderBar = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
