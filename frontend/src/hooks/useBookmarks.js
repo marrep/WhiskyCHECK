@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { findProduct } from "../services/helpers";
+import findProduct from "../services/findProduct";
 import useProducts from "./useProducts";
 import loadLocally from "../lib/loadLocally";
 import saveLocally from "../lib/saveLocally";

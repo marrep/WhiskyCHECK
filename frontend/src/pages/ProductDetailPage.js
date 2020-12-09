@@ -1,6 +1,6 @@
-import { getPriceRange } from "../services/helpers";
 import { useParams } from "react-router-dom";
 import BookmarkIcon from "../components/bookmark/BookmarkIcon";
+import getPriceRange from "../services/getPriceRange";
 import OfferDetails from "../components/offer/OfferDetails";
 import PropTypes from "prop-types";
 import React from "react";

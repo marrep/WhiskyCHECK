@@ -1,12 +1,11 @@
+import { useState } from "react";
+import CartTotalPrice from "../components/cart/CartTotalPrice";
+import convertToEuro from "../services/convertToEuro";
+import getCartImage from "../services/getCartImage";
 import React from "react";
 import styled from "styled-components";
-import CartTotalPrice from "../components/cart/CartTotalPrice";
-import { convertToEuro, getCartImage } from "../services/helpers";
-import { useState } from "react";
 
 export default function Checkout({ cart, products }) {
-  console.log(cart);
-
   const [newOrder, createNewOrder] = useState({
     customerid: cart.customerid,
     date: cart.date,

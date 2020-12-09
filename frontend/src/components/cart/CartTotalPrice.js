@@ -1,4 +1,4 @@
-import { convertToEuro } from "../../services/helpers";
+import convertToEuro from "../../services/convertToEuro";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 

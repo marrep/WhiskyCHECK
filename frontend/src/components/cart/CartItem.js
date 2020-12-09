@@ -1,8 +1,9 @@
-import { convertToEuro, getCartImage } from "../../services/helpers";
 import BookmarkIcon from "../bookmark/BookmarkIcon";
+import convertToEuro from "../../services/convertToEuro";
+import getCartImage from "../../services/getCartImage";
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 export default function CartItemInformation({
   cartItem,

@@ -3,12 +3,10 @@ import BookmarkIcon from "../bookmark/BookmarkIcon";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import {
-  countOffers,
-  getPriceRange,
-  getFastestDeliveryDay,
-  checkOnStock,
-} from "../../services/helpers";
+import countOffers from "../../services/countOffers";
+import getPriceRange from "../../services/getPriceRange";
+import getFastestDeliveryDay from "../../services/getFastestDeliveryDay";
+import checkOnStock from "../../services/checkOnStock";
 
 export default function SearchProductItem({
   title,
