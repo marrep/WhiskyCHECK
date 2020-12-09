@@ -1,0 +1,8 @@
+framework:
+  test: true
+  session:
+    storage_id: session.storage.mock_file
+
+  serializer:
+    circular_reference_handler: App\Serializer\CircularReferenceHanlder
+    enabled: true

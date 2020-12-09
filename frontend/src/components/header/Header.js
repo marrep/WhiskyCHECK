@@ -1,11 +1,21 @@
+import Logo from "../../assets/icons/logo.svg";
 import React from "react";
-import { HeaderBar } from "./HeaderStyled";
-import Logo from "../../assets/logo.svg";
+import styled from "styled-components";
 
 export default function Header() {
   return (
-    <HeaderBar>
-      <img src={Logo} alt="React Logo" />
-    </HeaderBar>
+    <MainWrapper>
+      <img src={Logo} alt="WhiskyCheck Logo" data-testid="Logo" />
+    </MainWrapper>
   );
 }
+
+const MainWrapper = styled.div`
+  align-items: center;
+  background-color: #003f8a;
+  display: flex;
+  flex-direction: column;
+  height: 10vh;
+  justify-content: center;
+  width: 100%;
+`;
