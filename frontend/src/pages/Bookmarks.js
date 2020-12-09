@@ -1,16 +1,16 @@
+import BookmarkItem from "../components/bookmark/BookmarkItem";
 import React from "react";
 import styled from "styled-components";
-import BookmarkItem from "../components/bookmark/BookmarkItem";
 import useBookmarks from "../hooks/useBookmarks";
 
 export default function Bookmark() {
   const { deleteBookmark, bookmarks } = useBookmarks();
 
   return (
-    <BookmarkWrapper>
-      <BookmarkWrapperTop>
+    <MainWrapper>
+      <TopWrapper>
         <span>Meine Favoriten</span>
-      </BookmarkWrapperTop>
+      </TopWrapper>
 
       {bookmarks.length === 0 ? (
         <p>Oh, Du hast noch keine Artikel markiert!</p>
@@ -19,11 +19,11 @@ export default function Bookmark() {
           <BookmarkItem image={image} deleteBookmark={deleteBookmark} id={id} />
         ))
       )}
-    </BookmarkWrapper>
+    </MainWrapper>
   );
 }
 
-export const BookmarkWrapper = styled.div`
+export const MainWrapper = styled.div`
   text-align: center;
 
   p {
@@ -32,16 +32,16 @@ export const BookmarkWrapper = styled.div`
   }
 `;
 
-export const BookmarkWrapperTop = styled.div`
-  display: block;
-  width: 100%;
-  padding: 10px;
+export const TopWrapper = styled.div`
   border-bottom: 1px solid #dadbdc;
+  display: block;
+  padding: 10px;
+  width: 100%;
 
   span {
+    color: #003f8a;
     font-family: Lato;
     font-size: 15px;
-    color: #003f8a;
     margin-left: 5px;
   }
 

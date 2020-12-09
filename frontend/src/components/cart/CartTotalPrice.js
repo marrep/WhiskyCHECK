@@ -1,51 +1,56 @@
 import { convertToEuro } from "../../services/helpers";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 export default function CartTotalPrice({ cart }) {
+  CartTotalPrice.propTypes = {
+    cart: PropTypes.array,
+  };
+
   return (
     <>
-      <CartTotalPriceWrapper
+      <MainWrapper
         style={{ display: cart.items.length === 0 ? "none" : "flex" }}
       >
-        <CartTotalPriceWrapperLeft>
+        <LeftWrapper>
           <span>Zwischensumme:</span>
           <span>Versand:</span>
           <span>Summe:</span>
-        </CartTotalPriceWrapperLeft>
-        <CartTotalPriceWrapperRight>
+        </LeftWrapper>
+        <RightWrapper>
           <span>{convertToEuro(cart.totalPrice)}</span>
           <span>{convertToEuro(cart.totalShipping)}</span>
           <span>{convertToEuro(cart.totalPrice + cart.totalShipping)}</span>
-        </CartTotalPriceWrapperRight>
-      </CartTotalPriceWrapper>
+        </RightWrapper>
+      </MainWrapper>
     </>
   );
 }
 
-export const CartTotalPriceWrapper = styled.div`
-  font-family: Lato;
+const MainWrapper = styled.div`
+  align-items: center;
   color: #4a4a4a;
   flex-direction: row;
+  font-family: Lato;
   justify-content: center;
-  align-items: center;
-  width: 100%;
   padding: 20px;
+  width: 100%;
 `;
 
-export const CartTotalPriceWrapperLeft = styled.div`
+const LeftWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: right;
-  text-align: right;
   padding: 10px;
+  text-align: right;
   width: 60%;
 `;
 
-export const CartTotalPriceWrapperRight = styled.div`
+const RightWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: Left;
-  text-align: left;
   padding: 10px;
+  text-align: left;
   width: 40%;
 `;

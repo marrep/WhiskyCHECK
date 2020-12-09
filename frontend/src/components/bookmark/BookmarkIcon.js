@@ -20,13 +20,14 @@ export default function BookmarkIcon({ id, toggleBookmark, bookmarks }) {
         }
         alt=""
         onClick={() => toggleBookmark(id)}
+        data-testid="bookmarkIcon"
       />
       <Text>Merken</Text>
     </Wrapper>
   );
 }
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -36,11 +37,11 @@ export const Wrapper = styled.div`
   width: auto;
 `;
 
-export const Icon = styled.img`
+const Icon = styled.img`
   width: 80%auto;
 `;
 
-export const Text = styled.span`
+const Text = styled.span`
   color: #575757;
   display: block;
   font-size: 12px;

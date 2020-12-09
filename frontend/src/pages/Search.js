@@ -1,7 +1,8 @@
+import PropTypes from "prop-types";
 import React from "react";
-import styled from "styled-components";
 import SearchFilterBar from "../components/search/SearchFilterBar";
 import SearchProductItem from "../components/search/SearchProductItem";
+import styled from "styled-components";
 import useFilter from "../hooks/useFilter";
 
 export default function Search({ products, toggleBookmark, bookmarks }) {
@@ -14,21 +15,25 @@ export default function Search({ products, toggleBookmark, bookmarks }) {
     sortProducts,
   } = useFilter();
 
+  Search.propTypes = {
+    products: PropTypes.array.isRequired,
+    toggleBookmark: PropTypes.func.isRequired,
+    bookmarks: PropTypes.array.isRequired,
+  };
+
   return (
-    <SearchWrapper>
-      <SearchHeaderWrapper>
+    <MainWrapper>
+      <TopWrapper>
         Whisky |{" "}
         {`${products.length} ${
           products.length === 1 ? "Ergebnis" : "Ergebnisse"
         }`}{" "}
-      </SearchHeaderWrapper>
+      </TopWrapper>
       <SearchFilterBar
         showHideFilter={showHideFilter}
         sortProducts={sortProducts}
       />
-      <FilterTagItemWrapper
-        style={{ display: toggleFilter ? "block" : "none" }}
-      >
+      <FilterTags style={{ display: toggleFilter ? "block" : "none" }}>
         {originFilter.map((filterTag) => (
           <FilterTagItem
             onClick={(event) => filterHandler(event.target.innerHTML)}
@@ -36,7 +41,7 @@ export default function Search({ products, toggleBookmark, bookmarks }) {
             {filterTag}
           </FilterTagItem>
         ))}
-      </FilterTagItemWrapper>
+      </FilterTags>
       {searchResults.map(({ title, image, offers, id }) => (
         <SearchProductItem
           title={title}
@@ -47,11 +52,11 @@ export default function Search({ products, toggleBookmark, bookmarks }) {
           bookmarks={bookmarks}
         />
       ))}
-    </SearchWrapper>
+    </MainWrapper>
   );
 }
 
-const SearchWrapper = styled.div`
+const MainWrapper = styled.div`
   font-family: Lato;
   flex-wrap: wrap;
   display: flex;
@@ -62,31 +67,31 @@ const SearchWrapper = styled.div`
   }
 `;
 
-const SearchHeaderWrapper = styled.div`
-  padding: 10px;
+const TopWrapper = styled.div`
   font-family: Lato;
   font-size: 20px;
-  margin-left: 5px;
   font-weight: 400;
+  margin-left: 5px;
+  padding: 10px;
 `;
 
-export const FilterTagItem = styled.span`
-  margin: 5px;
-  padding: 5px 10px;
+const FilterTagItem = styled.span`
+  background-color: #fadca0;
+  border-radius: 30px;
   font-family: Lato;
   font-size: 14px;
-  border-radius: 30px;
-  background-color: #fadca0;
+  margin: 5px;
+  padding: 5px 10px;
 
   img {
     height: 50%;
   }
 `;
 
-export const FilterTagItemWrapper = styled.div`
-  padding: 10px 5px;
+const FilterTags = styled.div`
   display: flex;
-  width: auto;
   overflow-x: auto;
+  padding: 10px 5px;
   white-space: nowrap;
+  width: auto;
 `;

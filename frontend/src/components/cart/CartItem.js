@@ -1,7 +1,8 @@
-import React from "react";
 import { convertToEuro, getCartImage } from "../../services/helpers";
-import styled from "styled-components";
 import BookmarkIcon from "../bookmark/BookmarkIcon";
+import React from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
 export default function CartItemInformation({
   cartItem,
@@ -9,92 +10,99 @@ export default function CartItemInformation({
   bookmarks,
   toggleBookmark,
 }) {
+  CartItemInformation.propTypes = {
+    cartItem: PropTypes.object,
+    toggleBookmark: PropTypes.func.isRequired,
+    bookmarks: PropTypes.array.isRequired,
+    products: PropTypes.array.isRequired,
+  };
+
   return (
-    <CartItemWrapper>
-      <CartItemWrapperLeft>
+    <MainWrapper>
+      <LeftWrapper>
         <img src={getCartImage(products, cartItem.id)} alt="" />
-      </CartItemWrapperLeft>
-      <CartItemWrapperCenter>
-        <CartItemPrice>{convertToEuro(cartItem.price)}</CartItemPrice>
-        <CartItemTitle>{cartItem.title}</CartItemTitle>
-        <CartItemSeller>Versand durch {cartItem.seller}</CartItemSeller>
-      </CartItemWrapperCenter>
-      <CartItemWrapperRight>
+      </LeftWrapper>
+      <CenterWrapper>
+        <Price>{convertToEuro(cartItem.price)}</Price>
+        <Title>{cartItem.title}</Title>
+        <Seller>Versand durch {cartItem.seller}</Seller>
+      </CenterWrapper>
+      <RightWrapper>
         <BookmarkIcon
           id={cartItem.id}
           bookmarks={bookmarks}
           toggleBookmark={toggleBookmark}
         />
-      </CartItemWrapperRight>
-    </CartItemWrapper>
+      </RightWrapper>
+    </MainWrapper>
   );
 }
 
-export const CartItemWrapper = styled.div`
-  font-family: Lato;
-  width: 100%;
-  text-decoration: none;
-  overflow: hidden;
-  flex-direction: row;
+const MainWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+  font-family: Lato;
+  overflow: hidden;
+  text-decoration: none;
+  width: 100%;
 `;
 
-export const CartItemWrapperLeft = styled.div`
-  width: 30%;
+const LeftWrapper = styled.div`
+  align-items: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
   padding: 10px;
   text-decoration: none;
-  overflow: hidden;
-  justify-content: center;
-  flex-direction: column;
-  display: flex;
-  align-items: top;
+  width: 30%;
 
   img {
-    width: auto;
-    overflow: hidden;
-    max-width: 100%;
-    max-height: 100px;
-    margin-right: auto;
-    margin-left: auto;
-    height: auto;
     display: block;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 100px;
+    max-width: 100%;
+    overflow: hidden;
+    width: auto;
   }
 `;
 
-export const CartItemWrapperCenter = styled.div`
+const CenterWrapper = styled.div`
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: left;
   width: 50%;
-  justify-content: center;
-  flex-direction: column;
-  display: flex;
-  align-items: left;
 `;
 
-export const CartItemWrapperRight = styled.div`
-  width: 20%;
-  justify-content: center;
+const RightWrapper = styled.div`
   align-items: center;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20%;
 `;
 
-export const CartItemPrice = styled.span`
-  text-align: left;
+const Price = styled.span`
+  color: #e43122;
   display: block;
   font-size: 18px;
-  color: #e43122;
+  text-align: left;
 `;
 
-export const CartItemSeller = styled.span`
-  text-align: left;
+const Seller = styled.span`
+  color: #575757;
   display: block;
   font-size: 12px;
-  color: #575757;
+  text-align: left;
 `;
 
-export const CartItemTitle = styled.span`
-  text-align: left;
+const Title = styled.span`
+  color: #134085;
   display: block;
   font-size: 14px;
-  color: #134085;
+  text-align: left;
 `;

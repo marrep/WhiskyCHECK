@@ -1,71 +1,72 @@
-import React from "react";
 import plus from "../../assets/icons/plus.svg";
-import trashbin from "../../assets/icons/trashbin.svg";
+import React from "react";
 import styled from "styled-components";
+import trashbin from "../../assets/icons/trashbin.svg";
 import useCart from "../../hooks/useCart";
+import PropTypes from "prop-types";
 
 export default function CartItemController({ cartItem, cart }) {
   const { increaseAmount, removeFromCart } = useCart();
 
+  CartItemController.propTypes = {
+    cartItem: PropTypes.object,
+    cart: PropTypes.array,
+  };
+
   return (
-    <CartItemControllerWrapper>
-      <CartItemControllerBox>
-        <CartItemControllerLeftBox
-          onClick={() => removeFromCart(cartItem, cart)}
-        >
+    <MainWrapper>
+      <Controller>
+        <LeftWrapper onClick={() => removeFromCart(cartItem, cart)}>
           <div>
             <img src={trashbin} alt="" />
           </div>
-        </CartItemControllerLeftBox>
-        <CartItemControllerCenterBox>
-          {cartItem.amount}
-        </CartItemControllerCenterBox>
-        <CartItemControllerRightBox
-          onClick={() => increaseAmount(cartItem, cart)}
-        >
+        </LeftWrapper>
+        <CenterWrapper>{cartItem.amount}</CenterWrapper>
+        <RightWrapper onClick={() => increaseAmount(cartItem, cart)}>
           <img src={plus} alt="" />
-        </CartItemControllerRightBox>
-      </CartItemControllerBox>
-    </CartItemControllerWrapper>
+        </RightWrapper>
+      </Controller>
+      {JSON.stringify(cart)}
+    </MainWrapper>
   );
 }
 
-export const CartItemControllerWrapper = styled.div`
-  font-family: Lato;
+const MainWrapper = styled.div`
   display: block;
-  width: 100%;
+  font-family: Lato;
   padding: 10px 25px;
+  width: 100%;
 `;
 
-export const CartItemControllerBox = styled.div`
+const Controller = styled.div`
+  align-items: center;
+  border-radius: 5px;
+  border: 2px solid #575757;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  border: 2px solid #575757;
-  border-radius: 5px;
   width: 20%;
 `;
 
-export const CartItemControllerLeftBox = styled.div`
-  display: flex;
-  justify-content: center;
+const LeftWrapper = styled.div`
   align-items: center;
   background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
   width: 30%;
 `;
 
-export const CartItemControllerCenterBox = styled.div`
+const CenterWrapper = styled.div`
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 40%;
 `;
 
-export const CartItemControllerRightBox = styled.div`
-  display: flex;
-  justify-content: center;
+const RightWrapper = styled.div`
   align-items: center;
   background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
   width: 30%;
 `;

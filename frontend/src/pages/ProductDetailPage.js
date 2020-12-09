@@ -1,20 +1,25 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import BookmarkIcon from "../components/bookmark/BookmarkIcon";
 import { getPriceRange } from "../services/helpers";
-import OfferDetails from "../components/product/OfferDetails";
+import { useParams } from "react-router-dom";
+import BookmarkIcon from "../components/bookmark/BookmarkIcon";
+import OfferDetails from "../components/offer/OfferDetails";
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
 export default function ProductDetailPage({
   products,
-  selectedOffer,
-  selectDefaultOffer,
   toggleBookmark,
   bookmarks,
-  selectNewOffer,
   addToCart,
 }) {
   let { id } = useParams();
+
+  ProductDetailPage.propTypes = {
+    products: PropTypes.array.isRequired,
+    toggleBookmark: PropTypes.func.isRequired,
+    bookmarks: PropTypes.array.isRequired,
+    addToCart: PropTypes.func.isRequired,
+  };
 
   function findProduct(productId) {
     const foundProduct = products.find(({ id }) => id == productId);
@@ -22,79 +27,76 @@ export default function ProductDetailPage({
   }
 
   return (
-    <ItemWrapperMain>
-      <ItemWrapperTop>
-        <ItemTitleSize>
+    <MainWrapper>
+      <TopWrapper>
+        <TitleWrapper>
           {findProduct(id).title} {findProduct(id).size} ml
-        </ItemTitleSize>
+        </TitleWrapper>
         <BookmarkIcon
           id={id}
           toggleBookmark={toggleBookmark}
           bookmarks={bookmarks}
         />
-      </ItemWrapperTop>
-      <ItemPriceRange>{getPriceRange(findProduct(id).offers)}</ItemPriceRange>
-      <ItemImage src={findProduct(id).image} alt="" />
-      <ItemDescription>
+      </TopWrapper>
+      <PriceRange>{getPriceRange(findProduct(id).offers)}</PriceRange>
+      <Image src={findProduct(id).image} alt="" />
+      <Description>
         <strong>Beschreibung:</strong> {findProduct(id).description}
-      </ItemDescription>
+      </Description>
       <OfferDetails
         offers={findProduct(id).offers}
         product={findProduct(id)}
-        selectedOffer={selectedOffer}
-        selectDefaultOffer={selectDefaultOffer}
-        selectNewOffer={selectNewOffer}
         addToCart={addToCart}
       />
-    </ItemWrapperMain>
+    </MainWrapper>
   );
 }
 
-export const ItemWrapperMain = styled.div`
-  text-decoration: none;
-  padding: 1em;
-  overflow: hidden;
+const MainWrapper = styled.div`
   font-family: Lato;
+  overflow: hidden;
+  padding: 1em;
+  text-decoration: none;
 `;
 
-export const ItemWrapperTop = styled.div`
+const TopWrapper = styled.div`
   width: 100%;
   text-decoration: none;
   overflow: hidden;
   display: flex;
 `;
 
-export const ItemImage = styled.img`
-  width: auto;
-  text-decoration: none;
-  text-align: center;
-  overflow: hidden;
-  max-width: 100%;
-  max-height: 100%;
-  margin-right: auto;
-  margin-left: auto;
+const Image = styled.img`
+  display: block;
   height: auto;
-  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  text-decoration: none;
+  width: auto;
 `;
 
-export const ItemTitleSize = styled.span`
-  width: 80%;
-  text-decoration: none;
-  padding-right: 5%;
-  font-size: 20px;
-  display: block;
+const TitleWrapper = styled.span`
   color: #003f8a;
+  display: block;
+  font-size: 20px;
+  padding-right: 5%;
+  text-decoration: none;
+  width: 80%;
 `;
 
-export const ItemPriceRange = styled.span`
-  text-decoration: none;
-  font-size: 15px;
-  display: block;
+const PriceRange = styled.span`
   color: #f70000;
+  display: block;
+  font-size: 15px;
+  text-decoration: none;
 `;
 
-export const ItemDescription = styled.p`
-  text-decoration: none;
-  font-size: 15px;
+const Description = styled.p`
   display: block;
+  font-size: 15px;
+  text-decoration: none;
 `;

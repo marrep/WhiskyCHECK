@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import BookmarkIcon from "../bookmark/BookmarkIcon";
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 import {
@@ -6,8 +9,6 @@ import {
   getFastestDeliveryDay,
   checkOnStock,
 } from "../../services/helpers";
-import BookmarkIcon from "../bookmark/BookmarkIcon";
-import { Link } from "react-router-dom";
 
 export default function SearchProductItem({
   title,
@@ -17,31 +18,40 @@ export default function SearchProductItem({
   toggleBookmark,
   bookmarks,
 }) {
+  SearchProductItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    offers: PropTypes.array.isRequired,
+    id: PropTypes.number.isRequired,
+    toggleBookmark: PropTypes.func.isRequired,
+    bookmarks: PropTypes.array.isRequired,
+  };
+
   return (
-    <ItemWrapper>
+    <MainWrapper>
       <StyledLink
         to={`/products/${id}`}
         style={{ textDecoration: "none", display: "flex" }}
       >
-        <ItemWrapperLeft>
-          <ItemImage src={image} alt="" />
-        </ItemWrapperLeft>
-        <ItemWrapperCenter>
-          <ItemTitle>{title}</ItemTitle>
-          <ItemOffers>{countOffers(offers)}</ItemOffers>
-          <ItemOnStock>{checkOnStock(offers)}</ItemOnStock>
-          <ItemPriceRange>{getPriceRange(offers)}</ItemPriceRange>
-          <ItemDelivery>{getFastestDeliveryDay(offers)}</ItemDelivery>
-        </ItemWrapperCenter>
+        <LeftWrapper>
+          <Image src={image} alt="" />
+        </LeftWrapper>
+        <CenterWrapper>
+          <Title>{title}</Title>
+          <Offers>{countOffers(offers)}</Offers>
+          <Stock>{checkOnStock(offers)}</Stock>
+          <PriceRange>{getPriceRange(offers)}</PriceRange>
+          <Delivery>{getFastestDeliveryDay(offers)}</Delivery>
+        </CenterWrapper>
       </StyledLink>
-      <ItemWrapperRight>
+      <RightWrapper>
         <BookmarkIcon
           id={id}
           toggleBookmark={toggleBookmark}
           bookmarks={bookmarks}
         />
-      </ItemWrapperRight>
-    </ItemWrapper>
+      </RightWrapper>
+    </MainWrapper>
   );
 }
 
@@ -58,92 +68,92 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export const ItemWrapper = styled.div`
-  width: 100%;
-  text-decoration: none;
-  padding: 1em;
-  overflow: hidden;
-  flex-direction: row;
-  display: flex;
+const MainWrapper = styled.div`
   border-bottom: 1px solid #dadbdc;
-`;
-
-export const ItemWrapperLeft = styled.div`
-  width: 30%;
-  text-decoration: none;
-  overflow: hidden;
-  justify-content: center;
-  flex-direction: column;
   display: flex;
-  align-items: top;
-`;
-
-export const ItemWrapperCenter = styled.div`
-  width: 50%;
-  text-decoration: none;
+  flex-direction: row;
+  overflow: hidden;
   padding: 1em;
-  overflow: hidden;
-  justify-content: left;
-  flex-direction: column;
+  text-decoration: none;
+  width: 100%;
+`;
+
+const LeftWrapper = styled.div`
+  align-items: top;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-decoration: none;
+  width: 30%;
+`;
+
+const CenterWrapper = styled.div`
   align-items: left;
-`;
-
-export const ItemWrapperRight = styled.div`
-  width: 20%;
-  text-decoration: none;
-  overflow: hidden;
-  justify-content: space-around;
-  flex-direction: column;
   display: flex;
-  align-items: stretch;
-`;
-
-export const ItemImage = styled.img`
-  width: auto;
+  flex-direction: column;
+  justify-content: left;
   overflow: hidden;
-  max-width: 100%;
-  max-height: 100px;
-  margin-right: auto;
-  margin-left: auto;
+  padding: 1em;
+  text-decoration: none;
+  width: 50%;
+`;
+
+const RightWrapper = styled.div`
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  overflow: hidden;
+  text-decoration: none;
+  width: 20%;
+`;
+
+const Image = styled.img`
+  display: block;
   height: auto;
-  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 100px;
+  max-width: 100%;
+  overflow: hidden;
+  width: auto;
 `;
 
-export const ItemTitle = styled.span`
-  text-decoration: none;
-  font-weight: 800;
-  font-size: 14px;
-  font-family: Lato;
-  display: block;
+const Title = styled.span`
   color: #003f8a;
+  display: block;
+  font-family: Lato;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
 `;
 
-export const ItemPriceRange = styled.span`
-  text-decoration: none;
-  font-size: 16px;
-  display: block;
+const PriceRange = styled.span`
   color: #e43122;
+  display: block;
+  font-size: 16px;
+  text-decoration: none;
 `;
 
-export const ItemOffers = styled.span`
-  text-decoration: none;
+const Offers = styled.span`
+  color: #575757;
+  display: block;
+  font-size: 14px;
   font-weight: 200;
-  font-size: 14px;
-  display: block;
-  color: #575757;
+  text-decoration: none;
 `;
 
-export const ItemOnStock = styled.span`
-  text-decoration: none;
-  font-size: 12px;
-  display: block;
+const Stock = styled.span`
   color: #0da500;
+  display: block;
+  font-size: 12px;
+  text-decoration: none;
 `;
 
-export const ItemDelivery = styled.span`
-  text-decoration: none;
-  font-size: 14px;
-  display: block;
+const Delivery = styled.span`
   color: #575757;
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
 `;

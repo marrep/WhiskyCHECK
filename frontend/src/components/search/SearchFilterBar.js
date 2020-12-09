@@ -1,5 +1,6 @@
-import React from "react";
 import FilterIcon from "../../assets/icons/filter.svg";
+import PropTypes from "prop-types";
+import React from "react";
 import SortIcon from "../../assets/icons/sort.svg";
 import styled from "styled-components";
 import useProducts from "../../hooks/useProducts";
@@ -7,12 +8,17 @@ import useProducts from "../../hooks/useProducts";
 export default function SearchFilterBar({ showHideFilter, sortProducts }) {
   const { products } = useProducts();
 
+  SearchFilterBar.propTypes = {
+    showHideFilter: PropTypes.func.isRequired,
+    sortProducts: PropTypes.func.isRequired,
+  };
+
   return (
-    <FilterWrapper>
-      <FilterWrapperItem onClick={() => showHideFilter()}>
+    <MainWrapper>
+      <FilterWrapper onClick={() => showHideFilter()}>
         <img src={FilterIcon} alt="" /> Filter
-      </FilterWrapperItem>
-      <FilterWrapperItem>
+      </FilterWrapper>
+      <FilterWrapper>
         <img src={SortIcon} alt="" />
         <select
           name="sortProducts"
@@ -21,43 +27,43 @@ export default function SearchFilterBar({ showHideFilter, sortProducts }) {
           <option value="NameUp">Name (aufsteigend)</option>
           <option value="NameDown">Name (absteigend)</option>
         </select>
-      </FilterWrapperItem>
-    </FilterWrapper>
+      </FilterWrapper>
+    </MainWrapper>
   );
 }
 
-export const FilterWrapper = styled.div`
-  width: 100%;
-  justify-content: center;
-  height: 5vh;
-  flex-direction: row;
-  display: flex;
-  border: 1px solid #707070;
+const MainWrapper = styled.div`
   align-items: center;
+  border: 1px solid #707070;
+  display: flex;
+  flex-direction: row;
+  height: 5vh;
+  justify-content: center;
+  width: 100%;
 `;
 
-export const FilterWrapperItem = styled.div`
-  width: 50%;
-  justify-content: center;
-  height: 100%;
-  font-size: 12px;
-  flex-direction: row;
-  display: flex;
-  border: 1px solid #707070;
-  background-color: #f1f1f1;
+export const FilterWrapper = styled.div`
   align-items: center;
+  background-color: #f1f1f1;
+  border: 1px solid #707070;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  height: 100%;
+  justify-content: center;
+  width: 50%;
 
   img {
     margin-right: 5px;
   }
 
   select {
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
     border: none;
     outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    -ms-appearance: none;
-    background: transparent;
   }
 `;

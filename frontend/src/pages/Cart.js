@@ -1,18 +1,18 @@
-import React from "react";
-import CartItemController from "../components/cart/CartItemController";
-import CardItem from "../components/cart/CartItem";
-import styled from "styled-components";
-import CartTotalPrice from "../components/cart/CartTotalPrice";
 import { Link } from "react-router-dom";
+import CardItem from "../components/cart/CartItem";
+import CartItemController from "../components/cart/CartItemController";
+import CartTotalPrice from "../components/cart/CartTotalPrice";
+import React from "react";
+import styled from "styled-components";
 
 export default function Cart({ cart, products, toggleBookmark, bookmarks }) {
   return (
     <>
-      <CartWrapper>
-        <CartWrapperTop>
+      <MainWrapper>
+        <TopWrapper>
           <span>Mein Warenkorb</span>
-        </CartWrapperTop>
-
+          {JSON.stringify(cart)}
+        </TopWrapper>
         {cart.items.length === 0 ? (
           <p>Sorry, dein Warenkorb ist leider leer</p>
         ) : (
@@ -24,25 +24,26 @@ export default function Cart({ cart, products, toggleBookmark, bookmarks }) {
                 toggleBookmark={toggleBookmark}
                 bookmarks={bookmarks}
               />
+              <CartItemController cartItem={cartItem} cart={cart} />
             </>
           ))
         )}
         <CartTotalPrice cart={cart} />
-        <CheckoutButtonWrapper
+        <ButtonWrapper
           style={{ display: cart.items.length === 0 ? "none" : "block" }}
         >
           <StyledLink to="./checkout">
-            <CheckoutButtonStyled>Zur Kasse</CheckoutButtonStyled>
+            <CheckoutButton>Zur Kasse</CheckoutButton>
           </StyledLink>
-        </CheckoutButtonWrapper>
-      </CartWrapper>
+        </ButtonWrapper>
+      </MainWrapper>
     </>
   );
 }
 
 const StyledLink = styled(Link)`
-  width: 100%;
   text-decoration: none;
+  width: 100%;
 
   &:focus,
   &:hover,
@@ -53,7 +54,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export const CartWrapper = styled.div`
+const MainWrapper = styled.div`
   text-align: center;
 
   p {
@@ -62,16 +63,16 @@ export const CartWrapper = styled.div`
   }
 `;
 
-export const CartWrapperTop = styled.div`
-  display: block;
-  width: 100%;
-  padding: 10px;
+const TopWrapper = styled.div`
   border-bottom: 1px solid #dadbdc;
+  display: block;
+  padding: 10px;
+  width: 100%;
 
   span {
+    color: #003f8a;
     font-family: Lato;
     font-size: 15px;
-    color: #003f8a;
     margin-left: 5px;
   }
 
@@ -80,19 +81,19 @@ export const CartWrapperTop = styled.div`
   }
 `;
 
-export const CheckoutButtonWrapper = styled.div`
-  width: 100%;
+const ButtonWrapper = styled.div`
   display: block;
   text-align: center;
+  width: 100%;
 `;
 
-export const CheckoutButtonStyled = styled.button`
-  display: block;
-  width: 80%;
-  padding: 0.5em 2.5em;
-  text-transform: uppercase;
+const CheckoutButton = styled.button`
   background-color: #f6ba41;
   border-radius: 30px;
   border: none;
   color: #ffffff;
+  display: block;
+  padding: 0.5em 2.5em;
+  text-transform: uppercase;
+  width: 80%;
 `;

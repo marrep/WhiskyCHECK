@@ -17,20 +17,21 @@ export default function BookmarkItem({ image, deleteBookmark, id }) {
         <img src={image} alt="" />
       </LeftWrapper>
       <CenterWrapper>
-        <StyledLink to={`/products/${id}`}>
-          <BookmarkBuyButtonStyled>Jetzt kaufen</BookmarkBuyButtonStyled>
-        </StyledLink>
+        <BookmarkBuyButtonStyled action={`/products/${id}`}>
+          Jetzt kaufen
+        </BookmarkBuyButtonStyled>
       </CenterWrapper>
       <RightWrapper>
-        <img src={close} alt="" onClick={() => deleteBookmark(id)} />
+        <img
+          src={close}
+          alt=""
+          data-testid="deleteButton"
+          onClick={() => deleteBookmark(id)}
+        />
       </RightWrapper>
     </MainWrapper>
   );
 }
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
 
 const MainWrapper = styled.div`
   border-bottom: 1px solid #dadbdc;

@@ -10,15 +10,14 @@ import styled from "styled-components";
 import useProducts from "./hooks/useProducts";
 import useBookmarks from "./hooks/useBookmarks";
 import useCart from "./hooks/useCart";
-import useFilter from "./hooks/useFilter";
-import useOffers from "./hooks/useOffers";
 import Checkout from "./pages/Checkout";
 
 export default function App() {
   const { products } = useProducts();
   const { deleteBookmark, toggleBookmark, bookmarks } = useBookmarks();
-  const { selectedOffer, selectDefaultOffer, selectNewOffer } = useOffers();
-  const { cart, addToCart } = useCart();
+  const { cart, addToCart, increaseAmount } = useCart();
+
+  console.log(cart);
 
   return (
     <GlobalWrapper>
@@ -38,6 +37,7 @@ export default function App() {
               toggleBookmark={toggleBookmark}
               bookmarks={bookmarks}
               products={products}
+              increaseAmount={increaseAmount}
             />
           </Route>
           <Route exact path="/bookmark">
@@ -47,9 +47,6 @@ export default function App() {
             <ProductDetailPage
               products={products}
               bookmarks={bookmarks}
-              selectedOffer={selectedOffer}
-              selectDefaultOffer={selectDefaultOffer}
-              selectNewOffer={selectNewOffer}
               toggleBookmark={toggleBookmark}
               addToCart={addToCart}
             />

@@ -1,19 +1,22 @@
-import React from "react";
-import OfferDetailsItem from "./OfferDetailsItem";
-import styled from "styled-components";
 import { useState } from "react";
+import OfferDetailsItem from "./OfferDetailsItem";
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import useOffers from "../../hooks/useOffers";
 
-export default function OfferDetails({
-  product,
-  offers,
-  selectNewOffer,
-  addToCart,
-  selectedOffer,
-}) {
+export default function OfferDetails({ product, offers, addToCart }) {
   const [toggleOffers, setToggleOffer] = useState(false);
+  const { selectedOffer, selectNewOffer } = useOffers();
+
+  OfferDetails.propTypes = {
+    addToCart: PropTypes.func.isRequired,
+    offers: PropTypes.array,
+    product: PropTypes.object.isRequired,
+  };
 
   return (
-    <OfferDetailsWrapper>
+    <MainWrapper>
       <OfferDetailsItem
         offer={
           selectedOffer.length === 0 || offers[0].gtin !== selectedOffer.gtin
@@ -22,23 +25,21 @@ export default function OfferDetails({
         }
       />
       <div style={{ display: offers.length === 1 ? "none" : "block" }}>
-        <DetailsShowButton onClick={() => setToggleOffer(!toggleOffers)}>
+        <ShowOffers onClick={() => setToggleOffer(!toggleOffers)}>
           Alle {offers.length} Angebote Anzeigen
-        </DetailsShowButton>
+        </ShowOffers>
         <div style={{ display: toggleOffers ? "block" : "none" }}>
           {offers.map((offer) => (
             <div>
               <OfferDetailsItem offer={offer} />
-              <DetailsSelectButton
-                onClick={() => selectNewOffer(offer.id, offers)}
-              >
+              <SelectOffer onClick={() => selectNewOffer(offer.id, offers)}>
                 Dieses Angebot auswählen
-              </DetailsSelectButton>
+              </SelectOffer>
             </div>
           ))}
         </div>
       </div>
-      <AddToCartButtonStyled
+      <AddToCart
         onClick={() =>
           addToCart(
             product,
@@ -47,50 +48,50 @@ export default function OfferDetails({
         }
       >
         In den Warenkorb
-      </AddToCartButtonStyled>
-    </OfferDetailsWrapper>
+      </AddToCart>
+    </MainWrapper>
   );
 }
 
-export const OfferDetailsWrapper = styled.div`
+const MainWrapper = styled.div`
   font-family: Lato;
   width: 100%;
 `;
 
-export const DetailsShowButton = styled.div`
-  display: block;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+const ShowOffers = styled.div`
+  border-bottom: 1px solid #dadbdc;
+  border-top: 1px solid #dadbdc;
+  border: none;
   color: #134085;
-  border: none;
-  text-align: center;
-  border-top: 1px solid #dadbdc;
-  border-bottom: 1px solid #dadbdc;
-`;
-
-export const DetailsSelectButton = styled.div`
   display: block;
-  padding: 10px;
-  margin-top: 10px;
   margin-bottom: 10px;
-  color: #575757;
-  border: none;
+  margin-top: 10px;
+  padding: 10px;
   text-align: center;
-  border-top: 1px solid #dadbdc;
-  border-bottom: 1px solid #dadbdc;
 `;
 
-export const AddToCartButtonStyled = styled.button`
+const SelectOffer = styled.div`
+  border-bottom: 1px solid #dadbdc;
+  border-top: 1px solid #dadbdc;
+  border: none;
+  color: #575757;
   display: block;
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 40px;
-  width: 100%;
-  padding: 1em 5em;
-  text-transform: uppercase;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+`;
+
+const AddToCart = styled.button`
   background-color: #003f8a;
   border-radius: 30px;
   border: none;
   color: #ffffff;
+  display: block;
+  margin-bottom: 40px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1em 5em;
+  text-transform: uppercase;
+  width: 100%;
 `;

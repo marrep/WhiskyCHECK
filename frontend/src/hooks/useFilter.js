@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import useProducts from "./useProducts";
 
 export default function useFilter() {
+  const { products, setProducts } = useProducts();
   const [toggleFilter, setToggleFilter] = useState(false);
   const [originFilter, setOriginFilter] = useState([]);
-  const { products, setProducts } = useProducts();
   const [searchResults, setSearchResults] = useState(products);
 
   useEffect(() => {

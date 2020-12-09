@@ -8,7 +8,6 @@ export default function useOffers() {
     selectNewOffer,
     checkAvailability,
     setSelectedOffer,
-    selectDefaultOffer,
     countOffers,
   };
 
@@ -24,11 +23,6 @@ export default function useOffers() {
     const newOffer = offerDetails.find((element) => element.id === id);
     setSelectedOffer(newOffer);
     return newOffer;
-  }
-
-  function selectDefaultOffer(offerData) {
-    setSelectedOffer(offerData);
-    return selectedOffer;
   }
 
   function countOffers(offersData) {
