@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="51" height="51" viewBox="0 0 51 51">
+  <g id="Gruppe_968" data-name="Gruppe 968" transform="translate(-194 -127)">
+    <g id="Ellipse_6" data-name="Ellipse 6" transform="translate(194 127)" fill="none" stroke="#134085" stroke-width="1">
+      <circle cx="25.5" cy="25.5" r="25.5" stroke="none"/>
+      <circle cx="25.5" cy="25.5" r="25" fill="none"/>
+    </g>
+    <path id="ico_check" d="M2044.832,1366.354a1.225,1.225,0,0,1,.753-.344,1.05,1.05,0,0,1,.774.28,1,1,0,0,1,.344.753,1.05,1.05,0,0,1-.28.774l-20.046,22-9.808-10.5a1.073,1.073,0,0,1-.28-.774.984.984,0,0,1,.344-.731,1.006,1.006,0,0,1,.774-.3,1.068,1.068,0,0,1,.731.344l8.216,8.776Z" transform="translate(-1812.29 -1225.007)" fill="#134085"/>
+  </g>
+</svg>

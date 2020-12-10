@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+BookmarkItem.propTypes = {
+  id: PropTypes.number,
+  deleteBookmark: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
+};
+
 export default function BookmarkItem({ image, deleteBookmark, id }) {
   const history = useHistory();
-  BookmarkItem.propTypes = {
-    id: PropTypes.number,
-    deleteBookmark: PropTypes.func.isRequired,
-    image: PropTypes.string.isRequired,
-  };
 
   return (
     <MainWrapper>

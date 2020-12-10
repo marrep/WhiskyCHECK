@@ -12,6 +12,7 @@ import useBookmarks from "./hooks/useBookmarks";
 import useCart from "./hooks/useCart";
 import Checkout from "./pages/Checkout";
 import handleSubmit from "./services/handleSubmit";
+import Confirmation from "./pages/Confirmation";
 
 export default function App() {
   const { products } = useProducts();
@@ -57,6 +58,9 @@ export default function App() {
               products={products}
               handleSubmit={handleSubmit}
             />
+          </Route>
+          <Route exact path="/confirmation">
+            <Confirmation />
           </Route>
         </Switch>
       </main>
