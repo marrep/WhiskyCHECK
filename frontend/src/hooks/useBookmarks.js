@@ -30,6 +30,5 @@ export default function useBookmarks() {
           { image: findProduct(id, products).image, id: id },
         ])
       : deleteBookmark(id);
-    console.log(bookmarks);
   }
 }

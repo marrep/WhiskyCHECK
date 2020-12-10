@@ -18,7 +18,6 @@ export default function Cart({
       <MainWrapper>
         <TopWrapper>
           <span>Mein Warenkorb</span>
-          {JSON.stringify(cart)}
         </TopWrapper>
         {cart.items.length === 0 ? (
           <p>Sorry, dein Warenkorb ist leider leer</p>

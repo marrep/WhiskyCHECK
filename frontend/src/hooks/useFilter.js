@@ -18,7 +18,6 @@ export default function useFilter() {
       }
     });
     setOriginFilter(filteredTags);
-    console.log(filteredTags);
   }, [toggleFilter]);
 
   useEffect(() => {

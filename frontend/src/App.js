@@ -17,8 +17,6 @@ export default function App() {
   const { deleteBookmark, toggleBookmark, bookmarks } = useBookmarks();
   const { cart, addToCart, increaseAmount, removeFromCart } = useCart();
 
-  console.log(cart);
-
   return (
     <GlobalWrapper>
       <Header />

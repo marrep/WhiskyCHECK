@@ -5,8 +5,11 @@ import { validateName, validateEmail } from "../services/validationService";
 import getCartImage from "../services/getCartImage";
 import convertToEuro from "../services/convertToEuro";
 import CartTotalPrice from "../components/cart/CartTotalPrice";
+import deleteLocally from "../lib/deleteLocally";
+import { useHistory } from "react-router-dom";
 
 export default function Checkout({ cart, products }) {
+  const history = useHistory();
   const [orderData, setOrderData] = useState({
     customerId: cart.customerid,
     date: cart.date,
@@ -148,10 +151,14 @@ export default function Checkout({ cart, products }) {
         redirect: "follow",
       };
 
+      deleteLocally("cart");
+
       fetch("http://whiskycheck.local/create-order", requestOptions)
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.log("error", error));
+
+      history.push("/confirmation");
     } else {
       alert("Please check your form details.");
     }
