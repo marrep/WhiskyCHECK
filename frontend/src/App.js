@@ -11,6 +11,7 @@ import useProducts from "./hooks/useProducts";
 import useBookmarks from "./hooks/useBookmarks";
 import useCart from "./hooks/useCart";
 import Checkout from "./pages/Checkout";
+import handleSubmit from "./services/handleSubmit";
 
 export default function App() {
   const { products } = useProducts();
@@ -51,7 +52,11 @@ export default function App() {
             />
           </Route>
           <Route exact path="/checkout">
-            <Checkout cart={cart} products={products} />
+            <Checkout
+              cart={cart}
+              products={products}
+              handleSubmit={handleSubmit}
+            />
           </Route>
         </Switch>
       </main>

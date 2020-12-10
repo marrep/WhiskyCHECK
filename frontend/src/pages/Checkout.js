@@ -1,14 +1,12 @@
 import { useState } from "react";
 import React from "react";
 import styled from "styled-components";
-import { validateName, validateEmail } from "../services/validationService";
 import getCartImage from "../services/getCartImage";
 import convertToEuro from "../services/convertToEuro";
 import CartTotalPrice from "../components/cart/CartTotalPrice";
-import deleteLocally from "../lib/deleteLocally";
 import { useHistory } from "react-router-dom";
 
-export default function Checkout({ cart, products }) {
+export default function Checkout({ cart, products, handleSubmit }) {
   const history = useHistory();
   const [orderData, setOrderData] = useState({
     customerId: cart.customerid,
@@ -29,30 +27,30 @@ export default function Checkout({ cart, products }) {
 
   return (
     <>
-      <CartWrapper>
-        <CartWrapperTop>
+      <MainWrapper>
+        <TopWrapper>
           <span>Meine Bestellung</span>
-        </CartWrapperTop>
+        </TopWrapper>
 
         {cart.items.map((cartItem) => (
           <>
-            <CartItemWrapper>
-              <CartItemWrapperRight>{cartItem.amount} x</CartItemWrapperRight>
-              <CartItemWrapperLeft>
+            <CartWrapper>
+              <RightWrapper>{cartItem.amount} x</RightWrapper>
+              <LeftWrapper>
                 <img src={getCartImage(products, cartItem.id)} alt="" />
-              </CartItemWrapperLeft>
-              <CartItemWrapperCenter>
-                <CartItemPrice>{convertToEuro(cartItem.price)}</CartItemPrice>
-                <CartItemTitle>{cartItem.title}</CartItemTitle>
-                <CartItemSeller>Versand durch {cartItem.seller}</CartItemSeller>
-              </CartItemWrapperCenter>
-            </CartItemWrapper>
+              </LeftWrapper>
+              <CenterWrapper>
+                <Price>{convertToEuro(cartItem.price)}</Price>
+                <Title>{cartItem.title}</Title>
+                <Seller>Versand durch {cartItem.seller}</Seller>
+              </CenterWrapper>
+            </CartWrapper>
           </>
         ))}
 
         <CartTotalPrice cart={cart} />
 
-        <CheckoutForm onSubmit={handleSubmit}>
+        <Form onSubmit={(event) => handleSubmit(event, orderData, history)}>
           <label>
             Name:
             <input type="text" name="name" onChange={handleChange} required />
@@ -119,50 +117,17 @@ export default function Checkout({ cart, products }) {
               value="bitcoin"
             />
           </label>
-          <CheckoutButtonWrapper>
-            <CheckoutButtonStyled onClick={handleSubmit}>
+          <ButtonWrapper>
+            <CheckoutButton
+              onClick={(event) => handleSubmit(event, orderData, history)}
+            >
               Jetzt bestellen
-            </CheckoutButtonStyled>
-          </CheckoutButtonWrapper>
-        </CheckoutForm>
-      </CartWrapper>
+            </CheckoutButton>
+          </ButtonWrapper>
+        </Form>
+      </MainWrapper>
     </>
   );
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (
-      validateName(orderData.name) &&
-      validateName(orderData.surname) &&
-      validateEmail(orderData.email)
-    ) {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      console.log(validateName(orderData.name));
-      console.log(validateName(orderData.surname));
-      console.log(validateEmail(orderData.email));
-
-      const raw = JSON.stringify(orderData);
-      const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow",
-      };
-
-      deleteLocally("cart");
-
-      fetch("http://whiskycheck.local/create-order", requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
-
-      history.push("/confirmation");
-    } else {
-      alert("Please check your form details.");
-    }
-  }
 
   function handleChange(event) {
     setOrderData({
@@ -173,25 +138,25 @@ export default function Checkout({ cart, products }) {
   }
 }
 
-export const CheckoutButtonWrapper = styled.div`
-  width: 100%;
+const ButtonWrapper = styled.div`
   display: block;
   text-align: center;
+  width: 100%;
 `;
 
-export const CheckoutButtonStyled = styled.button`
-  display: block;
-  margin: auto;
-  width: 80%;
-  padding: 0.5em 2.5em;
-  text-transform: uppercase;
+const CheckoutButton = styled.button`
   background-color: #f6ba41;
   border-radius: 30px;
   border: none;
   color: #ffffff;
+  display: block;
+  margin: auto;
+  padding: 0.5em 2.5em;
+  text-transform: uppercase;
+  width: 80%;
 `;
 
-export const CartWrapper = styled.div`
+const MainWrapper = styled.div`
   text-align: center;
 
   p {
@@ -200,11 +165,11 @@ export const CartWrapper = styled.div`
   }
 `;
 
-export const CartWrapperTop = styled.div`
-  display: block;
-  width: 100%;
-  padding: 10px;
+const TopWrapper = styled.div`
   border-bottom: 1px solid #dadbdc;
+  display: block;
+  padding: 10px;
+  width: 100%;
 
   span {
     font-family: Lato;
@@ -218,78 +183,78 @@ export const CartWrapperTop = styled.div`
   }
 `;
 
-export const CartItemWrapper = styled.div`
-  font-family: Lato;
-  width: 100%;
-  text-decoration: none;
-  overflow: hidden;
-  flex-direction: row;
+const CartWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+  font-family: Lato;
+  overflow: hidden;
+  text-decoration: none;
+  width: 100%;
 `;
 
-export const CartItemWrapperLeft = styled.div`
-  width: 25%;
+const LeftWrapper = styled.div`
+  align-items: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
   padding: 10px;
   text-decoration: none;
-  overflow: hidden;
-  justify-content: center;
-  flex-direction: column;
-  display: flex;
-  align-items: top;
+  width: 25%;
 
   img {
-    width: auto;
-    overflow: hidden;
-    max-width: 100%;
-    max-height: 100px;
-    margin-right: auto;
-    margin-left: auto;
-    height: auto;
     display: block;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 100px;
+    max-width: 100%;
+    overflow: hidden;
+    width: auto;
   }
 `;
 
-export const CartItemWrapperCenter = styled.div`
+const CenterWrapper = styled.div`
+  align-items: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: left;
   width: 55%;
-  justify-content: center;
-  flex-direction: column;
-  display: flex;
-  align-items: left;
 `;
 
-export const CartItemWrapperRight = styled.div`
-  width: 20%;
-  justify-content: center;
+const RightWrapper = styled.div`
   align-items: center;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20%;
 `;
 
-export const CartItemPrice = styled.span`
-  text-align: left;
+const Price = styled.span`
+  color: #e43122;
   display: block;
   font-size: 18px;
-  color: #e43122;
+  text-align: left;
 `;
 
-export const CartItemSeller = styled.span`
-  text-align: left;
+const Seller = styled.span`
+  color: #575757;
   display: block;
   font-size: 12px;
-  color: #575757;
+  text-align: left;
 `;
 
-export const CartItemTitle = styled.span`
+const Title = styled.span`
   text-align: left;
   display: block;
   font-size: 14px;
   color: #134085;
 `;
 
-const CheckoutForm = styled.form`
-  font-family: Lato;
+const Form = styled.form`
   display: grid;
+  font-family: Lato;
   gap: 1em;
   .select {
     display: inline;

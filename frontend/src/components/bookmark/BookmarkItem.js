@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import close from "../../assets/icons/close.svg";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
 export default function BookmarkItem({ image, deleteBookmark, id }) {
+  const history = useHistory();
   BookmarkItem.propTypes = {
     id: PropTypes.number,
     deleteBookmark: PropTypes.func.isRequired,
@@ -17,9 +18,9 @@ export default function BookmarkItem({ image, deleteBookmark, id }) {
         <img src={image} alt="" />
       </LeftWrapper>
       <CenterWrapper>
-        <BookmarkBuyButtonStyled action={`/products/${id}`}>
+        <BuyButton onClick={() => history.push(`/products/${id}`)}>
           Jetzt kaufen
-        </BookmarkBuyButtonStyled>
+        </BuyButton>
       </CenterWrapper>
       <RightWrapper>
         <img
@@ -82,7 +83,7 @@ const RightWrapper = styled.div`
   width: 20%;
 `;
 
-const BookmarkBuyButtonStyled = styled.button`
+const BuyButton = styled.button`
   background-color: #f6ba41;
   border-radius: 30px;
   border: none;
