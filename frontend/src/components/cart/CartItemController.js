@@ -2,12 +2,13 @@ import plus from "../../assets/icons/plus.svg";
 import React from "react";
 import styled from "styled-components";
 import trashbin from "../../assets/icons/trashbin.svg";
-import useCart from "../../hooks/useCart";
 import PropTypes from "prop-types";
 
-export default function CartItemController({ cartItem, cart }) {
-  const { increaseAmount, removeFromCart } = useCart();
-
+export default function CartItemController({
+  cartItem,
+  increaseAmount,
+  removeFromCart,
+}) {
   CartItemController.propTypes = {
     cartItem: PropTypes.object,
     cart: PropTypes.array,
@@ -16,17 +17,17 @@ export default function CartItemController({ cartItem, cart }) {
   return (
     <MainWrapper>
       <Controller>
-        <LeftWrapper onClick={() => removeFromCart(cartItem, cart)}>
+        <LeftWrapper onClick={() => removeFromCart(cartItem)}>
           <div>
             <img src={trashbin} alt="" />
           </div>
         </LeftWrapper>
         <CenterWrapper>{cartItem.amount}</CenterWrapper>
-        <RightWrapper onClick={() => increaseAmount(cartItem, cart)}>
+        <RightWrapper onClick={() => increaseAmount(cartItem)}>
           <img src={plus} alt="" />
         </RightWrapper>
       </Controller>
-      {JSON.stringify(cart)}
+      {/* {JSON.stringify(cart)} */}
     </MainWrapper>
   );
 }

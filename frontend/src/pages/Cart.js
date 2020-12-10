@@ -5,7 +5,14 @@ import CartTotalPrice from "../components/cart/CartTotalPrice";
 import React from "react";
 import styled from "styled-components";
 
-export default function Cart({ cart, products, toggleBookmark, bookmarks }) {
+export default function Cart({
+  cart,
+  products,
+  toggleBookmark,
+  bookmarks,
+  removeFromCart,
+  increaseAmount,
+}) {
   return (
     <>
       <MainWrapper>
@@ -24,7 +31,12 @@ export default function Cart({ cart, products, toggleBookmark, bookmarks }) {
                 toggleBookmark={toggleBookmark}
                 bookmarks={bookmarks}
               />
-              <CartItemController cartItem={cartItem} cart={cart} />
+              <CartItemController
+                cartItem={cartItem}
+                cart={cart}
+                removeFromCart={removeFromCart}
+                increaseAmount={increaseAmount}
+              />
             </>
           ))
         )}

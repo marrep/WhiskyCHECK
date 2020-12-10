@@ -15,7 +15,7 @@ import Checkout from "./pages/Checkout";
 export default function App() {
   const { products } = useProducts();
   const { deleteBookmark, toggleBookmark, bookmarks } = useBookmarks();
-  const { cart, addToCart, increaseAmount } = useCart();
+  const { cart, addToCart, increaseAmount, removeFromCart } = useCart();
 
   console.log(cart);
 
@@ -38,6 +38,7 @@ export default function App() {
               bookmarks={bookmarks}
               products={products}
               increaseAmount={increaseAmount}
+              removeFromCart={removeFromCart}
             />
           </Route>
           <Route exact path="/bookmark">
