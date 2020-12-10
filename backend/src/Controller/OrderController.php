@@ -2,20 +2,23 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use App\Repository\OfferRepository;
 use App\Entity\Order;
+use App\Repository\OrderRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
+use App\Serializer\OrderSerializer;
+
 
 class OrderController extends AbstractController
 {
     /**
      * @Route("/orders", methods={"GET"})
      */
-    public function index(Request $request, OfferRepository $offerRepository, SerializerInterface $serializer): JsonResponse
+    public function index(Request $request, OrderRepository $orderRepository, SerializerInterface $serializer): JsonResponse
     {
         $orders = $orderRepository->findAll();
     
@@ -30,24 +33,13 @@ class OrderController extends AbstractController
     /**
      * @Route("/create-order", methods={"POST"})
      */
-    protected function create(
+    public function create(
         Request $request, 
-        OfferRepository $offerRepository,
-        SerializerInterface $serializer
+        OrderRepository $orderRepository,
+        OrderSerializer $serializer
         ): JsonResponse {
     
             $newOrder = $serializer->deserialize($request->getContent());
-            $campsiteExists = $campsiteRepository->findBy(
-                [
-                    'date' => $newOrder->getDate(),
-                    'items' => $newOrder->getItems(),
-                    'customerId' => $newOrder->getCustomerId()
-                ]
-            );
-
-            if(sizeof($orderExists) > 0) {
-                return $this->json(["OrderCreation"=>false], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
-            }
 
             $orderRepository->save($newOrder);
 

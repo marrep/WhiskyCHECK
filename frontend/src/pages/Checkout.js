@@ -1,13 +1,14 @@
 import { useState } from "react";
-import CartTotalPrice from "../components/cart/CartTotalPrice";
-import convertToEuro from "../services/convertToEuro";
-import getCartImage from "../services/getCartImage";
 import React from "react";
 import styled from "styled-components";
+import { validateName, validateEmail } from "../services/validationService";
+import getCartImage from "../services/getCartImage";
+import convertToEuro from "../services/convertToEuro";
+import CartTotalPrice from "../components/cart/CartTotalPrice";
 
 export default function Checkout({ cart, products }) {
-  const [newOrder, createNewOrder] = useState({
-    customerid: cart.customerid,
+  const [orderData, setOrderData] = useState({
+    customerId: cart.customerid,
     date: cart.date,
     items: cart.items,
     totalPrice: cart.totalPrice,
@@ -20,21 +21,8 @@ export default function Checkout({ cart, products }) {
     zip: 0,
     country: "",
     email: "",
-    payment: "",
+    paymentMethod: "",
   });
-
-  function handleChange(event) {
-    createNewOrder({
-      ...newOrder,
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    createNewOrder(newOrder);
-    console.log(newOrder);
-  }
 
   return (
     <>
@@ -64,55 +52,66 @@ export default function Checkout({ cart, products }) {
         <CheckoutForm onSubmit={handleSubmit}>
           <label>
             Name:
-            <input type="text" name="name" onChange={handleChange} />
+            <input type="text" name="name" onChange={handleChange} required />
           </label>
           <label>
             Nachname:
-            <input type="text" name="surname" onChange={handleChange} />
+            <input
+              type="text"
+              name="surname"
+              onChange={handleChange}
+              required
+            />
           </label>
           <label>
             Straße:
-            <input type="text" name="street" onChange={handleChange} />
+            <input type="text" name="street" onChange={handleChange} required />
           </label>
           <label>
             Hausnummer:
-            <input type="text" name="number" onChange={handleChange} />
+            <input type="text" name="number" onChange={handleChange} required />
           </label>
           <label>
             Stadt:
-            <input type="text" name="city" onChange={handleChange} />
+            <input type="text" name="city" onChange={handleChange} required />
           </label>
           <label>
             PLZ:
-            <input type="text" name="zip" onChange={handleChange} />
+            <input type="text" name="zip" onChange={handleChange} required />
           </label>
           <label>
             Land:
-            <input type="text" name="country" onChange={handleChange} />
+            <input
+              type="text"
+              name="country"
+              onChange={handleChange}
+              required
+            />
           </label>
           <label>
             Email:
-            <input type="text" name="email" onChange={handleChange} />
+            <input type="text" name="email" onChange={handleChange} required />
           </label>
           <label>
             Paypal
             <input
               type="radio"
-              name="payment"
+              name="paymentMethod"
               onChange={handleChange}
               value="paypal"
+              required
             />
             Worldpay
             <input
               type="radio"
-              name="payment"
+              name="paymentMethod"
               onChange={handleChange}
               value="worldpay"
             />
             Bitcoin
             <input
               type="radio"
-              name="payment"
+              name="paymentMethod"
               onChange={handleChange}
               value="bitcoin"
             />
@@ -126,6 +125,45 @@ export default function Checkout({ cart, products }) {
       </CartWrapper>
     </>
   );
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (
+      validateName(orderData.name) &&
+      validateName(orderData.surname) &&
+      validateEmail(orderData.email)
+    ) {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      console.log(validateName(orderData.name));
+      console.log(validateName(orderData.surname));
+      console.log(validateEmail(orderData.email));
+
+      const raw = JSON.stringify(orderData);
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      fetch("http://whiskycheck.local/create-order", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+    } else {
+      alert("Please check your form details.");
+    }
+  }
+
+  function handleChange(event) {
+    setOrderData({
+      ...orderData,
+      [event.target.name]: event.target.value,
+    });
+    console.log(event.target.value);
+  }
 }
 
 export const CheckoutButtonWrapper = styled.div`

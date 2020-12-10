@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use App\Repository\ProductRepository;
 use App\Entity\Product;
+use App\Repository\ProductRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ProductsController extends AbstractController
@@ -15,7 +15,7 @@ class ProductsController extends AbstractController
     /**
      * @Route("/api/products", methods={"GET"})
      */
-    protected function index(ProductRepository $repository, SerializerInterface $serializer): JsonResponse
+    public function index(ProductRepository $repository, SerializerInterface $serializer): JsonResponse
     {    
         $products = $repository->findAll();
 
