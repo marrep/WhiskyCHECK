@@ -1,29 +1,19 @@
-import { useState } from "react";
 import React from "react";
 import styled from "styled-components";
 import getCartImage from "../services/getCartImage";
 import convertToEuro from "../services/convertToEuro";
 import CartTotalPrice from "../components/cart/CartTotalPrice";
+import loadLocally from "../lib/loadLocally";
 import { useHistory } from "react-router-dom";
 
-export default function Checkout({ cart, products, handleSubmit }) {
+export default function Checkout({
+  cart,
+  products,
+  handleCheckout,
+  orderData,
+  setOrderData,
+}) {
   const history = useHistory();
-  const [orderData, setOrderData] = useState({
-    customerId: cart.customerid,
-    date: cart.date,
-    items: cart.items,
-    totalPrice: cart.totalPrice,
-    totalShipping: cart.totalShipping,
-    name: "",
-    surname: "",
-    street: "",
-    number: 0,
-    city: "",
-    zip: 0,
-    country: "",
-    email: "",
-    paymentMethod: "",
-  });
 
   return (
     <>
@@ -50,10 +40,16 @@ export default function Checkout({ cart, products, handleSubmit }) {
 
         <CartTotalPrice cart={cart} />
 
-        <Form onSubmit={(event) => handleSubmit(event, orderData, history)}>
+        <Form>
           <label>
             Name:
-            <input type="text" name="name" onChange={handleChange} required />
+            <input
+              type="text"
+              name="name"
+              onChange={handleChange}
+              value={loadLocally("orderData").name ?? ""}
+              required
+            />
           </label>
           <label>
             Nachname:
@@ -61,24 +57,49 @@ export default function Checkout({ cart, products, handleSubmit }) {
               type="text"
               name="surname"
               onChange={handleChange}
+              value={loadLocally("orderData").surname ?? ""}
               required
             />
           </label>
           <label>
             Straße:
-            <input type="text" name="street" onChange={handleChange} required />
+            <input
+              type="text"
+              name="street"
+              onChange={handleChange}
+              value={loadLocally("orderData").street ?? ""}
+              required
+            />
           </label>
           <label>
             Hausnummer:
-            <input type="text" name="number" onChange={handleChange} required />
+            <input
+              type="text"
+              name="number"
+              onChange={handleChange}
+              value={loadLocally("orderData").number ?? ""}
+              required
+            />
           </label>
           <label>
             Stadt:
-            <input type="text" name="city" onChange={handleChange} required />
+            <input
+              type="text"
+              name="city"
+              onChange={handleChange}
+              value={loadLocally("orderData").city ?? ""}
+              required
+            />
           </label>
           <label>
             PLZ:
-            <input type="text" name="zip" onChange={handleChange} required />
+            <input
+              type="text"
+              name="zip"
+              onChange={handleChange}
+              value={loadLocally("orderData").zip ?? ""}
+              required
+            />
           </label>
           <label>
             Land:
@@ -86,12 +107,19 @@ export default function Checkout({ cart, products, handleSubmit }) {
               type="text"
               name="country"
               onChange={handleChange}
+              value={loadLocally("orderData").country ?? ""}
               required
             />
           </label>
           <label>
             Email:
-            <input type="text" name="email" onChange={handleChange} required />
+            <input
+              type="text"
+              name="email"
+              onChange={handleChange}
+              value={loadLocally("orderData").email ?? ""}
+              required
+            />
           </label>
           <label>
             Paypal
@@ -118,10 +146,8 @@ export default function Checkout({ cart, products, handleSubmit }) {
             />
           </label>
           <ButtonWrapper>
-            <CheckoutButton
-              onClick={(event) => handleSubmit(event, orderData, history)}
-            >
-              Jetzt bestellen
+            <CheckoutButton onClick={() => handleCheckout(orderData, history)}>
+              bestätigen
             </CheckoutButton>
           </ButtonWrapper>
         </Form>
@@ -150,8 +176,8 @@ const CheckoutButton = styled.button`
   border: none;
   color: #ffffff;
   display: block;
-  margin: auto;
-  padding: 0.5em 2.5em;
+  margin: 3em auto;
+  padding: 1em 2.5em;
   text-transform: uppercase;
   width: 80%;
 `;

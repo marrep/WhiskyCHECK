@@ -94,4 +94,9 @@ const FilterTags = styled.div`
   padding: 10px 5px;
   white-space: nowrap;
   width: auto;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 `;
