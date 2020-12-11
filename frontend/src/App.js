@@ -17,7 +17,7 @@ import Confirmation from "./pages/Confirmation";
 export default function App() {
   const { products } = useProducts();
   const { deleteBookmark, toggleBookmark, bookmarks } = useBookmarks();
-  const { cart, addToCart, increaseAmount, removeFromCart } = useCart();
+  const { cart, addToCart, increaseAmount, decreaseAmount } = useCart();
 
   return (
     <GlobalWrapper>
@@ -38,7 +38,7 @@ export default function App() {
               bookmarks={bookmarks}
               products={products}
               increaseAmount={increaseAmount}
-              removeFromCart={removeFromCart}
+              decreaseAmount={decreaseAmount}
             />
           </Route>
           <Route exact path="/bookmark">

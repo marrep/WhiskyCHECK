@@ -10,7 +10,7 @@ export default function Cart({
   products,
   toggleBookmark,
   bookmarks,
-  removeFromCart,
+  decreaseAmount,
   increaseAmount,
 }) {
   return (
@@ -33,7 +33,7 @@ export default function Cart({
               <CartItemController
                 cartItem={cartItem}
                 cart={cart}
-                removeFromCart={removeFromCart}
+                decreaseAmount={decreaseAmount}
                 increaseAmount={increaseAmount}
               />
             </>

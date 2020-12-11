@@ -21,7 +21,7 @@ export default function useCart() {
     cart,
     addToCart,
     increaseAmount,
-    removeFromCart,
+    decreaseAmount,
   };
 
   function addToCart(product, selectedOffer) {
@@ -57,7 +57,7 @@ export default function useCart() {
 
   function increaseAmount(cartItem) {
     const index = cart.items.findIndex(
-      (elem) => elem.id === cartItem.id && elem.seller === cartItem.seller
+      (elem) => elem.id === cartItem.id && elem.price === cartItem.price
     );
     const newItemsArray = [
       ...cart.items.slice(0, index),
@@ -72,18 +72,42 @@ export default function useCart() {
     setCart(newCart);
   }
 
-  function removeFromCart(cartItem, cart) {
+  function decreaseAmount(cartItem) {
+    console.log(cartItem, "cartItem");
+    console.log(cart, "cart");
     const index = cart.items.findIndex(
-      (elem) => elem.id === cartItem.id && elem.seller === cartItem.seller
+      (elem) => elem.id === cartItem.id && elem.price === cartItem.price
     );
-    const newList = cart.items.filter((item) => item.id !== cartItem.id);
-    cart.items[index].amount < 1
-      ? setCart({
-          ...(cart.items = newList),
-        })
-      : setCart({
-          ...(cart.items[index].amount -= 1),
-          ...(cart.totalPrice -= cartItem.price),
-        });
+    cart.items[index].amount === 1
+      ? setCart(deleteFromCart(cartItem, index))
+      : setCart(removeFromCart(cartItem, index));
+  }
+
+  function removeFromCart(cartItem, index) {
+    const removeItemArray = [
+      ...cart.items.slice(0, index),
+      { ...cart.items[index], amount: (cart.items[index].amount -= 1) },
+      ...cart.items.slice(index + 1),
+    ];
+    const removeItemCart = {
+      ...cart,
+      items: removeItemArray,
+      totalPrice: (cart.totalPrice -= cartItem.price),
+    };
+    return removeItemCart;
+  }
+
+  function deleteFromCart(cartItem, index) {
+    const deleteItemsArray = [
+      ...cart.items.slice(0, index),
+      ...cart.items.slice(index + 1),
+    ];
+    const deleteItemCart = {
+      ...cart,
+      items: deleteItemsArray,
+      totalPrice: (cart.totalPrice -= cartItem.price),
+      totalShipping: (cart.totalShipping -= cartItem.shippingPrice),
+    };
+    return deleteItemCart;
   }
 }

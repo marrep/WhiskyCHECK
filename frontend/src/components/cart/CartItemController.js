@@ -6,8 +6,8 @@ import PropTypes from "prop-types";
 
 export default function CartItemController({
   cartItem,
+  decreaseAmount,
   increaseAmount,
-  removeFromCart,
 }) {
   CartItemController.propTypes = {
     cartItem: PropTypes.object,
@@ -17,7 +17,7 @@ export default function CartItemController({
   return (
     <MainWrapper>
       <Controller>
-        <LeftWrapper onClick={() => removeFromCart(cartItem)}>
+        <LeftWrapper onClick={() => decreaseAmount(cartItem)}>
           <div>
             <img src={trashbin} alt="" />
           </div>
@@ -27,7 +27,6 @@ export default function CartItemController({
           <img src={plus} alt="" />
         </RightWrapper>
       </Controller>
-      {/* {JSON.stringify(cart)} */}
     </MainWrapper>
   );
 }
