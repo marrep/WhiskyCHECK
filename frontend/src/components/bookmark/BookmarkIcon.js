@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import BookmarkOn from "../../assets/icons/bookmarkOn.svg";
 import BookmarkOff from "../../assets/icons/bookmarkOff.svg";
 
-export default function BookmarkIcon({ id, toggleBookmark, bookmarks }) {
-  BookmarkIcon.propTypes = {
-    id: PropTypes.number,
-    toggleBookmark: PropTypes.func.isRequired,
-    bookmarks: PropTypes.array.isRequired,
-  };
+BookmarkIcon.propTypes = {
+  id: PropTypes.number,
+  toggleBookmark: PropTypes.func.isRequired,
+  bookmarks: PropTypes.array.isRequired,
+};
 
+export default function BookmarkIcon({ id, toggleBookmark, bookmarks }) {
   return (
     <Wrapper>
       <Icon

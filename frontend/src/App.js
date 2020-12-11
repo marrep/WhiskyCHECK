@@ -11,13 +11,13 @@ import useProducts from "./hooks/useProducts";
 import useBookmarks from "./hooks/useBookmarks";
 import useCart from "./hooks/useCart";
 import Checkout from "./pages/Checkout";
+import handleSubmit from "./services/handleSubmit";
+import Confirmation from "./pages/Confirmation";
 
 export default function App() {
   const { products } = useProducts();
   const { deleteBookmark, toggleBookmark, bookmarks } = useBookmarks();
-  const { cart, addToCart, increaseAmount } = useCart();
-
-  console.log(cart);
+  const { cart, addToCart, increaseAmount, removeFromCart } = useCart();
 
   return (
     <GlobalWrapper>
@@ -38,6 +38,7 @@ export default function App() {
               bookmarks={bookmarks}
               products={products}
               increaseAmount={increaseAmount}
+              removeFromCart={removeFromCart}
             />
           </Route>
           <Route exact path="/bookmark">
@@ -52,7 +53,14 @@ export default function App() {
             />
           </Route>
           <Route exact path="/checkout">
-            <Checkout cart={cart} products={products} />
+            <Checkout
+              cart={cart}
+              products={products}
+              handleSubmit={handleSubmit}
+            />
+          </Route>
+          <Route exact path="/confirmation">
+            <Confirmation />
           </Route>
         </Switch>
       </main>

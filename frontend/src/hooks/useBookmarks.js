@@ -20,7 +20,11 @@ export default function useBookmarks() {
 
   function deleteBookmark(id) {
     const index = bookmarks.findIndex((product) => product.id === id);
-    setBookmarks([...bookmarks.slice(0, index), ...bookmarks.slice(index + 1)]);
+    const newBookmarkArray = [
+      ...bookmarks.slice(0, index),
+      ...bookmarks.slice(index + 1),
+    ];
+    setBookmarks(newBookmarkArray);
   }
 
   function toggleBookmark(id) {
@@ -30,6 +34,5 @@ export default function useBookmarks() {
           { image: findProduct(id, products).image, id: id },
         ])
       : deleteBookmark(id);
-    console.log(bookmarks);
   }
 }

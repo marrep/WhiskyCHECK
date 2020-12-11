@@ -25,7 +25,7 @@ export default function useCart() {
   };
 
   function addToCart(product, selectedOffer) {
-    let newItemsArray = cart.items;
+    let newItemsArray = Object.assign([], cart.items);
     const foundIndex = newItemsArray.findIndex(
       (elem) => elem.id === product.id
     );
@@ -55,14 +55,21 @@ export default function useCart() {
     });
   }
 
-  function increaseAmount(cartItem, cart) {
+  function increaseAmount(cartItem) {
     const index = cart.items.findIndex(
       (elem) => elem.id === cartItem.id && elem.seller === cartItem.seller
     );
-    setCart({
-      ...(cart.items[index].amount += 1),
-      ...(cart.totalPrice += cartItem.price),
-    });
+    const newItemsArray = [
+      ...cart.items.slice(0, index),
+      { ...cart.items[index], amount: (cart.items[index].amount += 1) },
+      ...cart.items.slice(index + 1),
+    ];
+    const newCart = {
+      ...cart,
+      items: newItemsArray,
+      totalPrice: (cart.totalPrice += cartItem.price),
+    };
+    setCart(newCart);
   }
 
   function removeFromCart(cartItem, cart) {

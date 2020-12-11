@@ -15,7 +15,7 @@ class OffersController extends AbstractController
     /**
      * @Route("/api/offers", methods={"GET"})
      */
-    protected function index(OfferRepository $repository, SerializerInterface $serializer): JsonResponse
+    public function index(OfferRepository $repository, SerializerInterface $serializer): JsonResponse
     {    
         $offers = $repository->findAll();
 
