@@ -10,7 +10,7 @@ BookmarkItem.propTypes = {
   image: PropTypes.string.isRequired,
 };
 
-export default function BookmarkItem({ image, deleteBookmark, id }) {
+export default function BookmarkItem({ image, toggleBookmark, id }) {
   const history = useHistory();
 
   return (
@@ -28,7 +28,7 @@ export default function BookmarkItem({ image, deleteBookmark, id }) {
           src={close}
           alt=""
           data-testid="deleteButton"
-          onClick={() => deleteBookmark(id)}
+          onClick={() => toggleBookmark(id)}
         />
       </RightWrapper>
     </MainWrapper>

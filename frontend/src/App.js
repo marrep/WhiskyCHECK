@@ -42,7 +42,7 @@ export default function App() {
             />
           </Route>
           <Route exact path="/bookmark">
-            <Bookmarks bookmarks={bookmarks} deleteBookmark={deleteBookmark} />
+            <Bookmarks bookmarks={bookmarks} toggleBookmark={toggleBookmark} />
           </Route>
           <Route path="/products/:id">
             <ProductDetailPage

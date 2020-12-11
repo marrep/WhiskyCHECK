@@ -13,10 +13,19 @@ export default function useBookmarks() {
   }, [bookmarks]);
 
   return {
-    deleteBookmark,
     toggleBookmark,
     bookmarks,
   };
+
+  function toggleBookmark(id) {
+    const newBookmarkArray = [
+      ...bookmarks,
+      { image: findProduct(id, products).image, id: id },
+    ];
+    !bookmarks.some((product) => product.id === id)
+      ? setBookmarks(newBookmarkArray)
+      : deleteBookmark(id);
+  }
 
   function deleteBookmark(id) {
     const index = bookmarks.findIndex((product) => product.id === id);
@@ -25,14 +34,5 @@ export default function useBookmarks() {
       ...bookmarks.slice(index + 1),
     ];
     setBookmarks(newBookmarkArray);
-  }
-
-  function toggleBookmark(id) {
-    !bookmarks.some((product) => product.id === id)
-      ? setBookmarks([
-          ...bookmarks,
-          { image: findProduct(id, products).image, id: id },
-        ])
-      : deleteBookmark(id);
   }
 }

@@ -1,11 +1,8 @@
 import BookmarkItem from "../components/bookmark/BookmarkItem";
 import React from "react";
 import styled from "styled-components";
-import useBookmarks from "../hooks/useBookmarks";
 
-export default function Bookmark() {
-  const { deleteBookmark, bookmarks } = useBookmarks();
-
+export default function Bookmark({ toggleBookmark, bookmarks }) {
   return (
     <MainWrapper>
       <TopWrapper>
@@ -16,7 +13,7 @@ export default function Bookmark() {
         <p>Oh, Du hast noch keine Artikel markiert!</p>
       ) : (
         bookmarks.map(({ image, id }) => (
-          <BookmarkItem image={image} deleteBookmark={deleteBookmark} id={id} />
+          <BookmarkItem image={image} toggleBookmark={toggleBookmark} id={id} />
         ))
       )}
     </MainWrapper>
