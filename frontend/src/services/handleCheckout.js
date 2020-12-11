@@ -5,5 +5,7 @@ export default function handleCheckout(orderData, history) {
   validateName(orderData.surname) &&
   validateEmail(orderData.email)
     ? history.push("/summary")
-    : alert("Please check your form details.");
+    : alert(
+        "Dein Name sollte eine Mindestlänge von 2 Buchstaben haben. Deine Email ist im falschen Format angegeben."
+      );
 }

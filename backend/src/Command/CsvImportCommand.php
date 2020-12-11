@@ -26,7 +26,7 @@ class CsvImportCommand extends Command
      * @var EntityManagerInterface
      */
     public $em;
-    public $recordFinder;
+    public $recordFinderService;
     public $repository;
     public $offerDataHandler;
     public $productDataHandler;
@@ -35,7 +35,7 @@ class CsvImportCommand extends Command
      * CsvImportCommand constructor.
      *
      * @param EntityManagerInterface $em
-     * @param RecordFinderService $recordFinder
+     * @param RecordFinderService $recordFinderService
      * @param ProductRepository $repository
      * @param OfferDataHandler $offerDataHandler
      * @param ProductDataHandler $productDataHandler
@@ -74,12 +74,14 @@ class CsvImportCommand extends Command
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
+        $productUploader = $this->productDataHandler;
+        $offerUploader = $this->offerDataHandler;
 
         $productReader = Reader::createFromPath(__DIR__ . "/../Data/PRODUCT_DATA.csv", 'r');
-        $productDataHandler->uploadProductData($productReader);
+        $productUploader->uploadProductData($productReader);
 
         $offerReader = Reader::createFromPath(__DIR__ . "/../Data/OFFER_DATA.csv", 'r');
-        $offerDataHandler->uploadOfferData($offerReader);
+        $offerUploader->uploadOfferData($offerReader);
 
         $products = $this->em->getRepository(Product::class)->findAll();
         foreach ($products as $product) {
@@ -87,9 +89,5 @@ class CsvImportCommand extends Command
             $offersFound = $this->em->getRepository(Offer::class)->findOneBy(array('gtin' => $searchForGtin));
             $product->addOffer($offersFound);
         }
-
-    return Command::SUCCESS;
-
     }
-    
 }

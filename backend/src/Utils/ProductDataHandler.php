@@ -9,7 +9,7 @@ use App\Service\RecordFinderService;
 
 class ProductDataHandler {
     public $em;
-    public $recordFinder;
+    public $recordFinderService;
     public $repository;
 
     public function __construct(EntityManagerInterface $em, RecordFinderService $recordFinderService, ProductRepository $repository) {
@@ -18,7 +18,7 @@ class ProductDataHandler {
         $this->repository = $repository;
     }
 
-    public function uploadProductData(ProductReader $productReader) {
+    public function uploadProductData(array $productReader) {
         foreach ($productReader as $index => $row) {
             $product = (new Product())
                 ->setGtin([$row][0][0])
@@ -27,7 +27,7 @@ class ProductDataHandler {
                 ->setImage([$row][0][3])
                 ->setDescription([$row][0][4])
                 ->setSize(intval([$row][0][5]))
-                ->setVolume(([$row][0][6]), 1)
+                ->setVolume(([$row][0][6]))
                 ->setOrigin([$row][0][7])
                 ->setTaste(str_replace(' ', ',', explode(",",[$row][0][8])))
                 ->setCategory([$row][0][9])

@@ -22,4 +22,5 @@ export default function handleSubmit(event, orderData, history) {
     .catch((error) => console.log("error", error));
 
   history.push("/confirmation");
+  localStorage.clear("orderData");
 }

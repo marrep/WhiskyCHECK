@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import getCartImage from "../services/getCartImage";
 import convertToEuro from "../services/convertToEuro";
 import CartTotalPrice from "../components/cart/CartTotalPrice";
 import loadLocally from "../lib/loadLocally";
 import { useHistory } from "react-router-dom";
+import { validateName, validateEmail } from "../services/validationService";
 
 export default function Checkout({
   cart,
@@ -43,13 +44,7 @@ export default function Checkout({
         <Form>
           <label>
             Name:
-            <input
-              type="text"
-              name="name"
-              onChange={handleChange}
-              value={loadLocally("orderData").name ?? ""}
-              required
-            />
+            <input type="text" name="name" onChange={handleChange} required />
           </label>
           <label>
             Nachname:
@@ -57,69 +52,36 @@ export default function Checkout({
               type="text"
               name="surname"
               onChange={handleChange}
-              value={loadLocally("orderData").surname ?? ""}
               required
             />
           </label>
           <label>
             Straße:
-            <input
-              type="text"
-              name="street"
-              onChange={handleChange}
-              value={loadLocally("orderData").street ?? ""}
-              required
-            />
+            <input type="text" name="street" onChange={handleChange} required />
           </label>
           <label>
             Hausnummer:
-            <input
-              type="text"
-              name="number"
-              onChange={handleChange}
-              value={loadLocally("orderData").number ?? ""}
-              required
-            />
+            <input type="text" name="number" onChange={handleChange} required />
           </label>
           <label>
             Stadt:
-            <input
-              type="text"
-              name="city"
-              onChange={handleChange}
-              value={loadLocally("orderData").city ?? ""}
-              required
-            />
+            <input type="text" name="city" onChange={handleChange} required />
           </label>
           <label>
             PLZ:
-            <input
-              type="text"
-              name="zip"
-              onChange={handleChange}
-              value={loadLocally("orderData").zip ?? ""}
-              required
-            />
+            <input type="text" name="zip" onChange={handleChange} required />
           </label>
           <label>
             Land:
-            <input
-              type="text"
-              name="country"
-              onChange={handleChange}
-              value={loadLocally("orderData").country ?? ""}
-              required
-            />
+            <select name="country" onChange={handleChange} required>
+              <option value="Deutschland">Deutschland</option>
+              <option value="Österreich">Österreich</option>
+              <option value="Schweiz">Schweiz</option>
+            </select>
           </label>
           <label>
             Email:
-            <input
-              type="text"
-              name="email"
-              onChange={handleChange}
-              value={loadLocally("orderData").email ?? ""}
-              required
-            />
+            <input type="text" name="email" onChange={handleChange} required />
           </label>
           <label>
             Paypal
@@ -160,7 +122,6 @@ export default function Checkout({
       ...orderData,
       [event.target.name]: event.target.value,
     });
-    console.log(event.target.value);
   }
 }
 
@@ -279,11 +240,20 @@ const Title = styled.span`
 `;
 
 const Form = styled.form`
-  display: grid;
+  padding: 0 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   font-family: Lato;
   gap: 1em;
+
   .select {
     display: inline;
     width: 100px;
+  }
+
+  input {
+    margin-left: 1em;
+    width: 100% auto;
   }
 `;

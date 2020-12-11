@@ -10,7 +10,7 @@ use App\Service\RecordFinderService;
 
 class OfferDataHandler {
     public $em;
-    public $recordFinder;
+    public $recordFinderService;
     public $repository;
 
     public function __construct(EntityManagerInterface $em, RecordFinderService $recordFinderService, OfferRepository $repository) {
@@ -19,7 +19,8 @@ class OfferDataHandler {
         $this->repository = $repository;
     }
 
-    public function uploadOfferData(OfferReader $offerReader) {
+    public function uploadOfferData(array $offerReader) {
+
         foreach ($offerReader as $index => $row) {
             $offer = (new Offer())
                 ->setGtin([$row][0][0])
