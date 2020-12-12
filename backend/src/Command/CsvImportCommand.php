@@ -2,12 +2,12 @@
 
 namespace App\Command;
 
-use App\Utils\OfferDataHandler;
-use App\Utils\ProductDataHandler;
 use App\Entity\Offer;
-use App\Repository\OfferRepository;
 use App\Entity\Product;
+use App\Repository\OfferRepository;
 use App\Repository\ProductRepository;
+use App\Service\OfferDataHandler;
+use App\Service\ProductDataHandler;
 use App\Service\RecordFinderService;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Csv\Reader;
@@ -26,7 +26,6 @@ class CsvImportCommand extends Command
      * @var EntityManagerInterface
      */
     public $em;
-    public $recordFinderService;
     public $repository;
     public $offerDataHandler;
     public $productDataHandler;
@@ -35,17 +34,15 @@ class CsvImportCommand extends Command
      * CsvImportCommand constructor.
      *
      * @param EntityManagerInterface $em
-     * @param RecordFinderService $recordFinderService
      * @param ProductRepository $repository
      * @param OfferDataHandler $offerDataHandler
      * @param ProductDataHandler $productDataHandler
      *
      * @throws \Symfony\Component\Console\Exception\LogicException
      */
-    public function __construct(EntityManagerInterface $em, RecordFinderService $recordFinderService, ProductRepository $repository, OfferDataHandler $offerDataHandler, ProductDataHandler $productDataHandler)
+    public function __construct(EntityManagerInterface $em, ProductRepository $repository, OfferDataHandler $offerDataHandler, ProductDataHandler $productDataHandler)
     {
         $this->em = $em;
-        $this->recordFinderService = $recordFinderService;
         $this->repository = $repository;
         $this->offerDataHandler = $offerDataHandler;
         $this->productDataHandler = $productDataHandler;

@@ -53,7 +53,6 @@ class OrderSerializer {
         $orderObject->setPaymentMethod($postData->paymentMethod);
         $orderObject->setName($postData->name);
         $orderObject->setSurname($postData->surname);
-        $orderObject->setStreet($postData->street);
         $orderObject->setNumber($postData->number);
         $orderObject->setCity($postData->city);
         $orderObject->setZip($postData->zip);
