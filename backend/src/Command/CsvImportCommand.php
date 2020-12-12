@@ -69,10 +69,9 @@ class CsvImportCommand extends Command
      * @param InputInterface  $input
      * @param OutputInterface $output
      *
-     * @return void
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         $productUploader = $this->productDataHandler;
         $offerUploader = $this->offerDataHandler;
@@ -89,5 +88,6 @@ class CsvImportCommand extends Command
             $offersFound = $this->em->getRepository(Offer::class)->findOneBy(array('gtin' => $searchForGtin));
             $product->addOffer($offersFound);
         }
+        return 0;
     }
 }

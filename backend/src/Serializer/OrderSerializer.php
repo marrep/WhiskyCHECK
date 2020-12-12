@@ -8,16 +8,8 @@ use App\Entity\Order;
 
 class OrderSerializer {
 
-    /**
-     * @var EntityManagerInterface
-     */
-    public $elementArray;
-
+    private $elementArray = [];
     private function orderArray($element): object {
-
-        /** 
-        * @property array elementArray
-        */
 
         $this->elementArray[] = [
             'id' => $element->getId(),

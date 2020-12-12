@@ -192,8 +192,7 @@ const LeftWrapper = styled.div`
   img {
     display: block;
     height: auto;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     max-height: 100px;
     max-width: 100%;
     overflow: hidden;
