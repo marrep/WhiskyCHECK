@@ -6,12 +6,12 @@ import React from "react";
 import Search from "../../assets/icons/search.svg";
 import styled from "styled-components";
 
-export default function Navigation({ bookmarks, cart }) {
-  Navigation.propTypes = {
-    cart: PropTypes.array,
-    bookmarks: PropTypes.array,
-  };
+Navigation.propTypes = {
+  cart: PropTypes.array,
+  bookmarks: PropTypes.array,
+};
 
+export default function Navigation({ bookmarks, cart }) {
   return (
     <MainWrapper>
       <Link exact to="/">

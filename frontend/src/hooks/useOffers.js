@@ -8,7 +8,6 @@ export default function useOffers() {
     selectNewOffer,
     checkAvailability,
     setSelectedOffer,
-    countOffers,
   };
 
   function checkAvailability(selectedOffer) {
@@ -23,14 +22,5 @@ export default function useOffers() {
     const newOffer = offerDetails.find((element) => element.id === id);
     setSelectedOffer(newOffer);
     return newOffer;
-  }
-
-  function countOffers(offersData) {
-    const offers = offersData.length;
-    if (offers === 1) {
-      return `${offers} Angebot`;
-    } else {
-      return `${offers} Angebote`;
-    }
   }
 }

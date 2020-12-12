@@ -5,15 +5,15 @@ import React from "react";
 import styled from "styled-components";
 import useOffers from "../../hooks/useOffers";
 
+OfferDetails.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+  offers: PropTypes.array,
+  product: PropTypes.object.isRequired,
+};
+
 export default function OfferDetails({ product, offers, addToCart }) {
   const [toggleOffers, setToggleOffer] = useState(false);
   const { selectedOffer, selectNewOffer } = useOffers();
-
-  OfferDetails.propTypes = {
-    addToCart: PropTypes.func.isRequired,
-    offers: PropTypes.array,
-    product: PropTypes.object.isRequired,
-  };
 
   return (
     <MainWrapper>

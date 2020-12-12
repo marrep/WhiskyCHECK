@@ -4,12 +4,14 @@ import useProducts from "./useProducts";
 import loadLocally from "../lib/loadLocally";
 import saveLocally from "../lib/saveLocally";
 
+const STORAGE_KEY = "bookmarks";
+
 export default function useBookmarks() {
   const { products, setProducts } = useProducts();
-  const [bookmarks, setBookmarks] = useState(loadLocally("bookmarks") ?? []);
+  const [bookmarks, setBookmarks] = useState(loadLocally(STORAGE_KEY) ?? []);
 
   useEffect(() => {
-    saveLocally("bookmarks", bookmarks);
+    saveLocally(STORAGE_KEY, bookmarks);
   }, [bookmarks]);
 
   return {

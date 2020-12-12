@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import loadLocally from "../lib/loadLocally";
 import saveLocally from "../lib/saveLocally";
 
+const STORAGE_KEY = "cart";
+
 export default function useCart() {
   const [cart, setCart] = useState(
-    loadLocally("cart") ?? {
+    loadLocally(STORAGE_KEY) ?? {
       items: [],
       totalPrice: 0,
       totalShipping: 0,
@@ -14,7 +16,7 @@ export default function useCart() {
   );
 
   useEffect(() => {
-    saveLocally("cart", cart);
+    saveLocally(STORAGE_KEY, cart);
   }, [cart]);
 
   return {
@@ -56,9 +58,7 @@ export default function useCart() {
   }
 
   function increaseAmount(cartItem) {
-    const index = cart.items.findIndex(
-      (elem) => elem.id === cartItem.id && elem.price === cartItem.price
-    );
+    const index = getIndex(cartItem);
     const newItemsArray = [
       ...cart.items.slice(0, index),
       { ...cart.items[index], amount: (cart.items[index].amount += 1) },
@@ -73,11 +73,7 @@ export default function useCart() {
   }
 
   function decreaseAmount(cartItem) {
-    console.log(cartItem, "cartItem");
-    console.log(cart, "cart");
-    const index = cart.items.findIndex(
-      (elem) => elem.id === cartItem.id && elem.price === cartItem.price
-    );
+    const index = getIndex(cartItem);
     cart.items[index].amount === 1
       ? setCart(deleteFromCart(cartItem, index))
       : setCart(removeFromCart(cartItem, index));
@@ -109,5 +105,12 @@ export default function useCart() {
       totalShipping: (cart.totalShipping -= cartItem.shippingPrice),
     };
     return deleteItemCart;
+  }
+
+  function getIndex(cartItem) {
+    const index = cart.items.findIndex(
+      (elem) => elem.id === cartItem.id && elem.price === cartItem.price
+    );
+    return index;
   }
 }

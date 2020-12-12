@@ -5,13 +5,13 @@ import SortIcon from "../../assets/icons/sort.svg";
 import styled from "styled-components";
 import useProducts from "../../hooks/useProducts";
 
+SearchFilterBar.propTypes = {
+  showHideFilter: PropTypes.func.isRequired,
+  sortProducts: PropTypes.func.isRequired,
+};
+
 export default function SearchFilterBar({ showHideFilter, sortProducts }) {
   const { products } = useProducts();
-
-  SearchFilterBar.propTypes = {
-    showHideFilter: PropTypes.func.isRequired,
-    sortProducts: PropTypes.func.isRequired,
-  };
 
   return (
     <MainWrapper>

@@ -5,19 +5,19 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+CartItemInformation.propTypes = {
+  cartItem: PropTypes.object,
+  toggleBookmark: PropTypes.func.isRequired,
+  bookmarks: PropTypes.array.isRequired,
+  products: PropTypes.array.isRequired,
+};
+
 export default function CartItemInformation({
   cartItem,
   products,
   bookmarks,
   toggleBookmark,
 }) {
-  CartItemInformation.propTypes = {
-    cartItem: PropTypes.object,
-    toggleBookmark: PropTypes.func.isRequired,
-    bookmarks: PropTypes.array.isRequired,
-    products: PropTypes.array.isRequired,
-  };
-
   return (
     <MainWrapper>
       <LeftWrapper>

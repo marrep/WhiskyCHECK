@@ -18,6 +18,7 @@ import handleSubmit from "./services/handleSubmit";
 import Confirmation from "./pages/Confirmation";
 import loadLocally from "./lib/loadLocally";
 import saveLocally from "./lib/saveLocally";
+import Loading from "./components/loading/Loading";
 
 export default function App() {
   const { products } = useProducts();
@@ -48,6 +49,7 @@ export default function App() {
 
   return (
     <GlobalWrapper>
+      <Loading />
       <Header />
       <main>
         <Switch>

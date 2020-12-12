@@ -4,16 +4,16 @@ import styled from "styled-components";
 import trashbin from "../../assets/icons/trashbin.svg";
 import PropTypes from "prop-types";
 
+CartItemController.propTypes = {
+  cartItem: PropTypes.object,
+  cart: PropTypes.array,
+};
+
 export default function CartItemController({
   cartItem,
   decreaseAmount,
   increaseAmount,
 }) {
-  CartItemController.propTypes = {
-    cartItem: PropTypes.object,
-    cart: PropTypes.array,
-  };
-
   return (
     <MainWrapper>
       <Controller>

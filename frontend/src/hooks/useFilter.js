@@ -44,29 +44,17 @@ export default function useFilter() {
   }
 
   function sortProducts(sortSelector, searchResults) {
-    if (sortSelector === "NameUp") {
-      setSearchResults(
-        Object.assign(
-          [],
-          searchResults.sort((a, b) => {
-            if (a.title < b.title) return -1;
-            if (a.title > b.title) return 1;
-            return 0;
-          })
-        )
-      );
-    }
-    if (sortSelector === "NameDown") {
-      setSearchResults(
-        Object.assign(
-          [],
-          searchResults.sort((a, b) => {
-            if (a.title > b.title) return -1;
-            if (a.title < b.title) return 1;
-            return 0;
-          })
-        )
-      );
-    }
+    setSearchResults(
+      Object.assign(
+        [],
+        searchResults.sort((a, b) => {
+          if (sortSelector === "NameUp" && a.title < b.title) return -1;
+          if (sortSelector === "NameUp" && a.title > b.title) return 1;
+          if (sortSelector === "NameDown" && a.title > b.title) return -1;
+          if (sortSelector === "NameDown" && a.title < b.title) return 1;
+          return 0;
+        })
+      )
+    );
   }
 }

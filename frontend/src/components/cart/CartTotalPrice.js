@@ -2,11 +2,11 @@ import convertToEuro from "../../services/convertToEuro";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-export default function CartTotalPrice({ cart }) {
-  CartTotalPrice.propTypes = {
-    cart: PropTypes.array,
-  };
+CartTotalPrice.propTypes = {
+  cart: PropTypes.array,
+};
 
+export default function CartTotalPrice({ cart }) {
   return (
     <>
       <MainWrapper
