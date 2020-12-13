@@ -104,7 +104,7 @@ const CheckoutButton = styled.button`
   border: none;
   color: #ffffff;
   display: block;
-  margin: 3em auto;
+  margin: 0em auto;
   padding: 1em 2.5em;
   text-transform: uppercase;
   width: 80%;

@@ -43,45 +43,106 @@ export default function Checkout({
 
         <Form>
           <label>
-            Name:
-            <input type="text" name="name" onChange={handleChange} required />
-          </label>
-          <label>
-            Nachname:
+            <input
+              type="text"
+              name="name"
+              onChange={handleChange}
+              placeholder="Vorname"
+              defaultValue={
+                loadLocally("orderData").name === ""
+                  ? ""
+                  : loadLocally("orderData").name
+              }
+              required
+            />
             <input
               type="text"
               name="surname"
               onChange={handleChange}
+              placeholder="Nachname"
+              defaultValue={
+                loadLocally("orderData").surname === ""
+                  ? ""
+                  : loadLocally("orderData").surname
+              }
               required
             />
           </label>
           <label>
-            Straße:
-            <input type="text" name="street" onChange={handleChange} required />
+            <input
+              type="text"
+              name="street"
+              onChange={handleChange}
+              placeholder="Straße"
+              defaultValue={
+                loadLocally("orderData").street === ""
+                  ? ""
+                  : loadLocally("orderData").street
+              }
+              required
+            />
+            <input
+              type="text"
+              name="number"
+              onChange={handleChange}
+              placeholder="Nr."
+              defaultValue={
+                loadLocally("orderData").number === ""
+                  ? ""
+                  : loadLocally("orderData").number
+              }
+              required
+            />
           </label>
           <label>
-            Hausnummer:
-            <input type="text" name="number" onChange={handleChange} required />
+            <input
+              type="text"
+              name="city"
+              onChange={handleChange}
+              placeholder="Stadt"
+              defaultValue={
+                loadLocally("orderData").city === ""
+                  ? ""
+                  : loadLocally("orderData").city
+              }
+              required
+            />
+            <input
+              type="text"
+              name="zip"
+              onChange={handleChange}
+              placeholder="PLZ"
+              defaultValue={
+                loadLocally("orderData").zip === ""
+                  ? ""
+                  : loadLocally("orderData").zip
+              }
+              required
+            />
           </label>
           <label>
-            Stadt:
-            <input type="text" name="city" onChange={handleChange} required />
-          </label>
-          <label>
-            PLZ:
-            <input type="text" name="zip" onChange={handleChange} required />
-          </label>
-          <label>
-            Land:
-            <select name="country" onChange={handleChange} required>
+            <select
+              name="country"
+              onChange={handleChange}
+              placeholder="Land wählen"
+              required
+            >
               <option value="Deutschland">Deutschland</option>
               <option value="Österreich">Österreich</option>
               <option value="Schweiz">Schweiz</option>
             </select>
-          </label>
-          <label>
-            Email:
-            <input type="text" name="email" onChange={handleChange} required />
+            <input
+              type="text"
+              name="email"
+              onChange={handleChange}
+              placeholder="Email"
+              defaultValue={
+                loadLocally("orderData").email === ""
+                  ? ""
+                  : loadLocally("orderData").email
+              }
+              required
+            />
           </label>
           <label>
             Paypal
@@ -235,20 +296,39 @@ const Title = styled.span`
 `;
 
 const Form = styled.form`
-  padding: 0 2em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   font-family: Lato;
-  gap: 1em;
 
-  .select {
-    display: inline;
-    width: 100px;
+  label {
+    width: 100%;
+    padding: 0.2em 0;
   }
 
   input {
-    margin-left: 1em;
-    width: 100% auto;
+    padding: 0.75em;
+    margin: 0 0.2em;
+    border: 2px solid #575757;
+  }
+
+  input::placeholder {
+    font-family: Lato;
+    font-size: 14px;
+    color: #575757;
+  }
+
+  input[type="radio"] {
+    margin: 1.5em;
+  }
+
+  select {
+    padding: 0.75em;
+    margin: 0 0.2em;
+    border: 2px solid #575757;
+    background: #ffffff;
+    appearance: none;
+    cursor: inherit;
+    width: 44%;
   }
 `;

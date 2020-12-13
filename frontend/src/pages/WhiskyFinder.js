@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import HomeProductItem from "../components/home/HomeProductItem";
+import SearchProductItem from "../components/search/SearchProductItem";
 
 const FILTER_TAG = "Japan";
 
-export default function WhiskyFinder({ setWhiskyFinder, filterOriginByTag }) {
+export default function WhiskyFinder({
+  setWhiskyFinder,
+  filterOriginByTag,
+  bookmarks,
+  toggleBookmark,
+}) {
   const history = useHistory();
 
   return (
@@ -50,11 +55,13 @@ export default function WhiskyFinder({ setWhiskyFinder, filterOriginByTag }) {
       <h2>{`Raritäten aus ${FILTER_TAG}`}</h2>
       <BottomWrapper>
         {filterOriginByTag(FILTER_TAG).map(({ title, image, offers, id }) => (
-          <HomeProductItem
+          <SearchProductItem
             title={title}
             image={image}
             offers={offers}
             id={id}
+            bookmarks={bookmarks}
+            toggleBookmark={toggleBookmark}
           />
         ))}
       </BottomWrapper>
@@ -82,13 +89,14 @@ const TopWrapper = styled.div`
 `;
 
 const BottomWrapper = styled.div`
+  font-family: Lato;
+  flex-wrap: wrap;
   display: flex;
-  flex-direction: row;
-  height: 30vh;
-  overflow-x: auto;
-  padding: 10px 5px;
-  white-space: nowrap;
-  width: auto;
+  background-color: white;
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 const MainWrapper = styled.div`
@@ -98,13 +106,13 @@ const MainWrapper = styled.div`
   background-color: white;
 
   h2 {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 400;
-    margin-left: 5px;
+    margin-left: 15px;
   }
 
   form {
-    background-color: #ffb900;
+    background-color: #f1f1f1;
     width: 100%;
     margin: auto auto 1em auto;
     display: flex;
@@ -132,25 +140,11 @@ const MainWrapper = styled.div`
     border-radius: 2rem;
     position: relative;
     z-index: 1;
-  }
-
-  label:hover {
-    background: #d8d8d8;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   }
 
   input[type="radio"] {
     visibility: hidden;
     position: absolute;
-  }
-
-  input[type="radio"]:checked {
-    ~ label {
-      background: #003677;
-      color: white;
-      transform: scale(1.05);
-      animation: checked 400ms 1;
-      position: relative;
-      z-index: 5;
-    }
   }
 `;

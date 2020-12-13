@@ -83,7 +83,7 @@ const MainWrapper = styled.div`
 `;
 
 const FilterTagItem = styled.span`
-  background-color: #ffb900;
+  background-color: #f3d599;
   border-radius: 30px;
   font-family: Lato;
   font-size: 14px;

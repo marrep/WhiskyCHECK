@@ -199,7 +199,7 @@ const ConfirmWrapper = styled.div`
 
 const ContactWrapper = styled.div`
   display: flex;
-  font-size: 12px;
+  font-size: 16px;
   flex-direction: column;
   align-items: left;
   justify-content: left;

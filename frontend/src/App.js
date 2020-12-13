@@ -69,6 +69,8 @@ export default function App() {
             <WhiskyFinder
               setWhiskyFinder={setWhiskyFinder}
               filterOriginByTag={filterOriginByTag}
+              toggleBookmark={toggleBookmark}
+              bookmarks={bookmarks}
             />
           </Route>
           <Route exact path="/search">

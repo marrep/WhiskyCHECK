@@ -91,6 +91,7 @@ const AddToCart = styled.button`
   margin-bottom: 40px;
   margin-left: 0;
   margin-right: 0;
+  margin-top: 30px;
   padding: 1em 5em;
   text-transform: uppercase;
   width: 100%;
