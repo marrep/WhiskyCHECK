@@ -3,18 +3,17 @@ import React from "react";
 import SearchFilterBar from "../components/search/SearchFilterBar";
 import SearchProductItem from "../components/search/SearchProductItem";
 import styled from "styled-components";
-import useFilter from "../hooks/useFilter";
 
-export default function Search({ products, toggleBookmark, bookmarks }) {
-  const {
-    originFilter,
-    showHideFilter,
-    filterHandler,
-    toggleFilter,
-    searchResults,
-    sortProducts,
-  } = useFilter();
-
+export default function Search({
+  toggleBookmark,
+  bookmarks,
+  searchResults,
+  sortProducts,
+  showHideFilter,
+  filterHandler,
+  originFilter,
+  toggleFilter,
+}) {
   Search.propTypes = {
     products: PropTypes.array.isRequired,
     toggleBookmark: PropTypes.func.isRequired,
@@ -24,10 +23,12 @@ export default function Search({ products, toggleBookmark, bookmarks }) {
   return (
     <MainWrapper>
       <TopWrapper>
-        Whisky |{" "}
-        {`${products.length} ${
-          products.length === 1 ? "Ergebnis" : "Ergebnisse"
-        }`}{" "}
+        <span>
+          Suche |{" "}
+          {`${searchResults.length} ${
+            searchResults.length === 1 ? "Ergebnis" : "Ergebnisse"
+          }`}{" "}
+        </span>
       </TopWrapper>
       <SearchFilterBar
         showHideFilter={showHideFilter}
@@ -56,6 +57,20 @@ export default function Search({ products, toggleBookmark, bookmarks }) {
   );
 }
 
+const TopWrapper = styled.div`
+  display: block;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+
+  span {
+    font-family: Lato;
+    font-size: 15px;
+    color: #003f8a;
+    margin-left: 5px;
+  }
+`;
+
 const MainWrapper = styled.div`
   font-family: Lato;
   flex-wrap: wrap;
@@ -67,16 +82,8 @@ const MainWrapper = styled.div`
   }
 `;
 
-const TopWrapper = styled.div`
-  font-family: Lato;
-  font-size: 20px;
-  font-weight: 400;
-  margin-left: 5px;
-  padding: 10px;
-`;
-
 const FilterTagItem = styled.span`
-  background-color: #fadca0;
+  background-color: #ffb900;
   border-radius: 30px;
   font-family: Lato;
   font-size: 14px;

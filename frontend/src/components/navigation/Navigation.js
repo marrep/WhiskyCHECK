@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Bookmark from "../../assets/icons/bookmarkOff.svg";
 import Cart from "../../assets/icons/cart.svg";
+import Compass from "../../assets/icons/compass.svg";
 import PropTypes from "prop-types";
 import React from "react";
 import Search from "../../assets/icons/search.svg";
@@ -15,6 +16,9 @@ export default function Navigation({ bookmarks, cart }) {
   return (
     <MainWrapper>
       <Link exact to="/">
+        <img src={Compass} alt="" />
+      </Link>
+      <Link exact to="/search">
         <img src={Search} alt="" />
       </Link>
       <Link exact to="/cart">
@@ -58,7 +62,7 @@ const CartCounter = styled.span`
   color: #ffffff;
   height: 15px;
   position: fixed;
-  right: 43%;
+  right: 29%;
   text-align: center;
   width: 15px;
 
@@ -74,7 +78,7 @@ const BookmarkCounter = styled.span`
   color: #ffffff;
   height: 15px;
   position: fixed;
-  right: 10%;
+  right: 6%;
   text-align: center;
   width: 15px;
 

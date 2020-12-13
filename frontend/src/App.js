@@ -19,10 +19,22 @@ import Confirmation from "./pages/Confirmation";
 import loadLocally from "./lib/loadLocally";
 import saveLocally from "./lib/saveLocally";
 import Loading from "./components/loading/Loading";
+import WhiskyFinder from "./pages/WhiskyFinder";
+import useFilter from "./hooks/useFilter";
 
 export default function App() {
   const { products } = useProducts();
   const { toggleBookmark, bookmarks } = useBookmarks();
+  const {
+    searchResults,
+    setWhiskyFinder,
+    filterOriginByTag,
+    sortProducts,
+    showHideFilter,
+    filterHandler,
+    originFilter,
+    toggleFilter,
+  } = useFilter();
   const { cart, addToCart, increaseAmount, decreaseAmount } = useCart();
   const [orderData, setOrderData] = useState(
     loadLocally("orderData") ?? {
@@ -54,10 +66,21 @@ export default function App() {
       <main>
         <Switch>
           <Route exact path="/">
+            <WhiskyFinder
+              setWhiskyFinder={setWhiskyFinder}
+              filterOriginByTag={filterOriginByTag}
+            />
+          </Route>
+          <Route exact path="/search">
             <Search
-              products={products}
               toggleBookmark={toggleBookmark}
               bookmarks={bookmarks}
+              searchResults={searchResults}
+              sortProducts={sortProducts}
+              showHideFilter={showHideFilter}
+              filterHandler={filterHandler}
+              originFilter={originFilter}
+              toggleFilter={toggleFilter}
             />
           </Route>
           <Route exact path="/cart">

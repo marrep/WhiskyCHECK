@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import { useState, useEffect } from "react";
 import Logo from "../../assets/icons/logo.svg";
-import WhiskyAnimation from "../../assets/gif/whisky-animation-3.gif";
+import WhiskyAnimation from "../../assets/gif/whisky-animation.gif";
 
 export default function Loading() {
   const [showLoading, setShowLoading] = useState(true);

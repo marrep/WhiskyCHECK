@@ -20,10 +20,6 @@ export default function useFilter() {
     setOriginFilter(filteredTags);
   }, [toggleFilter]);
 
-  useEffect(() => {
-    setSearchResults(products);
-  }, [products]);
-
   return {
     originFilter,
     showHideFilter,
@@ -31,6 +27,8 @@ export default function useFilter() {
     toggleFilter,
     searchResults,
     sortProducts,
+    setWhiskyFinder,
+    filterOriginByTag,
   };
 
   function showHideFilter() {
@@ -56,5 +54,19 @@ export default function useFilter() {
         })
       )
     );
+  }
+
+  function setWhiskyFinder(targetValue) {
+    const filterByGenre = products.filter(
+      (elem) => elem.genre.toUpperCase() === targetValue.toUpperCase()
+    );
+    setSearchResults(filterByGenre);
+  }
+
+  function filterOriginByTag(tag) {
+    const filteredProducts = products.filter(
+      (elem) => elem.origin.toUpperCase() === tag.toUpperCase()
+    );
+    return filteredProducts;
   }
 }

@@ -164,10 +164,6 @@ const TopWrapper = styled.div`
     color: #003f8a;
     margin-left: 5px;
   }
-
-  a {
-    text-decoration: none;
-  }
 `;
 
 const CartWrapper = styled.div`
