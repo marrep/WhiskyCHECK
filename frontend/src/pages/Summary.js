@@ -6,13 +6,7 @@ import CartTotalPrice from "../components/cart/CartTotalPrice";
 import { useHistory } from "react-router-dom";
 import edit from "../assets/icons/edit.svg";
 
-export default function Summary({
-  cart,
-  products,
-  handleSubmit,
-  orderData,
-  setOrderData,
-}) {
+export default function Summary({ cart, products, handleSubmit, orderData }) {
   const history = useHistory();
 
   return (
@@ -68,6 +62,7 @@ export default function Summary({
 
         <ButtonWrapper>
           <CheckoutButton
+            data-testid="submitButton"
             onClick={(event) => handleSubmit(event, orderData, history)}
           >
             Jetzt bestellen

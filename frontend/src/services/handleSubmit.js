@@ -2,7 +2,6 @@ import deleteLocally from "../lib/deleteLocally";
 
 export default function handleSubmit(event, orderData, history) {
   event.preventDefault();
-
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
