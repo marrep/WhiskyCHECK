@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header contains an image 1`] = `
+<div
+  class="Header__MainWrapper-sc-1qsiow7-0 OwmKM"
+>
+  <img
+    alt="WhiskyCheck Logo"
+    data-testid="Logo"
+    src="logo.svg"
+  />
+</div>
+`;

@@ -6,7 +6,7 @@ const itemMock = jest.fn();
 describe("BookmarkItem", () => {
   it("should contain a clickable Button", () => {
     const { getByTestId } = render(
-      <BookmarkItem image={""} deleteBookmark={itemMock} id={1} />
+      <BookmarkItem image={""} toggleBookmark={itemMock} id={1} />
     );
     const Button = getByTestId("deleteButton");
     fireEvent.click(Button);

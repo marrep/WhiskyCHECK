@@ -167,7 +167,10 @@ export default function Checkout({
             />
           </label>
           <ButtonWrapper>
-            <CheckoutButton onClick={() => handleCheckout(orderData, history)}>
+            <CheckoutButton
+              data-testid="checkoutButton"
+              onClick={() => handleCheckout(orderData, history)}
+            >
               bestätigen
             </CheckoutButton>
           </ButtonWrapper>

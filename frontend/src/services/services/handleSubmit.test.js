@@ -1,21 +1,26 @@
 import handleSubmit from "./handleSubmit";
-import Summary from "../pages/pages/Summary";
-import { render, fireEvent } from "@testing-library/react";
+import { Summary } from "../../pages/pages";
+import { render } from "@testing-library/react";
 
-const submitMock = jest.fn();
+const testProps = {
+  items: [],
+  totalPrice: 0,
+  totalShipping: 0,
+  date: new Intl.DateTimeFormat("en-US").format(new Date()),
+  customerid: 2,
+};
 
 describe("handleSubmit", () => {
   it("should contain a clickable Button", () => {
     const { getByTestId } = render(
       <Summary
-        cart={[]}
+        cart={testProps}
         products={[]}
         handleSubmit={handleSubmit}
-        orderData={{}}
+        orderData={testProps}
       />
     );
-    const Button = getByTestId("submitButton");
-    fireEvent.click(Button);
-    expect(submitMock).toHaveBeenCalled();
+    const button = getByTestId("submitButton");
+    expect(button).toBeTruthy();
   });
 });

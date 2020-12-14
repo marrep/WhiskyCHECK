@@ -18,6 +18,6 @@ describe("getPriceRange", () => {
     expect(getPriceRange(offers)).not.toBe({});
   });
   it("should return a price range", () => {
-    expect(getPriceRange(offers)).toEqual("17,50 € - 18,50 €");
+    expect(getPriceRange(offers)).toEqual("17,50\xa0€ - 18,50\xa0€");
   });
 });

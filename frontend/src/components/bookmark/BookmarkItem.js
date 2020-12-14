@@ -6,7 +6,7 @@ import styled from "styled-components/macro";
 
 BookmarkItem.propTypes = {
   id: PropTypes.number,
-  deleteBookmark: PropTypes.func.isRequired,
+  toggleBookmark: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
 };
 

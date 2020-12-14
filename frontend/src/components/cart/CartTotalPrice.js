@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import PropTypes from "prop-types";
 
 CartTotalPrice.propTypes = {
-  cart: PropTypes.array,
+  cart: PropTypes.object,
 };
 
 export default function CartTotalPrice({ cart }) {
