@@ -2,16 +2,15 @@ import styled from "styled-components";
 import React from "react";
 import { useState, useEffect } from "react";
 import Logo from "../../assets/icons/logo.svg";
-import WhiskyAnimation from "../../assets/gif/whisky-animation.gif";
+import WhiskyAnimation from "../../assets/animations/whisky-animation.gif";
 
 export default function Loading() {
   const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
-    let timer1 = setTimeout(() => setShowLoading(!showLoading), 3000);
-
+    let timer = setTimeout(() => setShowLoading(!showLoading), 3000);
     return () => {
-      clearTimeout(timer1);
+      clearTimeout(timer);
     };
   }, []);
 

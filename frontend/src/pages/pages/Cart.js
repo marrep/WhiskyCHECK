@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import CardItem from "../components/cart/CartItem";
-import CartItemController from "../components/cart/CartItemController";
-import CartTotalPrice from "../components/cart/CartTotalPrice";
+import {
+  CartItem,
+  CartItemController,
+  CartTotalPrice,
+} from "../../components/components";
 import React from "react";
 import styled from "styled-components";
 
@@ -24,7 +26,7 @@ export default function Cart({
         ) : (
           cart.items.map((cartItem) => (
             <>
-              <CardItem
+              <CartItem
                 cartItem={cartItem}
                 products={products}
                 toggleBookmark={toggleBookmark}

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import getProductData from "../services/getProductData";
-import loadLocally from "../lib/loadLocally";
-import saveLocally from "../lib/saveLocally";
+import { getProductData } from "../../services/services";
+import { loadLocally, saveLocally } from "../../lib/localStorage";
 
 const STORAGE_KEY = "products";
 

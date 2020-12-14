@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import SearchProductItem from "../components/search/SearchProductItem";
+import { SearchProductItem } from "../../components/components";
 
 const FILTER_TAG = "Japan";
 

@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import close from "../../assets/icons/close.svg";
 import PropTypes from "prop-types";
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 BookmarkItem.propTypes = {
   id: PropTypes.number,
@@ -45,10 +45,6 @@ const MainWrapper = styled.div`
 `;
 
 const LeftWrapper = styled.div`
-  align-items: top;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   overflow: hidden;
   padding: 10px;
   text-decoration: none;

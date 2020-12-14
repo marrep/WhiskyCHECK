@@ -1,5 +1,5 @@
 import handleSubmit from "./handleSubmit";
-import Summary from "../pages/Summary";
+import Summary from "../pages/pages/Summary";
 import { render, fireEvent } from "@testing-library/react";
 
 const submitMock = jest.fn();

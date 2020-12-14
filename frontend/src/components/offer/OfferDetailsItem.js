@@ -1,5 +1,4 @@
-import convertToEuro from "../../services/convertToEuro";
-import getDeliveryDay from "../../services/getDeliveryDay";
+import { convertToEuro, getDeliveryDay } from "../../services/services";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";

@@ -14,11 +14,11 @@ class RecordFinderServiceTest extends TestCase {
 
         // act      
         $data = [
-                    'name' => 'Marcel',
-                    'surname' => 'Reperich',
+                    'gtin' => 5099873089798,
+                    'price' => 17.50,
                 ];
 
         // assert
-        $this->assertEquals(true, $recordFinder->doesOfferExist(['name' => 'Marcel', 'surname' => 'Reperich']));
+        $this->assertEquals(true, $recordFinder->doesOfferExist($data));
     } 
 }

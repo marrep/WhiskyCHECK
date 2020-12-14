@@ -1,4 +1,4 @@
-import BookmarkItem from "../components/bookmark/BookmarkItem";
+import { BookmarkItem } from "../../components/components";
 import React from "react";
 import styled from "styled-components";
 

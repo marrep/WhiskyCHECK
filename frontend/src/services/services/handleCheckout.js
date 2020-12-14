@@ -1,5 +1,5 @@
 import { validateName, validateEmail } from "./validationService";
-import saveLocally from "../lib/saveLocally";
+import { saveLocally } from "../../lib/localStorage";
 
 export default function handleCheckout(orderData, history) {
   if (

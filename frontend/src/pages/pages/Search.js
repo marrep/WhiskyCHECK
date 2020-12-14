@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
-import SearchFilterBar from "../components/search/SearchFilterBar";
-import SearchProductItem from "../components/search/SearchProductItem";
+import {
+  SearchFilterBar,
+  SearchProductItem,
+} from "../../components/components";
 import styled from "styled-components";
 
 export default function Search({

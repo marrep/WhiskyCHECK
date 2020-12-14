@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import getCartImage from "../services/getCartImage";
-import convertToEuro from "../services/convertToEuro";
-import CartTotalPrice from "../components/cart/CartTotalPrice";
+import { getCartImage, convertToEuro } from "../../services/services";
+import { CartTotalPrice } from "../../components/components";
 import { useHistory } from "react-router-dom";
-import edit from "../assets/icons/edit.svg";
+import edit from "../../assets/icons/edit.svg";
 
 export default function Summary({ cart, products, handleSubmit, orderData }) {
   const history = useHistory();

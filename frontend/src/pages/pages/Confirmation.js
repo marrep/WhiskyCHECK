@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import confirmation from "../assets/icons/confirmation.svg";
+import confirmation from "../../assets/icons/confirmation.svg";
 
 export default function Confirmation() {
   return (

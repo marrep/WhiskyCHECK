@@ -1,4 +1,4 @@
-import deleteLocally from "../lib/deleteLocally";
+import { deleteLocally } from "../../lib/localStorage";
 
 export default function handleSubmit(event, orderData, history) {
   event.preventDefault();

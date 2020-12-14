@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import loadLocally from "../lib/loadLocally";
-import saveLocally from "../lib/saveLocally";
+import { loadLocally, saveLocally } from "../../lib/localStorage";
 
 const STORAGE_KEY = "cart";
 

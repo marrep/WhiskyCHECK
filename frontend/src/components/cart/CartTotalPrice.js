@@ -1,5 +1,5 @@
-import convertToEuro from "../../services/convertToEuro";
-import styled from "styled-components";
+import { convertToEuro } from "../../services/services";
+import styled from "styled-components/macro";
 import PropTypes from "prop-types";
 
 CartTotalPrice.propTypes = {

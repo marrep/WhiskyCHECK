@@ -2,8 +2,8 @@ import FilterIcon from "../../assets/icons/filter.svg";
 import PropTypes from "prop-types";
 import React from "react";
 import SortIcon from "../../assets/icons/sort.svg";
-import styled from "styled-components";
-import useProducts from "../../hooks/useProducts";
+import styled from "styled-components/macro";
+import { useProducts } from "../../hooks/hooks";
 
 SearchFilterBar.propTypes = {
   showHideFilter: PropTypes.func.isRequired,

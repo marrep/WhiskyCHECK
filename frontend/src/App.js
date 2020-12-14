@@ -1,26 +1,25 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-import Header from "./components/header/Header";
-import Summary from "./pages/Summary";
-import Cart from "./pages/Cart";
-import Bookmarks from "./pages/Bookmarks";
-import Search from "./pages/Search";
-import Navigation from "./components/navigation/Navigation";
-import ProductDetailPage from "./pages/ProductDetailPage";
 import styled from "styled-components";
-import useProducts from "./hooks/useProducts";
-import useBookmarks from "./hooks/useBookmarks";
-import useCart from "./hooks/useCart";
-import Checkout from "./pages/Checkout";
-import handleCheckout from "./services/handleCheckout";
-import handleSubmit from "./services/handleSubmit";
-import Confirmation from "./pages/Confirmation";
-import loadLocally from "./lib/loadLocally";
-import saveLocally from "./lib/saveLocally";
-import Loading from "./components/loading/Loading";
-import WhiskyFinder from "./pages/WhiskyFinder";
-import useFilter from "./hooks/useFilter";
+import { handleCheckout, handleSubmit } from "./services/services";
+import { Header, Navigation, Loading } from "./components/components";
+import {
+  useProducts,
+  useBookmarks,
+  useCart,
+  useFilter,
+  useOrderData,
+} from "./hooks/hooks";
+import {
+  Summary,
+  Cart,
+  Bookmarks,
+  Search,
+  ProductDetailPage,
+  Checkout,
+  Confirmation,
+  WhiskyFinder,
+} from "./pages/pages";
 
 export default function App() {
   const { products } = useProducts();
@@ -36,28 +35,7 @@ export default function App() {
     toggleFilter,
   } = useFilter();
   const { cart, addToCart, increaseAmount, decreaseAmount } = useCart();
-  const [orderData, setOrderData] = useState(
-    loadLocally("orderData") ?? {
-      customerId: cart.customerid,
-      date: cart.date,
-      items: cart.items,
-      totalPrice: cart.totalPrice,
-      totalShipping: cart.totalShipping,
-      name: "",
-      surname: "",
-      street: "",
-      number: 0,
-      city: "",
-      zip: 0,
-      country: "",
-      email: "",
-      paymentMethod: "",
-    }
-  );
-
-  useEffect(() => {
-    saveLocally("orderData", orderData);
-  }, [orderData]);
+  const { orderData, setOrderData } = useOrderData();
 
   return (
     <GlobalWrapper>

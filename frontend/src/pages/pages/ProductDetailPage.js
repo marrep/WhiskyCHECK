@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
-import BookmarkIcon from "../components/bookmark/BookmarkIcon";
-import getPriceRange from "../services/getPriceRange";
-import OfferDetails from "../components/offer/OfferDetails";
+import { BookmarkIcon, OfferDetails } from "../../components/components";
+import { getPriceRange, findProduct } from "../../services/services";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
@@ -21,16 +20,14 @@ export default function ProductDetailPage({
     addToCart: PropTypes.func.isRequired,
   };
 
-  function findProduct(productId) {
-    const foundProduct = products.find(({ id }) => id == productId);
-    return foundProduct;
-  }
+  const product = findProduct(id, products);
 
   return (
     <MainWrapper>
       <TopWrapper>
         <TitleWrapper>
-          {findProduct(id).title} {findProduct(id).size} ml
+          {product.title}, {product.size} ml
+          <PriceRange>{getPriceRange(product.offers)}</PriceRange>
         </TitleWrapper>
         <BookmarkIcon
           id={id}
@@ -38,14 +35,13 @@ export default function ProductDetailPage({
           bookmarks={bookmarks}
         />
       </TopWrapper>
-      <PriceRange>{getPriceRange(findProduct(id).offers)}</PriceRange>
-      <Image src={findProduct(id).image} alt="" />
+      <Image src={product.image} alt="" />
       <Description>
-        <strong>Beschreibung:</strong> {findProduct(id).description}
+        <strong>Beschreibung:</strong> {product.description}
       </Description>
       <OfferDetails
-        offers={findProduct(id).offers}
-        product={findProduct(id)}
+        offers={product.offers}
+        product={product}
         addToCart={addToCart}
       />
     </MainWrapper>
@@ -85,13 +81,14 @@ const TitleWrapper = styled.span`
   font-size: 20px;
   padding-right: 5%;
   text-decoration: none;
+  margin-bottom: 1em;
   width: 80%;
 `;
 
 const PriceRange = styled.span`
   color: #f70000;
   display: block;
-  font-size: 15px;
+  font-size: 16px;
   text-decoration: none;
 `;
 

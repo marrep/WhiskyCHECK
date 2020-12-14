@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import useProducts from "./useProducts";
+import { useProducts } from "../hooks";
 
 export default function useFilter() {
-  const { products, setProducts } = useProducts();
+  const { products } = useProducts();
   const [toggleFilter, setToggleFilter] = useState(false);
   const [originFilter, setOriginFilter] = useState([]);
   const [searchResults, setSearchResults] = useState(products);

@@ -1,9 +1,8 @@
-import BookmarkIcon from "../bookmark/BookmarkIcon";
-import convertToEuro from "../../services/convertToEuro";
-import getCartImage from "../../services/getCartImage";
+import { BookmarkIcon } from "../components";
+import { convertToEuro, getCartImage } from "../../services/services";
 import PropTypes from "prop-types";
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 CartItemInformation.propTypes = {
   cartItem: PropTypes.object,

@@ -1,6 +1,6 @@
 import plus from "../../assets/icons/plus.svg";
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import trashbin from "../../assets/icons/trashbin.svg";
 import PropTypes from "prop-types";
 

@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import findProduct from "../services/findProduct";
-import useProducts from "./useProducts";
-import loadLocally from "../lib/loadLocally";
-import saveLocally from "../lib/saveLocally";
+import { findProduct } from "../../services/services";
+import { useProducts } from "../hooks";
+import { loadLocally, saveLocally } from "../../lib/localStorage";
 
 const STORAGE_KEY = "bookmarks";
 
 export default function useBookmarks() {
-  const { products, setProducts } = useProducts();
+  const { products } = useProducts();
   const [bookmarks, setBookmarks] = useState(loadLocally(STORAGE_KEY) ?? []);
 
   useEffect(() => {

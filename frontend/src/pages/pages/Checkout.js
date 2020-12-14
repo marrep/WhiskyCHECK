@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import getCartImage from "../services/getCartImage";
-import convertToEuro from "../services/convertToEuro";
-import CartTotalPrice from "../components/cart/CartTotalPrice";
-import loadLocally from "../lib/loadLocally";
+import { getCartImage, convertToEuro } from "../../services/services";
+import { CartTotalPrice } from "../../components/components";
+import { loadLocally } from "../../lib/localStorage";
 import { useHistory } from "react-router-dom";
-import { validateName, validateEmail } from "../services/validationService";
 
 export default function Checkout({
   cart,

@@ -1,6 +1,6 @@
 import Logo from "../../assets/icons/logo.svg";
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export default function Header() {
   return (
