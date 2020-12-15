@@ -123,6 +123,11 @@ export default function Checkout({
               name="country"
               onChange={handleChange}
               placeholder="Land wählen"
+              defaultValue={
+                loadLocally("orderData").country === ""
+                  ? "Deutschland"
+                  : loadLocally("orderData").country
+              }
               required
             >
               <option value="Deutschland">Deutschland</option>

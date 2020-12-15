@@ -19,7 +19,7 @@ class OfferDataHandler {
         $this->repository = $repository;
     }
 
-    public function uploadOfferData(array $offerReader) {
+    public function uploadOfferData(object $offerReader) {
 
         foreach ($offerReader as $index => $row) {
             $offer = (new Offer())

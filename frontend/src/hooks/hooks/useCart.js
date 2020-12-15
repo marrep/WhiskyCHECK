@@ -14,6 +14,8 @@ export default function useCart() {
     }
   );
 
+  console.log(cart);
+
   useEffect(() => {
     saveLocally(STORAGE_KEY, cart);
   }, [cart]);

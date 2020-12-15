@@ -18,7 +18,7 @@ class ProductDataHandler {
         $this->repository = $repository;
     }
 
-    public function uploadProductData(array $productReader) {
+    public function uploadProductData(object $productReader) {
         foreach ($productReader as $index => $row) {
             $product = (new Product())
                 ->setGtin([$row][0][0])
