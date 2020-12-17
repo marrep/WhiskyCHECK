@@ -8,11 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 class OrderSerializerTest extends TestCase {
     public function testDeserializeFunction(){
-        // arrange
+
         $serializer = new OrderSerializer();
 
-        // act 
-        
         $resultDeserialize = $serializer->deserialize('[{"id":7,"customerId":2,"date":"12\/12\/2020","items":[],"totalPrice":49.80,"totalShipping":3.20,"paymentMethod":"paypal","name":"Marcel","surname":"Reperich","number":99,"city":"Hamburg","zip":22803,"country":"Deutschland","email":"papst@hotmail.de"}]');
         $expectedResultDeserialize = [
             [
@@ -33,7 +31,7 @@ class OrderSerializerTest extends TestCase {
                 'email' => 'papst@hotmail.de',
             ]
         ];
-        // assert
+
         $this->assertEquals($expectedResultDeserialize, $resultDeserialize);
 
         return $expectedResultDeserialize;
@@ -45,13 +43,10 @@ class OrderSerializerTest extends TestCase {
      */
     public function testSerializeFunction(){
 
-        // arrange
         $resultSerialize = $serializer->serialize($expectedResultDeserialize);
 
-        // act 
         $expectedResultSerialize = $resultDeserialize;
 
-        // assert
         $this->assertEquals($expectedResultSerialize, $resultSerialize);
     }
 }

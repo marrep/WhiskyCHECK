@@ -11,3 +11,13 @@ export function validateEmail(input) {
     : false;
   return validEmail;
 }
+
+export function validateZip(input) {
+  const validZip = input.length === 5 ? true : false;
+  return validZip;
+}
+
+export function validateNumber(input) {
+  const validName = input.length >= 1 ? true : false;
+  return validName;
+}
