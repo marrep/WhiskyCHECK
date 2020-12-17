@@ -13,13 +13,17 @@ export default function handleSubmit(event, orderData, history) {
     redirect: "follow",
   };
 
-  deleteLocally("cart");
-
   fetch("http://whiskycheck.local/create-order", requestOptions)
     .then((response) => response.text())
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
 
   history.push("/confirmation");
-  localStorage.clear("orderData");
+
+  setTimeout(() => {
+    localStorage.clear("cart");
+    deleteLocally("cart");
+    history.push("/");
+    window.location.reload();
+  }, 3000);
 }

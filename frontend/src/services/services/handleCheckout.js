@@ -14,6 +14,7 @@ export default function handleCheckout(event, orderData, history) {
     validateZip(orderData.zip) &&
     validateNumber(orderData.number)
   ) {
+    event.preventDefault();
     history.push("/summary");
     saveLocally("orderData", orderData);
   } else {

@@ -1,27 +1,34 @@
 import { useState, useEffect } from "react";
 import { loadLocally, saveLocally } from "../../lib/localStorage";
-import { useCart } from "../hooks";
 
 export default function useOffers() {
-  const { cart } = useCart();
-  const [orderData, setOrderData] = useState(
-    loadLocally("orderData") ?? {
-      customerId: cart.customerid,
-      date: cart.date,
-      items: cart.items,
-      totalPrice: cart.totalPrice,
-      totalShipping: cart.totalShipping,
-      name: "",
-      surname: "",
-      street: "",
-      number: "",
-      city: "",
-      zip: "",
-      country: "",
-      email: "",
-      paymentMethod: "",
-    }
-  );
+  const [orderData, setOrderData] = useState({
+    customerId: "",
+    date: "",
+    items: "",
+    totalPrice: "",
+    totalShipping: "",
+    name: "",
+    surname: "",
+    street: "",
+    number: "",
+    city: "",
+    zip: "",
+    country: "",
+    email: "",
+    paymentMethod: "",
+  });
+
+  useEffect(() => {
+    setOrderData({
+      ...orderData,
+      customerId: loadLocally("cart").customerid,
+      date: loadLocally("cart").date,
+      items: loadLocally("cart").items,
+      totalPrice: loadLocally("cart").totalPrice,
+      totalShipping: loadLocally("cart").totalShipping,
+    });
+  }, [orderData.name]);
 
   useEffect(() => {
     saveLocally("orderData", orderData);

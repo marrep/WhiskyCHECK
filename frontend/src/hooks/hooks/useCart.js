@@ -4,17 +4,23 @@ import { loadLocally, saveLocally } from "../../lib/localStorage";
 const STORAGE_KEY = "cart";
 
 export default function useCart() {
-  const [cart, setCart] = useState(
-    loadLocally(STORAGE_KEY) ?? {
-      items: [],
-      totalPrice: 0,
-      totalShipping: 0,
-      date: new Intl.DateTimeFormat("en-US").format(new Date()),
-      customerid: 2,
-    }
-  );
+  const [cart, setCart] = useState({
+    items:
+      localStorage.getItem("cart") !== null ? loadLocally("cart").items : [],
+    totalPrice:
+      localStorage.getItem("cart") !== null
+        ? loadLocally("cart").totalPrice
+        : 0,
+    totalShipping:
+      localStorage.getItem("cart") !== null
+        ? loadLocally("cart").totalShipping
+        : 0,
+    date: new Intl.DateTimeFormat("en-US").format(new Date()),
+    customerid: 2,
+  });
 
   console.log(cart);
+  console.log(loadLocally("cart"));
 
   useEffect(() => {
     saveLocally(STORAGE_KEY, cart);
@@ -51,7 +57,10 @@ export default function useCart() {
     setCart({
       ...cart,
       items: newItemsArray,
-      totalPrice: cart.totalPrice + selectedOffer.price,
+      totalPrice:
+        cart.totalPrice === 0
+          ? selectedOffer.price
+          : cart.totalPrice + selectedOffer.price,
       totalShipping: !foundOffer
         ? cart.totalShipping + selectedOffer.shippingPrice
         : cart.totalShipping,
