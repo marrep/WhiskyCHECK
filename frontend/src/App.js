@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
-import { handleCheckout, handleSubmit } from "./services/services";
+import { handleCheckout, submitOrder } from "./services/services";
 import { Header, Navigation, Loading } from "./components/components";
 import {
   useProducts,
@@ -97,7 +97,7 @@ export default function App() {
             <Summary
               cart={cart}
               products={products}
-              handleSubmit={handleSubmit}
+              handleSubmit={submitOrder}
               orderData={orderData}
               setOrderData={setOrderData}
             />

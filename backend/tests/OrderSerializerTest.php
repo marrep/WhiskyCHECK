@@ -33,14 +33,8 @@ class OrderSerializerTest extends TestCase {
         ];
 
         $this->assertEquals($expectedResultDeserialize, $resultDeserialize);
-
-        return $expectedResultDeserialize;
-        return $resultDeserialize;
     } 
 
-    /**
-     * @depends testDeserializeFunction
-     */
     public function testSerializeFunction(){
 
         $resultSerialize = $serializer->serialize($expectedResultDeserialize);

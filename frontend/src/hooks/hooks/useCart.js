@@ -19,9 +19,6 @@ export default function useCart() {
     customerid: 2,
   });
 
-  console.log(cart);
-  console.log(loadLocally("cart"));
-
   useEffect(() => {
     saveLocally(STORAGE_KEY, cart);
   }, [cart]);

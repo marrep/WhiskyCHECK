@@ -46,11 +46,7 @@ export default function Checkout({
               name="name"
               onChange={handleChange}
               placeholder="Vorname"
-              defaultValue={
-                loadLocally("orderData").name === ""
-                  ? ""
-                  : loadLocally("orderData").name
-              }
+              defaultValue={loadLocally("orderData").name ?? ""}
               required
             />
             <input
@@ -58,11 +54,7 @@ export default function Checkout({
               name="surname"
               onChange={handleChange}
               placeholder="Nachname"
-              defaultValue={
-                loadLocally("orderData").surname === ""
-                  ? ""
-                  : loadLocally("orderData").surname
-              }
+              defaultValue={loadLocally("orderData").surname ?? ""}
               required
             />
           </label>
@@ -72,11 +64,7 @@ export default function Checkout({
               name="street"
               onChange={handleChange}
               placeholder="Straße"
-              defaultValue={
-                loadLocally("orderData").street === ""
-                  ? ""
-                  : loadLocally("orderData").street
-              }
+              defaultValue={loadLocally("orderData").street ?? ""}
               required
             />
             <input
@@ -84,11 +72,7 @@ export default function Checkout({
               name="number"
               onChange={handleChange}
               placeholder="Nr."
-              defaultValue={
-                loadLocally("orderData").number === ""
-                  ? ""
-                  : loadLocally("orderData").number
-              }
+              defaultValue={loadLocally("orderData").number ?? ""}
               required
             />
           </label>
@@ -98,11 +82,7 @@ export default function Checkout({
               name="city"
               onChange={handleChange}
               placeholder="Stadt"
-              defaultValue={
-                loadLocally("orderData").city === ""
-                  ? ""
-                  : loadLocally("orderData").city
-              }
+              defaultValue={loadLocally("orderData").city ?? ""}
               required
             />
             <input
@@ -110,11 +90,7 @@ export default function Checkout({
               name="zip"
               onChange={handleChange}
               placeholder="PLZ"
-              defaultValue={
-                loadLocally("orderData").zip === ""
-                  ? ""
-                  : loadLocally("orderData").zip
-              }
+              defaultValue={loadLocally("orderData").zip ?? ""}
               required
             />
           </label>
@@ -123,11 +99,7 @@ export default function Checkout({
               name="country"
               onChange={handleChange}
               placeholder="Land wählen"
-              defaultValue={
-                loadLocally("orderData").country === ""
-                  ? "Deutschland"
-                  : loadLocally("orderData").country
-              }
+              defaultValue={loadLocally("orderData").country ?? ""}
               required
             >
               <option value="Deutschland">Deutschland</option>
@@ -139,11 +111,7 @@ export default function Checkout({
               name="email"
               onChange={handleChange}
               placeholder="Email"
-              defaultValue={
-                loadLocally("orderData").email === ""
-                  ? ""
-                  : loadLocally("orderData").email
-              }
+              defaultValue={loadLocally("orderData").email ?? ""}
               required
             />
           </label>

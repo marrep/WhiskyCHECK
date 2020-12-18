@@ -8,7 +8,7 @@ import getFastestDeliveryDay from "./services/getFastestDeliveryDay";
 import getPriceRange from "./services/getPriceRange";
 import getProductData from "./services/getProductData";
 import handleCheckout from "./services/handleCheckout";
-import handleSubmit from "./services/handleSubmit";
+import submitOrder from "./services/submitOrder";
 import { validateName, validateEmail } from "./services/validationService";
 
 export {
@@ -22,7 +22,7 @@ export {
   getPriceRange,
   getProductData,
   handleCheckout,
-  handleSubmit,
+  submitOrder,
   validateName,
   validateEmail,
 };

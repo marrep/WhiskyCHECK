@@ -1,4 +1,4 @@
-import handleSubmit from "./handleSubmit";
+import submitOrder from "./submitOrder";
 import { Summary } from "../../pages/pages";
 import { render } from "@testing-library/react";
 
@@ -16,7 +16,7 @@ describe("handleSubmit", () => {
       <Summary
         cart={testProps}
         products={[]}
-        handleSubmit={handleSubmit}
+        handleSubmit={submitOrder}
         orderData={testProps}
       />
     );

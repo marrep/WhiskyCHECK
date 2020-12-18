@@ -32,7 +32,6 @@ export default function useOffers() {
 
   useEffect(() => {
     saveLocally("orderData", orderData);
-    console.log(orderData);
   }, [orderData]);
 
   return {
