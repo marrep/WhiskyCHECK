@@ -1,14 +1,13 @@
-import convertToEuro from "../../services/convertToEuro";
-import getDeliveryDay from "../../services/getDeliveryDay";
+import { convertToEuro, getDeliveryDay } from "../../services/services";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-export default function OfferDetailsItem({ offer }) {
-  OfferDetailsItem.propTypes = {
-    offer: PropTypes.object.isRequired,
-  };
+OfferDetailsItem.propTypes = {
+  offer: PropTypes.object.isRequired,
+};
 
+export default function OfferDetailsItem({ offer }) {
   return (
     <>
       <Price>{convertToEuro(offer.price)}</Price>

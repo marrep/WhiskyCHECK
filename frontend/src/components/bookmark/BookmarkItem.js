@@ -2,15 +2,15 @@ import { useHistory } from "react-router-dom";
 import close from "../../assets/icons/close.svg";
 import PropTypes from "prop-types";
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 BookmarkItem.propTypes = {
   id: PropTypes.number,
-  deleteBookmark: PropTypes.func.isRequired,
+  toggleBookmark: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
 };
 
-export default function BookmarkItem({ image, deleteBookmark, id }) {
+export default function BookmarkItem({ image, toggleBookmark, id }) {
   const history = useHistory();
 
   return (
@@ -28,7 +28,7 @@ export default function BookmarkItem({ image, deleteBookmark, id }) {
           src={close}
           alt=""
           data-testid="deleteButton"
-          onClick={() => deleteBookmark(id)}
+          onClick={() => toggleBookmark(id)}
         />
       </RightWrapper>
     </MainWrapper>
@@ -45,10 +45,6 @@ const MainWrapper = styled.div`
 `;
 
 const LeftWrapper = styled.div`
-  align-items: top;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   overflow: hidden;
   padding: 10px;
   text-decoration: none;

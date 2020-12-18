@@ -1,0 +1,40 @@
+GET http://whiskycheck.local/api/products HTTP/1.1
+
+###
+
+POST http://whiskycheck.local/create-order HTTP/1.1
+content-type: application/json
+
+{
+    "customerId": 2,
+    "date": "01/01/2021",
+    "items": [
+  {
+    "id": 2,
+    "title": "Hibiki Japanese Harmony Whisky",
+    "price": 75.4,
+    "amount": 1,
+    "shippingPrice": 2.9,
+    "seller": "Tastillery"
+  },
+  {
+    "id": 3,
+    "title": "Yamazaki 12 Jahre",
+    "price": 99.9,
+    "amount": 1,
+    "shippingPrice": 2.9,
+    "seller": "Tastillery"
+  }
+],
+    "totalPrice": 175.30000000000007,
+    "totalShipping": 5.8,
+    "name": "Marcel",
+    "surname": "Rep",
+    "street": "Maxstrasse",
+    "number": "99",
+    "city": "Hamburg",
+    "zip": "22222",
+    "country": "Deutschland",
+    "email": "test@test.de",
+    "paymentMethod": "Paypal",
+}

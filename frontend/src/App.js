@@ -1,34 +1,66 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Header from "./components/header/Header";
-import Cart from "./pages/Cart";
-import Bookmarks from "./pages/Bookmarks";
-import Search from "./pages/Search";
-import Navigation from "./components/navigation/Navigation";
-import ProductDetailPage from "./pages/ProductDetailPage";
 import styled from "styled-components";
-import useProducts from "./hooks/useProducts";
-import useBookmarks from "./hooks/useBookmarks";
-import useCart from "./hooks/useCart";
-import Checkout from "./pages/Checkout";
-import handleSubmit from "./services/handleSubmit";
-import Confirmation from "./pages/Confirmation";
+import { handleCheckout, submitOrder } from "./services/services";
+import { Header, Navigation, Loading } from "./components/components";
+import {
+  useProducts,
+  useBookmarks,
+  useCart,
+  useFilter,
+  useOrderData,
+} from "./hooks/hooks";
+import {
+  Summary,
+  Cart,
+  Bookmarks,
+  Search,
+  ProductDetailPage,
+  Checkout,
+  Confirmation,
+  WhiskyFinder,
+} from "./pages/pages";
 
 export default function App() {
   const { products } = useProducts();
-  const { deleteBookmark, toggleBookmark, bookmarks } = useBookmarks();
-  const { cart, addToCart, increaseAmount, removeFromCart } = useCart();
+  const { toggleBookmark, bookmarks } = useBookmarks();
+  const {
+    searchResults,
+    setWhiskyFinder,
+    filterOriginByTag,
+    sortProducts,
+    showHideFilter,
+    filterHandler,
+    originFilter,
+    toggleFilter,
+  } = useFilter();
+  const { cart, addToCart, increaseAmount, decreaseAmount } = useCart();
+  const { orderData, setOrderData } = useOrderData();
 
   return (
     <GlobalWrapper>
+      <Loading />
       <Header />
       <main>
         <Switch>
           <Route exact path="/">
-            <Search
-              products={products}
+            <WhiskyFinder
+              setWhiskyFinder={setWhiskyFinder}
+              filterOriginByTag={filterOriginByTag}
               toggleBookmark={toggleBookmark}
               bookmarks={bookmarks}
+            />
+          </Route>
+          <Route exact path="/search">
+            <Search
+              toggleBookmark={toggleBookmark}
+              bookmarks={bookmarks}
+              searchResults={searchResults}
+              sortProducts={sortProducts}
+              showHideFilter={showHideFilter}
+              filterHandler={filterHandler}
+              originFilter={originFilter}
+              toggleFilter={toggleFilter}
             />
           </Route>
           <Route exact path="/cart">
@@ -38,11 +70,11 @@ export default function App() {
               bookmarks={bookmarks}
               products={products}
               increaseAmount={increaseAmount}
-              removeFromCart={removeFromCart}
+              decreaseAmount={decreaseAmount}
             />
           </Route>
           <Route exact path="/bookmark">
-            <Bookmarks bookmarks={bookmarks} deleteBookmark={deleteBookmark} />
+            <Bookmarks bookmarks={bookmarks} toggleBookmark={toggleBookmark} />
           </Route>
           <Route path="/products/:id">
             <ProductDetailPage
@@ -56,7 +88,18 @@ export default function App() {
             <Checkout
               cart={cart}
               products={products}
-              handleSubmit={handleSubmit}
+              orderData={orderData}
+              handleCheckout={handleCheckout}
+              setOrderData={setOrderData}
+            />
+          </Route>
+          <Route exact path="/summary">
+            <Summary
+              cart={cart}
+              products={products}
+              handleSubmit={submitOrder}
+              orderData={orderData}
+              setOrderData={setOrderData}
             />
           </Route>
           <Route exact path="/confirmation">

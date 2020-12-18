@@ -1,19 +1,22 @@
-import { useState } from "react";
-import OfferDetailsItem from "./OfferDetailsItem";
+import { OfferDetailsItem } from "../components";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import useOffers from "../../hooks/useOffers";
+import { useOffers } from "../../hooks/hooks";
+
+OfferDetails.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+  offers: PropTypes.array,
+  product: PropTypes.object.isRequired,
+};
 
 export default function OfferDetails({ product, offers, addToCart }) {
-  const [toggleOffers, setToggleOffer] = useState(false);
-  const { selectedOffer, selectNewOffer } = useOffers();
-
-  OfferDetails.propTypes = {
-    addToCart: PropTypes.func.isRequired,
-    offers: PropTypes.array,
-    product: PropTypes.object.isRequired,
-  };
+  const {
+    selectedOffer,
+    selectNewOffer,
+    toggleOffers,
+    setToggleOffer,
+  } = useOffers();
 
   return (
     <MainWrapper>
@@ -91,6 +94,7 @@ const AddToCart = styled.button`
   margin-bottom: 40px;
   margin-left: 0;
   margin-right: 0;
+  margin-top: 30px;
   padding: 1em 5em;
   text-transform: uppercase;
   width: 100%;

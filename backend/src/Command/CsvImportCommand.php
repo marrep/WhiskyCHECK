@@ -2,15 +2,7 @@
 
 namespace App\Command;
 
-use App\Utils\OfferDataHandler;
-use App\Utils\ProductDataHandler;
-use App\Entity\Offer;
-use App\Repository\OfferRepository;
-use App\Entity\Product;
-use App\Repository\ProductRepository;
-use App\Service\RecordFinderService;
-use Doctrine\ORM\EntityManagerInterface;
-use League\Csv\Reader;
+use App\Service\CsvReaderService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -25,30 +17,18 @@ class CsvImportCommand extends Command
     /**
      * @var EntityManagerInterface
      */
-    public $em;
-    public $recordFinder;
-    public $repository;
-    public $offerDataHandler;
-    public $productDataHandler;
+    public $csvReaderService;
 
     /**
      * CsvImportCommand constructor.
      *
-     * @param EntityManagerInterface $em
-     * @param RecordFinderService $recordFinder
-     * @param ProductRepository $repository
-     * @param OfferDataHandler $offerDataHandler
-     * @param ProductDataHandler $productDataHandler
+     * @param CsvReaderService $csvReaderService
      *
      * @throws \Symfony\Component\Console\Exception\LogicException
      */
-    public function __construct(EntityManagerInterface $em, RecordFinderService $recordFinderService, ProductRepository $repository, OfferDataHandler $offerDataHandler, ProductDataHandler $productDataHandler)
+    public function __construct()
     {
-        $this->em = $em;
-        $this->recordFinderService = $recordFinderService;
-        $this->repository = $repository;
-        $this->offerDataHandler = $offerDataHandler;
-        $this->productDataHandler = $productDataHandler;
+        $this->csvReaderService = $csvReaderService;
 
         parent::__construct();
     }
@@ -69,27 +49,13 @@ class CsvImportCommand extends Command
      * @param InputInterface  $input
      * @param OutputInterface $output
      *
-     * @return void
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
+        $csvCommand = $this->csvReaderService;
+        $csvCommand->useData();
 
-        $productReader = Reader::createFromPath(__DIR__ . "/../Data/PRODUCT_DATA.csv", 'r');
-        $productDataHandler->uploadProductData($productReader);
-
-        $offerReader = Reader::createFromPath(__DIR__ . "/../Data/OFFER_DATA.csv", 'r');
-        $offerDataHandler->uploadOfferData($offerReader);
-
-        $products = $this->em->getRepository(Product::class)->findAll();
-        foreach ($products as $product) {
-            $searchForGtin = $product->getGtin();
-            $offersFound = $this->em->getRepository(Offer::class)->findOneBy(array('gtin' => $searchForGtin));
-            $product->addOffer($offersFound);
-        }
-
-    return Command::SUCCESS;
-
+        return Command::SUCCESS;
     }
-    
 }

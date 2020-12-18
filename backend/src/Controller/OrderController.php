@@ -18,7 +18,7 @@ class OrderController extends AbstractController
     /**
      * @Route("/orders", methods={"GET"})
      */
-    public function index(Request $request, OrderRepository $orderRepository, SerializerInterface $serializer): JsonResponse
+    public function index(Request $request, OrderRepository $orderRepository, OrderSerializer $serializer): JsonResponse
     {
         $orders = $orderRepository->findAll();
     

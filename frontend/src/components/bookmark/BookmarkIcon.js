@@ -38,7 +38,7 @@ const Wrapper = styled.div`
 `;
 
 const Icon = styled.img`
-  width: 80%auto;
+  width: 80% auto;
 `;
 
 const Text = styled.span`

@@ -1,12 +1,23 @@
 import { Link } from "react-router-dom";
-import BookmarkIcon from "../bookmark/BookmarkIcon";
+import { BookmarkIcon } from "../components";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import countOffers from "../../services/countOffers";
-import getPriceRange from "../../services/getPriceRange";
-import getFastestDeliveryDay from "../../services/getFastestDeliveryDay";
-import checkOnStock from "../../services/checkOnStock";
+import {
+  countOffers,
+  getPriceRange,
+  getFastestDeliveryDay,
+  checkOnStock,
+} from "../../services/services";
+
+SearchProductItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  offers: PropTypes.array.isRequired,
+  id: PropTypes.number.isRequired,
+  toggleBookmark: PropTypes.func.isRequired,
+  bookmarks: PropTypes.array.isRequired,
+};
 
 export default function SearchProductItem({
   title,
@@ -16,15 +27,6 @@ export default function SearchProductItem({
   toggleBookmark,
   bookmarks,
 }) {
-  SearchProductItem.propTypes = {
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    offers: PropTypes.array.isRequired,
-    id: PropTypes.number.isRequired,
-    toggleBookmark: PropTypes.func.isRequired,
-    bookmarks: PropTypes.array.isRequired,
-  };
-
   return (
     <MainWrapper>
       <StyledLink

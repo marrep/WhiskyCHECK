@@ -59,6 +59,11 @@ class Order
     private $surname;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $street;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $number;
@@ -180,6 +185,18 @@ class Order
     public function setSurname(string $surname): self
     {
         $this->surname = $surname;
+
+        return $this;
+    }
+
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    public function setStreet(string $street): self
+    {
+        $this->street = $street;
 
         return $this;
     }

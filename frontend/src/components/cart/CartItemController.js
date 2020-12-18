@@ -1,23 +1,23 @@
 import plus from "../../assets/icons/plus.svg";
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import trashbin from "../../assets/icons/trashbin.svg";
 import PropTypes from "prop-types";
 
+CartItemController.propTypes = {
+  cartItem: PropTypes.object,
+  cart: PropTypes.array,
+};
+
 export default function CartItemController({
   cartItem,
+  decreaseAmount,
   increaseAmount,
-  removeFromCart,
 }) {
-  CartItemController.propTypes = {
-    cartItem: PropTypes.object,
-    cart: PropTypes.array,
-  };
-
   return (
     <MainWrapper>
       <Controller>
-        <LeftWrapper onClick={() => removeFromCart(cartItem)}>
+        <LeftWrapper onClick={() => decreaseAmount(cartItem)}>
           <div>
             <img src={trashbin} alt="" />
           </div>
@@ -27,7 +27,6 @@ export default function CartItemController({
           <img src={plus} alt="" />
         </RightWrapper>
       </Controller>
-      {/* {JSON.stringify(cart)} */}
     </MainWrapper>
   );
 }

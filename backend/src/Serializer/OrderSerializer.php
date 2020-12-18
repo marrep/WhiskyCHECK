@@ -8,6 +8,7 @@ use App\Entity\Order;
 
 class OrderSerializer {
 
+    private $elementArray = [];
     private function orderArray($element): object {
 
         $this->elementArray[] = [
@@ -20,6 +21,7 @@ class OrderSerializer {
             'paymentMethod' => $element->getPaymentMethod(),
             'name' => $element->getName(),
             'surname' => $element->getSurname(),
+            'street' => $element->getStreet(),
             'number' => $element->getNumber(),
             'city' => $element->getCity(),
             'zip' => $element->getZip(),
@@ -52,6 +54,7 @@ class OrderSerializer {
         $orderObject->setPaymentMethod($postData->paymentMethod);
         $orderObject->setName($postData->name);
         $orderObject->setSurname($postData->surname);
+        $orderObject->setStreet($postData->street);
         $orderObject->setNumber($postData->number);
         $orderObject->setCity($postData->city);
         $orderObject->setZip($postData->zip);

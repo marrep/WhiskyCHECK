@@ -3,6 +3,12 @@ import BookmarkIcon from "./BookmarkIcon";
 import { render } from "@testing-library/react";
 
 const bookmarkMock = jest.fn();
+const testProps = [
+  {
+    image: "",
+    id: 1,
+  },
+];
 
 describe("BookmarkIcon", () => {
   it("should render correctly", () => {
@@ -10,12 +16,7 @@ describe("BookmarkIcon", () => {
       <BookmarkIcon
         id={1}
         toggleBookmark={bookmarkMock}
-        bookmarks={[
-          {
-            image: "",
-            id: 1,
-          },
-        ]}
+        bookmarks={testProps}
       />
     );
     expect(container.firstChild).toMatchSnapshot();
@@ -26,12 +27,7 @@ describe("BookmarkIcon", () => {
       <BookmarkIcon
         id={1}
         toggleBookmark={bookmarkMock}
-        bookmarks={[
-          {
-            image: "",
-            id: 1,
-          },
-        ]}
+        bookmarks={testProps}
       />
     );
     const element = getByTestId("bookmarkIcon");

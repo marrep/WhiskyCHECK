@@ -30,12 +30,12 @@ class Offer
     /**
      * @ORM\Column(type="float")
      */
-    private $shipping_price;
+    private $shippingPrice;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $delivery_time;
+    private $deliveryTime;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -45,7 +45,7 @@ class Offer
     /**
      * @ORM\Column(type="boolean")
      */
-    private $on_stock;
+    private $onStock;
 
     /**
      * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="offers")
@@ -84,24 +84,24 @@ class Offer
 
     public function getShippingPrice(): ?float
     {
-        return $this->shipping_price;
+        return $this->shippingPrice;
     }
 
-    public function setShippingPrice(float $shipping_price): self
+    public function setShippingPrice(float $shippingPrice): self
     {
-        $this->shipping_price = $shipping_price;
+        $this->shippingPrice = $shippingPrice;
 
         return $this;
     }
 
     public function getDeliveryTime(): ?int
     {
-        return $this->delivery_time;
+        return $this->deliveryTime;
     }
 
-    public function setDeliveryTime(int $delivery_time): self
+    public function setDeliveryTime(int $deliveryTime): self
     {
-        $this->delivery_time = $delivery_time;
+        $this->deliveryTime = $deliveryTime;
 
         return $this;
     }
@@ -120,12 +120,12 @@ class Offer
 
     public function getOnStock(): ?bool
     {
-        return $this->on_stock;
+        return $this->onStock;
     }
 
-    public function setOnStock(bool $on_stock): self
+    public function setOnStock(bool $onStock): self
     {
-        $this->on_stock = $on_stock;
+        $this->onStock = $onStock;
 
         return $this;
     }

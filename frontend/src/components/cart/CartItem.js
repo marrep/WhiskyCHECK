@@ -1,9 +1,15 @@
-import BookmarkIcon from "../bookmark/BookmarkIcon";
-import convertToEuro from "../../services/convertToEuro";
-import getCartImage from "../../services/getCartImage";
+import { BookmarkIcon } from "../components";
+import { convertToEuro, getCartImage } from "../../services/services";
 import PropTypes from "prop-types";
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
+
+CartItemInformation.propTypes = {
+  cartItem: PropTypes.object,
+  toggleBookmark: PropTypes.func.isRequired,
+  bookmarks: PropTypes.array.isRequired,
+  products: PropTypes.array.isRequired,
+};
 
 export default function CartItemInformation({
   cartItem,
@@ -11,13 +17,6 @@ export default function CartItemInformation({
   bookmarks,
   toggleBookmark,
 }) {
-  CartItemInformation.propTypes = {
-    cartItem: PropTypes.object,
-    toggleBookmark: PropTypes.func.isRequired,
-    bookmarks: PropTypes.array.isRequired,
-    products: PropTypes.array.isRequired,
-  };
-
   return (
     <MainWrapper>
       <LeftWrapper>
